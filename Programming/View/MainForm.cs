@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Programming.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,12 @@ namespace Programming
     public partial class MainForm : Form
     {
         private Dictionary<string, Type> enumTypes;
+        private Programming.Model.Rectangle[] _rectangles;
+        private Programming.Model.Rectangle _currentRectangle;
+        private Random random = new Random();
+        private Movie[] _movies;
+        private Movie _currentMovie;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,6 +30,31 @@ namespace Programming
             SeasonComboBox.Items.Add(Programming.Model.Enums.Season.Summer);
             SeasonComboBox.Items.Add(Programming.Model.Enums.Season.Autumn);
             SeasonComboBox.SelectedIndex = 0;
+            _rectangles = new Programming.Model.Rectangle[5];
+            for (int i = 0; i < 5; i++)
+            {
+                double width = random.NextDouble() * 100;
+                double length = random.NextDouble() * 100;
+                string color = GetRandomColor();
+                _rectangles[i] = new Programming.Model.Rectangle(width, length, color);
+                RectanglesListBox.Items.Add($"Прямоугольник {i + 1}");
+            }
+            if (_rectangles.Length > 0)
+            {
+                _currentRectangle = _rectangles[0];
+                UpdateFields();
+            }
+            RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
+            InitializeMovies();
+            foreach (var movie in _movies)
+            {
+                MoviesListBox.Items.Add(movie.Name);
+            }
+        }
+        private string GetRandomColor()
+        {
+            string[] availableColors = { "blue", "red", "green", "yellow", "black", "white" };
+            return availableColors[random.Next(availableColors.Length)];
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -130,6 +162,209 @@ namespace Programming
             else
             {
                 ResultLabel.Text = "Ошибка: введите день недели";
+            }
+        }
+
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = RectanglesListBox.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < _rectangles.Length)
+            {
+                _currentRectangle = _rectangles[selectedIndex];
+                UpdateFields();
+            }
+        }
+
+        private void UpdateFields()
+        {
+            WidthInput.Text = _currentRectangle.Width.ToString();
+            LengthInput.Text = _currentRectangle.Length.ToString();
+            ColorInput.Text = _currentRectangle.Color;
+        }
+
+        private void LengthInput_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle != null)
+            {
+                TextBox textBox = (TextBox)sender;
+                string text = textBox.Text.Trim();
+                try
+                {
+                    if (double.TryParse(text, out double length))
+                    {
+                        _currentRectangle.Length = length;
+                        textBox.BackColor = System.Drawing.SystemColors.Window;
+                    }
+                    else
+                    {
+                        textBox.BackColor = System.Drawing.Color.LightPink;
+                    }
+                }
+                catch (FormatException)
+                {
+                    textBox.BackColor = System.Drawing.Color.LightPink;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    textBox.BackColor = System.Drawing.Color.LightPink;
+                }
+            }
+        }
+
+        private void WidthInput_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle != null)
+            {
+                TextBox textBox = (TextBox)sender;
+                string text = textBox.Text.Trim();
+                try
+                {
+                    if (double.TryParse(text, out double width))
+                    {
+                        _currentRectangle.Width = width;
+                        textBox.BackColor = System.Drawing.SystemColors.Window;
+                    }
+                    else
+                    {
+                        textBox.BackColor = System.Drawing.Color.LightPink;
+                    }
+                }
+                catch (FormatException)
+                {
+                    textBox.BackColor = System.Drawing.Color.LightPink;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    textBox.BackColor = System.Drawing.Color.LightPink;
+                }
+            }
+        }
+
+        private void ColorInput_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle != null)
+            {
+                _currentRectangle.Color = ColorInput.Text;
+            }
+        }
+
+        private void FindButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maxIndex = FindRectangleWithMaxWidth(_rectangles);
+                RectanglesListBox.SelectedIndex = maxIndex;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private int FindRectangleWithMaxWidth(Model.Rectangle[] rectangles)
+        {
+            if (rectangles == null || rectangles.Length == 0)
+            {
+                throw new ArgumentException("Массив прямоугольников пуст или равен null.");
+            }
+            int maxIndex = 0;
+            double maxWidth = rectangles[0].Width;
+            for (int i = 1; i < rectangles.Length; i++)
+            {
+                if (rectangles[i].Width > maxWidth)
+                {
+                    maxWidth = rectangles[i].Width;
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
+        }
+
+        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MoviesListBox.SelectedIndex >= 0 && MoviesListBox.SelectedIndex < _movies.Length)
+            {
+                _currentMovie = _movies[MoviesListBox.SelectedIndex];
+                UpdateMovieFields();
+            }
+        }
+
+        private void NameInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MovieTimeInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ReleaseYearInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GenreInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RatingInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FindFilmButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maxRatingIndex = FindMovieWithMaxRating();
+                MoviesListBox.SelectedIndex = maxRatingIndex;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void InitializeMovies()
+        {
+            _movies = new Movie[]
+            {
+                new Movie { Name = "Inception", MovieTime = 148, ReleaseYear = 2010, Genre = "Sci-Fi", Rating = 8.8 },
+                new Movie { Name = "The Dark Knight", MovieTime = 152, ReleaseYear = 2008, Genre = "Action", Rating = 9.0 },
+                new Movie { Name = "Interstellar", MovieTime = 169, ReleaseYear = 2014, Genre = "Sci-Fi", Rating = 8.6 },
+                new Movie { Name = "The Shawshank Redemption", MovieTime = 142, ReleaseYear = 1994, Genre = "Drama", Rating = 9.3 },
+                new Movie { Name = "Fight Club", MovieTime = 139, ReleaseYear = 1999, Genre = "Drama", Rating = 8.8 }
+            };
+        }
+        private int FindMovieWithMaxRating()
+        {
+            if (_movies == null || _movies.Length == 0)
+            {
+                throw new ArgumentException("Список фильмов пуст или равен null.");
+            }
+            int maxIndex = 0;
+            double maxRating = _movies[0].Rating;
+
+            for (int i = 1; i < _movies.Length; i++)
+            {
+                if (_movies[i].Rating > maxRating)
+                {
+                    maxRating = _movies[i].Rating;
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
+        }
+        private void UpdateMovieFields()
+        {
+            if (_currentMovie != null)
+            {
+                NameInput.Text = _currentMovie.Name;
+                MovieTimeInput.Text = _currentMovie.MovieTime.ToString();
+                ReleaseYearInput.Text = _currentMovie.ReleaseYear.ToString();
+                GenreInput.Text = _currentMovie.Genre;
+                RatingInput.Text = _currentMovie.Rating.ToString();
             }
         }
     }
