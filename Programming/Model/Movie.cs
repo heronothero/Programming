@@ -9,18 +9,22 @@ namespace Programming.Model
     public class Movie
     {
         public string Name { get; set; }
-        public int MovieTime { get; set; }
+        private int movieTime;
+        public int MovieTime 
+        { 
+            get { return movieTime; } 
+            set
+            { Validator.AssertOnPositiveValue(value, "MovieTime"); 
+                movieTime = value;
+            }
+        }
         private int releaseYear;
         public int ReleaseYear
         {
             get { return releaseYear; }
             set
             {
-                int CurrentTime = DateTime.Now.Year;
-                if (value > CurrentTime || value < 1900)
-                {
-                    throw new ArgumentException("Год выпуска должен быть от 1900 до текущего года");
-                }
+                Validator.AssertValueInRange(value, 1900, DateTime.Now.Year, "ReleaseYear");
                 releaseYear = value;
             }
         }
@@ -31,10 +35,7 @@ namespace Programming.Model
             get { return rating; }
             set
             {
-                if (value < 0 || value > 10)
-                {
-                    throw new ArgumentException("Рейтинг должен быть от 0 до 10");
-                }
+                Validator.AssertValueInRange(value, 0, 10, "Rating");
                 rating = value;
             }
         }

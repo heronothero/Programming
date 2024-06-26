@@ -53,6 +53,7 @@
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\Time.cs" />
+    <Compile Include="Model\Validator.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

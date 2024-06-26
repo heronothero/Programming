@@ -10,6 +10,15 @@ namespace Programming.Model
     {
         public string DeparturePoint {  get; set; }
         public string Destination { get; set; }
-        public int FlightTime { get; set; }
+        private int flightTime;
+        public int FlightTime
+        {
+            get { return flightTime; }
+            set
+            {
+                Validator.AssertOnPositiveValue(value, "FlightTime");
+                flightTime = value;
+            }
+        }
     }
 }

@@ -40,10 +40,7 @@ namespace Programming.Model
             get { return durationSeconds; }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Продолжительность песни должна быть больше 0");
-                }
+                Validator.AssertOnPositiveValue(value, "DurationSeconds");
                 durationSeconds = value;
             }
         }

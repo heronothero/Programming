@@ -14,11 +14,19 @@ namespace Programming.Model
             get { return name; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Имя контакта не может быть пустым.");
-                }
+                AssertStringContainsOnlyLetters(value, "Name");
                 name = value;
+            }
+        }
+
+        private string surname;
+        public string Surname
+        {
+            get { return surname; }
+            set
+            {
+                AssertStringContainsOnlyLetters(value, "Surname");
+                surname = value;
             }
         }
         private string phoneNumber;
@@ -56,16 +64,35 @@ namespace Programming.Model
         public Contact()
         {
             Name = "";
+            Surname = "";
             PhoneNumber = "";
             Email = "";
             Organization = "";
         }
-        public Contact(string name, string phoneNumber, string email, string organization)
+
+        public Contact(string name, string surname, string phoneNumber, string email, string organization)
         {
             Name = name;
+            Surname = surname;
             PhoneNumber = phoneNumber;
             Email = email;
             Organization = organization;
+        }
+
+        private void AssertStringContainsOnlyLetters(string value, string propertyName)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException($"Значение свойства {propertyName} не может быть пустым.");
+            }
+
+            foreach (char c in value)
+            {
+                if (!char.IsLetter(c) || !char.IsLetter(c))
+                {
+                    throw new ArgumentException($"Значение свойства {propertyName} должно содержать только буквы английского алфавита.");
+                }
+            }
         }
     }
 }

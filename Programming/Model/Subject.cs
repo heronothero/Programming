@@ -40,10 +40,7 @@ namespace Programming.Model
             get { return grade; }
             set
             {
-                if (value < 0 || value > 5)
-                {
-                    throw new ArgumentOutOfRangeException("Оценка должна быть в диапазоне от 0 до 5");
-                }
+                Validator.AssertValueInRange(value, 0, 5, "Grade");
                 grade = value;
             }
         }
