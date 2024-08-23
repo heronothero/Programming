@@ -33,12 +33,20 @@ namespace Programming
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ValueListBox.Items.Clear();
+            if (EnumsListBox != null && enumTypes.TryGetValue(EnumsListBox.SelectedItem.ToString(), out Type SelectedItem))
+            {
+                var enumValues = Enum.GetValues(SelectedItem);
+                foreach (var value in enumValues)
+                {
+                    ValueListBox.Items.Add(value);
+                }
+            }
         }
 
         private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ValueTextBox_TextChanged(object sender, EventArgs e)
