@@ -46,7 +46,11 @@ namespace Programming
 
         private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            if (ValueListBox != null)
+            {
+                int ValueAsInt = ValueListBox.SelectedIndex;
+                ValueTextBox.Text = ValueAsInt.ToString();
+            }
         }
 
         private void ValueTextBox_TextChanged(object sender, EventArgs e)
