@@ -29,6 +29,10 @@ namespace Programming
             enumTypes.Add("Smartphone manufacturers", typeof(SmartphoneManufacturers));
             enumTypes.Add("Weekday", typeof(Weekday));
             EnumsListBox.DataSource = new List<string>(enumTypes.Keys);
+            seasonComboBox.Items.Add(Season.Winter);
+            seasonComboBox.Items.Add(Season.Spring);
+            seasonComboBox.Items.Add(Season.Summer);
+            seasonComboBox.Items.Add(Season.Autumn);
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,6 +87,36 @@ namespace Programming
         }
 
         private void dayInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void seasonButton_Click(object sender, EventArgs e)
+        {
+            if (seasonComboBox.SelectedItem != null && seasonComboBox.SelectedItem is Season selectedSeason)
+            {
+                switch (selectedSeason)
+                {
+                    case Season.Winter:
+                        MessageBox.Show("Brrr! Its cold!");
+                        break;
+                    case Season.Spring:
+                        this.BackColor = Color.LightGreen;
+                        break;
+                    case Season.Summer:
+                        MessageBox.Show("Hooray! The sun!");
+                        break;
+                    case Season.Autumn:
+                        this.BackColor = Color.Orange;
+                        break;
+                }
+            } else
+            {
+                MessageBox.Show("Please choose a season", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void seasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
