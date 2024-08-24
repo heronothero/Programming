@@ -11,5 +11,34 @@ namespace Programming.Model
         private double length;
         private double width;
         private string color;
+        public double Length
+        {
+            get { return length; }
+            set 
+            {
+                Validator.AssertOnPositiveValue(value, "Length");
+                length = value;
+            }
+        }
+        public double Width
+        {
+            get { return width; }
+            set 
+            {
+                Validator.AssertOnPositiveValue(value, "Width");
+                width = value;
+            }
+        }
+        public string Color
+        {
+            get { return color; }
+            set { color = value; }
+        }
+        public Rectangle(double length, double width, string color)
+        {
+            Length = length;
+            Width = width;
+            Color = color;
+        }
     }
 }

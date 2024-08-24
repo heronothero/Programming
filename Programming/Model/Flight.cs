@@ -8,9 +8,23 @@ namespace Programming.Model
 {
     public class Flight
     {
-        private string departurePoint;
-        private string destination;
         private int flightTime;
-
+        public string DeparturePoint{ get; set; }
+        public string Destination{ get; set; }
+        public int FlightTime
+        {
+            get { return flightTime; }
+            set 
+            {
+                Validator.AssertOnPositiveValue(value, "FlightTime");
+                flightTime = value;
+            }
+        }
+        public Flight(string destination, string departurePoint, int flightTime)
+        {
+            Destination = destination;
+            DeparturePoint = departurePoint;
+            FlightTime = flightTime;
+        }
     }
 }

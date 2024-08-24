@@ -8,8 +8,23 @@ namespace Programming.Model
 {
     public class Contact
     {
-        private string name;
         private int phoneNumber;
-        private string organization;
+        public string ContactName { get; set; }
+        public int PhoneNumber
+        {
+            get { return phoneNumber; }
+            set
+            {
+                Validator.AssertValueLength(value, 11, "PhoneNumber");
+                phoneNumber = value;
+            }
+        }
+        public string Organization { get; set; }
+        public Contact(string contactName, int phoneNumber, string organization)
+        {
+            ContactName = contactName;
+            PhoneNumber = phoneNumber;
+            Organization = organization;
+        }
     }
 }
