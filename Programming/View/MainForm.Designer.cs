@@ -31,6 +31,10 @@ namespace Programming
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Enums = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.seasonComboBox = new System.Windows.Forms.ComboBox();
+            this.seasonButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.resultLabel = new System.Windows.Forms.Label();
             this.resultButton = new System.Windows.Forms.Button();
@@ -43,20 +47,29 @@ namespace Programming
             this.ValueTextBox = new System.Windows.Forms.TextBox();
             this.ValueListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.seasonButton = new System.Windows.Forms.Button();
-            this.seasonComboBox = new System.Windows.Forms.ComboBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RectanglesBox = new System.Windows.Forms.ListBox();
+            this.lengthBox = new System.Windows.Forms.TextBox();
+            this.widthBox = new System.Windows.Forms.TextBox();
+            this.colorBox = new System.Windows.Forms.TextBox();
+            this.findButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.enumerationsBox.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Enums);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -76,6 +89,46 @@ namespace Programming
             this.Enums.TabIndex = 1;
             this.Enums.Text = "Enums";
             this.Enums.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.seasonComboBox);
+            this.groupBox2.Controls.Add(this.seasonButton);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Location = new System.Drawing.Point(481, 366);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(385, 231);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Season handle";
+            // 
+            // seasonComboBox
+            // 
+            this.seasonComboBox.FormattingEnabled = true;
+            this.seasonComboBox.Location = new System.Drawing.Point(18, 63);
+            this.seasonComboBox.Name = "seasonComboBox";
+            this.seasonComboBox.Size = new System.Drawing.Size(245, 24);
+            this.seasonComboBox.TabIndex = 3;
+            this.seasonComboBox.SelectedIndexChanged += new System.EventHandler(this.seasonComboBox_SelectedIndexChanged);
+            // 
+            // seasonButton
+            // 
+            this.seasonButton.Location = new System.Drawing.Point(281, 62);
+            this.seasonButton.Name = "seasonButton";
+            this.seasonButton.Size = new System.Drawing.Size(98, 23);
+            this.seasonButton.TabIndex = 2;
+            this.seasonButton.Text = "Go!";
+            this.seasonButton.UseVisualStyleBackColor = true;
+            this.seasonButton.Click += new System.EventHandler(this.seasonButton_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 17);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Choose a season:";
             // 
             // groupBox1
             // 
@@ -196,45 +249,103 @@ namespace Programming
             this.EnumsListBox.TabIndex = 1;
             this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged);
             // 
-            // groupBox2
+            // tabPage1
             // 
-            this.groupBox2.Controls.Add(this.seasonComboBox);
-            this.groupBox2.Controls.Add(this.seasonButton);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(481, 366);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 231);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Season handle";
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(874, 624);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Classes";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // groupBox3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 17);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Choose a season:";
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.findButton);
+            this.groupBox3.Controls.Add(this.colorBox);
+            this.groupBox3.Controls.Add(this.widthBox);
+            this.groupBox3.Controls.Add(this.lengthBox);
+            this.groupBox3.Controls.Add(this.RectanglesBox);
+            this.groupBox3.Location = new System.Drawing.Point(17, 15);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(371, 302);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Rectangles";
             // 
-            // seasonButton
+            // RectanglesBox
             // 
-            this.seasonButton.Location = new System.Drawing.Point(281, 62);
-            this.seasonButton.Name = "seasonButton";
-            this.seasonButton.Size = new System.Drawing.Size(98, 23);
-            this.seasonButton.TabIndex = 2;
-            this.seasonButton.Text = "Go!";
-            this.seasonButton.UseVisualStyleBackColor = true;
-            this.seasonButton.Click += new System.EventHandler(this.seasonButton_Click);
+            this.RectanglesBox.FormattingEnabled = true;
+            this.RectanglesBox.ItemHeight = 16;
+            this.RectanglesBox.Location = new System.Drawing.Point(14, 24);
+            this.RectanglesBox.Name = "RectanglesBox";
+            this.RectanglesBox.Size = new System.Drawing.Size(176, 260);
+            this.RectanglesBox.TabIndex = 0;
+            this.RectanglesBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesBox_SelectedIndexChanged);
             // 
-            // seasonComboBox
+            // lengthBox
             // 
-            this.seasonComboBox.FormattingEnabled = true;
-            this.seasonComboBox.Location = new System.Drawing.Point(18, 63);
-            this.seasonComboBox.Name = "seasonComboBox";
-            this.seasonComboBox.Size = new System.Drawing.Size(245, 24);
-            this.seasonComboBox.TabIndex = 3;
-            this.seasonComboBox.SelectedIndexChanged += new System.EventHandler(this.seasonComboBox_SelectedIndexChanged);
+            this.lengthBox.Location = new System.Drawing.Point(211, 46);
+            this.lengthBox.Name = "lengthBox";
+            this.lengthBox.Size = new System.Drawing.Size(133, 22);
+            this.lengthBox.TabIndex = 1;
+            this.lengthBox.TextChanged += new System.EventHandler(this.lengthBox_TextChanged);
+            // 
+            // widthBox
+            // 
+            this.widthBox.Location = new System.Drawing.Point(211, 109);
+            this.widthBox.Name = "widthBox";
+            this.widthBox.Size = new System.Drawing.Size(133, 22);
+            this.widthBox.TabIndex = 2;
+            this.widthBox.TextChanged += new System.EventHandler(this.widthBox_TextChanged);
+            // 
+            // colorBox
+            // 
+            this.colorBox.Location = new System.Drawing.Point(211, 171);
+            this.colorBox.Name = "colorBox";
+            this.colorBox.Size = new System.Drawing.Size(133, 22);
+            this.colorBox.TabIndex = 3;
+            this.colorBox.TextChanged += new System.EventHandler(this.colorBox_TextChanged);
+            // 
+            // findButton
+            // 
+            this.findButton.Location = new System.Drawing.Point(211, 252);
+            this.findButton.Name = "findButton";
+            this.findButton.Size = new System.Drawing.Size(133, 32);
+            this.findButton.TabIndex = 4;
+            this.findButton.Text = "Find";
+            this.findButton.UseVisualStyleBackColor = true;
+            this.findButton.Click += new System.EventHandler(this.findButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(208, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 17);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Length";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(208, 89);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 17);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Width";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(208, 151);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 17);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Color";
             // 
             // MainForm
             // 
@@ -247,12 +358,15 @@ namespace Programming
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.Enums.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.enumerationsBox.ResumeLayout(false);
             this.enumerationsBox.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -277,6 +391,16 @@ namespace Programming
         private System.Windows.Forms.Button seasonButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox seasonComboBox;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListBox RectanglesBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button findButton;
+        private System.Windows.Forms.TextBox colorBox;
+        private System.Windows.Forms.TextBox widthBox;
+        private System.Windows.Forms.TextBox lengthBox;
     }
 }
 
