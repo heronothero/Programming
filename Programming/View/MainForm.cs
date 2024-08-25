@@ -17,6 +17,8 @@ namespace Programming
         private Model.Rectangle[] _rectangles;
         private Model.Rectangle _currentRectangle;
         private Random random = new Random();
+        private Movie[] _movies;
+        private Movie _currentMovie;
         public MainForm()
         {
             InitializeComponent();
@@ -36,7 +38,13 @@ namespace Programming
                 _currentRectangle = _rectangles[0];
                 UpdateFields();
             }
+            InitializeMovies();
+            foreach (var movie in _movies)
+            {
+                moviesBox.Items.Add(movie.NameOfTheMovie);
+            }
         }
+
         private string GetRandomColor()
         {
             string[] availableColors = { "blue", "red", "green", "yellow", "black", "white" };
@@ -48,6 +56,18 @@ namespace Programming
             widthBox.Text = _currentRectangle.Width.ToString();
             lengthBox.Text = _currentRectangle.Length.ToString();
             colorBox.Text = _currentRectangle.Color;
+        }
+
+        private void UpdateMovieFields()
+        {
+            if (_currentMovie != null)
+            {
+                movieNameBox.Text = _currentMovie.NameOfTheMovie;
+                movieTimeBox.Text = _currentMovie.MovieTime.ToString();
+                releaseYearBox.Text = _currentMovie.ReleaseYear.ToString();
+                genreBox.Text = _currentMovie.Genre;
+                ratingBox.Text = _currentMovie.Rating.ToString();
+            }
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -256,6 +276,84 @@ namespace Programming
                 }
             }
             return maxIndex;
+        }
+
+        private int FindMovieWithMaxRating(Movie[] movies)
+        {
+            if (movies == null || movies.Length == 0)
+            {
+                throw new ArgumentException("The list of movies is null or equal null");
+            }
+            int maxIndex = 0;
+            double maxRating = movies[0].Rating;
+            for (int i = 1; i < movies.Length; i++)
+            {
+                if (movies[i].Rating > maxRating)
+                {
+                    maxRating = movies[i].Rating;
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
+        }
+
+        private void movieNameBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void movieTimeBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void releaseYearBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void genreBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ratingBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void movieRatingButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maxIndex = FindMovieWithMaxRating(_movies);
+                moviesBox.SelectedIndex = maxIndex;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void moviesBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (moviesBox.SelectedIndex >= 0 && moviesBox.SelectedIndex < _movies.Length)
+            {
+                _currentMovie = _movies[moviesBox.SelectedIndex];
+                UpdateMovieFields();
+            }
+        }
+
+        private void InitializeMovies()
+        {
+            _movies = new Movie[]
+            {
+                new Movie("Inception", 148, 2010, "Sci-Fi", 8.8),
+                new Movie("The Dark Knight", 152, 2008, "Action", 9.0),
+                new Movie("Interstellar", 169, 2014, "Sci-Fi", 8.6),
+                new Movie("The Shawshank Redemption", 142, 1994, "Drama", 9.3),
+                new Movie("Fight Club", 139, 1999, "Drama", 8.8)
+            };
         }
     }
 }

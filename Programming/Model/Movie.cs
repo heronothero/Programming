@@ -8,6 +8,7 @@ namespace Programming.Model
 {
     public class Movie
     {
+        private string nameOfTheMovie;
         private int movieTime;
         private int releaseYear;
         private string genre;
