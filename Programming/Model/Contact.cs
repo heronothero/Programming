@@ -9,7 +9,16 @@ namespace Programming.Model
     public class Contact
     {
         private int phoneNumber;
-        public string ContactName { get; set; }
+        private string contactName;
+        public string ContactName 
+        { 
+            get { return contactName; }
+            set
+            {
+                Validator.AssertStringContainsOnlyLetters(value, "ContactName");
+                contactName = value;
+            }
+        }
         public int PhoneNumber
         {
             get { return phoneNumber; }
@@ -20,9 +29,20 @@ namespace Programming.Model
             }
         }
         public string Organization { get; set; }
-        public Contact(string contactName, int phoneNumber, string organization)
+        private string surname;
+        public string Surname 
+        { 
+            get { return surname; }
+            set
+            {
+                Validator.AssertStringContainsOnlyLetters(value, "Surname");
+                surname = value;
+            }
+        }
+        public Contact(string contactName, string surname, int phoneNumber, string organization)
         {
             ContactName = contactName;
+            Surname = surname;
             PhoneNumber = phoneNumber;
             Organization = organization;
         }
