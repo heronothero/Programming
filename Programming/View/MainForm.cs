@@ -228,7 +228,34 @@ namespace Programming
 
         private void findButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int maxIndex = FindRectangleWithMaxWidth(_rectangles);
+                RectanglesBox.SelectedIndex = maxIndex;
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private int FindRectangleWithMaxWidth(Model.Rectangle[] rectangles)
+        {
+            if (rectangles == null || rectangles.Length == 0)
+            {
+                throw new ArgumentException("The array of rectangles is null or equal null");
+            }
+            int maxIndex = 0;
+            double maxWidth = rectangles[0].Width;
+            for (int i = 1; i < rectangles.Length; i++)
+            {
+                if (rectangles[i].Width > maxWidth)
+                {
+                    maxWidth = rectangles[i].Width;
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
         }
     }
 }
