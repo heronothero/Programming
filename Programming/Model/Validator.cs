@@ -58,5 +58,18 @@ namespace Programming.Model
                 }
             }
         }
+        public static double ValidateCoordinate(double value, string propertyName)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentException($"{propertyName} can't be negative");
+            }
+            const double MaxCoordinate = 1000.0;
+            if (value > MaxCoordinate)
+            {
+                throw new ArgumentException($"{propertyName} can't exceed {MaxCoordinate}");
+            }
+            return value;
+        }
     }
 }

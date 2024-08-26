@@ -23,6 +23,8 @@ namespace Programming
         {
             InitializeComponent();
             this.CenterToScreen();
+            centerXBox.KeyPress += centerBox_KeyPress;
+            centerYBox.KeyPress += centerBox_KeyPress; 
             enumTypes = new Dictionary<string, Type>();
             _rectangles = new Model.Rectangle[5];
             for (int i = 0; i < 5; i++)
@@ -30,7 +32,8 @@ namespace Programming
                 double length = random.NextDouble() * 100;
                 double width = random.NextDouble() * 100;
                 string color = GetRandomColor();
-                _rectangles[i] = new Model.Rectangle(length, width, color);
+                Point2D center = new Point2D(random.NextDouble() * 100, random.NextDouble() * 100);
+                _rectangles[i] = new Model.Rectangle(length, width, color, center);
                 RectanglesBox.Items.Add($"Прямоугольник {i + 1}");
             }
             if (_rectangles.Length > 0)
@@ -55,6 +58,8 @@ namespace Programming
         {
             widthBox.Text = _currentRectangle.Width.ToString();
             lengthBox.Text = _currentRectangle.Length.ToString();
+            centerXBox.Text = _currentRectangle.Center.X.ToString();
+            centerYBox.Text = _currentRectangle.Center.Y.ToString();
             colorBox.Text = _currentRectangle.Color;
         }
 
@@ -220,6 +225,67 @@ namespace Programming
                     if (double.TryParse(text, out double width))
                     {
                         _currentRectangle.Width = width;
+                        textBox.BackColor = SystemColors.Window;
+                    }
+                    else
+                    {
+                        textBox.BackColor = Color.LightPink;
+                    }
+                }
+                catch (FormatException)
+                {
+                    textBox.BackColor = Color.LightPink;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    textBox.BackColor = Color.LightPink;
+                }
+            }
+        }
+        private void centerBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+        private void centerXBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle != null)
+            {
+                TextBox textBox = (TextBox)sender;
+                string text = textBox.Text.Trim();
+                try
+                {
+                    if (double.TryParse(text, out double centerX))
+                    {
+                        _currentRectangle.SetCenter(centerX, _currentRectangle.Center.Y);
+                        textBox.BackColor = SystemColors.Window;
+                    }
+                    else
+                    {
+                        textBox.BackColor = Color.LightPink;
+                    }
+                }
+                catch (FormatException)
+                {
+                    textBox.BackColor = Color.LightPink;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    textBox.BackColor = Color.LightPink;
+                }
+            }
+        }
+
+        private void centerYBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentRectangle != null)
+            {
+                TextBox textBox = (TextBox)sender;
+                string text = textBox.Text.Trim();
+                try
+                {
+                    if (double.TryParse(text, out double centerY))
+                    {
+                        _currentRectangle.SetCenter(_currentRectangle.Center.X, centerY);
                         textBox.BackColor = SystemColors.Window;
                     }
                     else

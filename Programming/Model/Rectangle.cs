@@ -11,6 +11,7 @@ namespace Programming.Model
         private double length;
         private double width;
         private string color;
+        public Point2D Center { get; private set; }
         public double Length
         {
             get { return length; }
@@ -34,11 +35,16 @@ namespace Programming.Model
             get { return color; }
             set { color = value; }
         }
-        public Rectangle(double length, double width, string color)
+        public void SetCenter(double x, double y)
+        {
+            Center = new Point2D(x, y);
+        }
+        public Rectangle(double length, double width, string color, Point2D center)
         {
             Length = length;
             Width = width;
             Color = color;
+            Center = center;
         }
     }
 }

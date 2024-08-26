@@ -8,12 +8,12 @@ namespace Programming.Model
 {
     public class Point2D
     {
-        public double X { get; } 
-        public double Y { get; }
+        public double X { get; private set; } 
+        public double Y { get; private set; }
         public Point2D (double x, double y)
         {
-            X = x;
-            Y = y;
+            X = Validator.ValidateCoordinate(x, nameof(X));
+            Y = Validator.ValidateCoordinate(y, nameof(Y));
         }
     }
 }
