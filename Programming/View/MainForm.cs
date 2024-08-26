@@ -16,6 +16,8 @@ namespace Programming
         private Dictionary<string, Type> enumTypes;
         private Model.Rectangle[] _rectangles;
         private Model.Rectangle _currentRectangle;
+        private Ring[] _rings;
+        private Ring _currentRing;
         private Random random = new Random();
         private Movie[] _movies;
         private Movie _currentMovie;
@@ -26,28 +28,58 @@ namespace Programming
             centerXBox.KeyPress += centerBox_KeyPress;
             centerYBox.KeyPress += centerBox_KeyPress; 
             enumTypes = new Dictionary<string, Type>();
+            InitializeRectangles();
+            UpdateFields();
+            InitializeMovies();
+            InitializeRings();
+            UpdateRingFields();
+            
+        }
+        private void InitializeRings()
+        {
+            _rings = new Ring[5];
+            for (int i = 0; i < _rings.Length; i++)
+            {
+                double innerRadius = random.NextDouble() * 50;
+                double outerRadius = innerRadius + random.NextDouble() * 50;
+                Point2D center = new Point2D(random.Next(0, 100), random.Next(0, 100));
+                _rings[i] = new Ring(center, innerRadius, outerRadius);
+                ringsBox.Items.Add($"Кольцо {i + 1}");
+            }
+            if (_rings.Length > 0)
+            {
+                _currentRing = _rings[0];
+                UpdateRingFields();
+            }
+        }
+        private void UpdateRingFields()
+        {
+            if (_currentRing != null)
+            {
+                innerRadiusBox.Text = _currentRing.InnerRadius.ToString();
+                outerRadiusBox.Text = _currentRing.OuterRadius.ToString();
+                centerXBox.Text = _currentRing.Center.X.ToString();
+                centerYBox.Text = _currentRing.Center.Y.ToString();
+                areaBox.Text = _currentRing.Area.ToString("F2");
+            }
+        }
+        private void InitializeRectangles()
+        {
             _rectangles = new Model.Rectangle[5];
             for (int i = 0; i < 5; i++)
             {
-                double length = random.NextDouble() * 100;
-                double width = random.NextDouble() * 100;
-                string color = GetRandomColor();
-                Point2D center = new Point2D(random.NextDouble() * 100, random.NextDouble() * 100);
-                _rectangles[i] = new Model.Rectangle(length, width, color, center);
-                RectanglesBox.Items.Add($"Прямоугольник {i + 1}");
+            double length = random.NextDouble() * 100;
+            double width = random.NextDouble() * 100;
+            string color = GetRandomColor();
+            Point2D center = new Point2D(random.NextDouble() * 100, random.NextDouble() * 100);
+            _rectangles[i] = new Model.Rectangle(length, width, color, center);
+            RectanglesBox.Items.Add($"Прямоугольник {i + 1}");
             }
             if (_rectangles.Length > 0)
             {
-                _currentRectangle = _rectangles[0];
-                UpdateFields();
-            }
-            InitializeMovies();
-            foreach (var movie in _movies)
-            {
-                moviesBox.Items.Add(movie.NameOfTheMovie);
+            _currentRectangle = _rectangles[0];
             }
         }
-
         private string GetRandomColor()
         {
             string[] availableColors = { "blue", "red", "green", "yellow", "black", "white" };
@@ -420,6 +452,35 @@ namespace Programming
                 new Movie("The Shawshank Redemption", 142, 1994, "Drama", 9.3),
                 new Movie("Fight Club", 139, 1999, "Drama", 8.8)
             };
+            foreach (var movie in _movies)
+            {
+                moviesBox.Items.Add(movie.NameOfTheMovie);
+            }
+        }
+
+        private void ringsBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = ringsBox.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < _rings.Length)
+            {
+                _currentRing = _rings[selectedIndex];
+                UpdateRingFields();
+            }
+        }
+
+        private void innerRadiusBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void outerRadiusBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void areaBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
