@@ -11,24 +11,23 @@ namespace Programming.Model
         private double innerRadius;
         private double outerRadius;
         public Point2D Center { get; set; }
-        public double InnerRadius 
-        { 
-            get { return innerRadius; } 
-            set 
+        public double InnerRadius
+        {
+            get { return innerRadius; }
+            set
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException("Inner radius must be a positive number");
+                    throw new ArgumentException("Inner radius must be a positive number.");
                 }
-
-                if (value > outerRadius)
+                if (outerRadius > 0 && value > outerRadius)
                 {
-                    throw new ArgumentException("Inner radius cannot be greater than outer radius");
+                    throw new ArgumentException("Inner radius cannot be greater than outer radius.");
                 }
-
                 innerRadius = value;
-            } 
+            }
         }
+
         public double OuterRadius
         {
             get { return outerRadius; }
@@ -38,12 +37,10 @@ namespace Programming.Model
                 {
                     throw new ArgumentException("Outer radius must be a positive number.");
                 }
-
                 if (value < innerRadius)
                 {
                     throw new ArgumentException("Outer radius cannot be less than inner radius.");
                 }
-
                 outerRadius = value;
             }
         }
