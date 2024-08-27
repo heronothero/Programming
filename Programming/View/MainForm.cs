@@ -15,12 +15,14 @@ namespace Programming
     {
         private Dictionary<string, Type> enumTypes;
         private Model.Rectangle[] _rectangles;
+        private List<Model.Rectangle> _rectanglesList;
         private Model.Rectangle _currentRectangle;
         private Ring[] _rings;
         private Ring _currentRing;
         private Random random = new Random();
         private Movie[] _movies;
         private Movie _currentMovie;
+        private Panel _rectanglesPanel;
         public MainForm()
         {
             InitializeComponent();
@@ -28,6 +30,8 @@ namespace Programming
             centerXBox.KeyPress += centerBox_KeyPress;
             centerYBox.KeyPress += centerBox_KeyPress; 
             enumTypes = new Dictionary<string, Type>();
+            _rectanglesList = new List<Model.Rectangle>();
+            _rectanglesPanel = new Panel();
             InitializeRectangles();
             UpdateFields();
             InitializeMovies();
@@ -538,6 +542,60 @@ namespace Programming
                     collisionRingsBox.Text = isCollision ? "Collision Detected" : "No Collision";
                 }
             }
+        }
+
+        private void addPictureBox_Click(object sender, EventArgs e)
+        {
+            double x = random.NextDouble() * _rectanglesPanel.Width;
+            double y = random.NextDouble() * _rectanglesPanel.Height;
+            double length = random.NextDouble() * 100;
+            double width = random.NextDouble() * 100;
+            string color = GetRandomColor();
+            Point2D center = new Point2D(x, y);
+            var newRectangle = new Model.Rectangle(length, width, color, center);
+            _rectanglesList.Add(newRectangle);
+            UpdateRectanglesList();
+            _currentRectangle = newRectangle;
+            UpdateFields();
+            DrawRectangles();
+        }
+        private void UpdateRectanglesList()
+        {
+            rectanglesListBox.Items.Clear();
+            foreach (var rectangle in _rectanglesList)
+            {
+                string displayText = $"ID: {rectangle.ID}," + $"L: {rectangle.Length:F2}," + $"W: {rectangle.Width:F2}," + $"X: {rectangle.Center.X:F2}," + $"Y: {rectangle.Center.Y:F2}";
+                rectanglesListBox.Items.Add(displayText);
+            }
+        }
+
+        private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = rectanglesListBox.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < _rectanglesList.Count)
+            {
+                _currentRectangle = _rectanglesList[selectedIndex];
+                UpdateFields();
+            }
+        }
+
+        private void rectanglesPanel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            foreach (var rectangle in _rectanglesList)
+            {
+                g.DrawRectangle(Pens.Black,
+                    (float)(rectangle.Center.X - (rectangle.Width / 2)),
+                    (float)(rectangle.Center.Y - (rectangle.Length / 2)),
+                    (float)rectangle.Width,
+                    (float)rectangle.Length);
+            }
+        }
+        private void DrawRectangles()
+        {
+            rectanglesPanel.Invalidate();
+            rectanglesPanel.Paint -= rectanglesPanel_Paint;
+            rectanglesPanel.Paint += rectanglesPanel_Paint;
         }
     }
 }
