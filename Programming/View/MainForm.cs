@@ -33,6 +33,7 @@ namespace Programming
             InitializeMovies();
             InitializeRings();
             UpdateRingFields();
+            idBox.ReadOnly = true;
             
         }
         private void InitializeRings()
@@ -58,8 +59,6 @@ namespace Programming
             {
                 innerRadiusBox.Text = _currentRing.InnerRadius.ToString();
                 outerRadiusBox.Text = _currentRing.OuterRadius.ToString();
-                centerXBox.Text = _currentRing.Center.X.ToString();
-                centerYBox.Text = _currentRing.Center.Y.ToString();
                 areaBox.Text = _currentRing.Area.ToString("F2");
             }
         }
@@ -93,6 +92,7 @@ namespace Programming
             centerXBox.Text = _currentRectangle.Center.X.ToString();
             centerYBox.Text = _currentRectangle.Center.Y.ToString();
             colorBox.Text = _currentRectangle.Color;
+            idBox.Text = _currentRectangle.ID.ToString();
         }
 
         private void UpdateMovieFields()
@@ -479,6 +479,11 @@ namespace Programming
         }
 
         private void areaBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void idBox_TextChanged(object sender, EventArgs e)
         {
 
         }

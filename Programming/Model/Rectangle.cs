@@ -12,6 +12,7 @@ namespace Programming.Model
         private double width;
         private string color;
         public Point2D Center { get; private set; }
+        public int ID { get; }
         public double Length
         {
             get { return length; }
@@ -39,12 +40,23 @@ namespace Programming.Model
         {
             Center = new Point2D(x, y);
         }
+        private static int _allRectanglesCount = 0;
+        public static int AllRectanglesCount
+        {
+           get { return _allRectanglesCount; }
+        }
         public Rectangle(double length, double width, string color, Point2D center)
         {
             Length = length;
             Width = width;
             Color = color;
             Center = center;
+            _allRectanglesCount++;
+            ID = _allRectanglesCount;
+        }
+        ~Rectangle()
+        {
+            _allRectanglesCount--;
         }
     }
 }

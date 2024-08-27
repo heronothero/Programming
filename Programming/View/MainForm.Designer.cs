@@ -48,6 +48,14 @@ namespace Programming
             this.ValueListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.areaBox = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.outerRadiusBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.innerRadiusBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.ringsBox = new System.Windows.Forms.ListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.movieRatingButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -62,6 +70,10 @@ namespace Programming
             this.movieNameBox = new System.Windows.Forms.TextBox();
             this.moviesBox = new System.Windows.Forms.ListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.centerYBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.centerXBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,27 +82,17 @@ namespace Programming
             this.widthBox = new System.Windows.Forms.TextBox();
             this.lengthBox = new System.Windows.Forms.TextBox();
             this.RectanglesBox = new System.Windows.Forms.ListBox();
-            this.centerXBox = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.centerYBox = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.ringsBox = new System.Windows.Forms.ListBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.innerRadiusBox = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.outerRadiusBox = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.areaBox = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.idBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.enumerationsBox.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -99,7 +101,7 @@ namespace Programming
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(662, 531);
@@ -111,9 +113,9 @@ namespace Programming
             this.Enums.Controls.Add(this.groupBox1);
             this.Enums.Controls.Add(this.enumerationsBox);
             this.Enums.Location = new System.Drawing.Point(4, 22);
-            this.Enums.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Enums.Margin = new System.Windows.Forms.Padding(2);
             this.Enums.Name = "Enums";
-            this.Enums.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Enums.Padding = new System.Windows.Forms.Padding(2);
             this.Enums.Size = new System.Drawing.Size(654, 505);
             this.Enums.TabIndex = 1;
             this.Enums.Text = "Enums";
@@ -125,9 +127,9 @@ namespace Programming
             this.groupBox2.Controls.Add(this.seasonButton);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(361, 297);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(289, 188);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
@@ -137,7 +139,7 @@ namespace Programming
             // 
             this.seasonComboBox.FormattingEnabled = true;
             this.seasonComboBox.Location = new System.Drawing.Point(14, 51);
-            this.seasonComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.seasonComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.seasonComboBox.Name = "seasonComboBox";
             this.seasonComboBox.Size = new System.Drawing.Size(185, 21);
             this.seasonComboBox.TabIndex = 3;
@@ -146,7 +148,7 @@ namespace Programming
             // seasonButton
             // 
             this.seasonButton.Location = new System.Drawing.Point(211, 50);
-            this.seasonButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.seasonButton.Margin = new System.Windows.Forms.Padding(2);
             this.seasonButton.Name = "seasonButton";
             this.seasonButton.Size = new System.Drawing.Size(74, 19);
             this.seasonButton.TabIndex = 2;
@@ -171,9 +173,9 @@ namespace Programming
             this.groupBox1.Controls.Add(this.dayInput);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(6, 297);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(344, 188);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -192,7 +194,7 @@ namespace Programming
             // resultButton
             // 
             this.resultButton.Location = new System.Drawing.Point(244, 51);
-            this.resultButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.resultButton.Margin = new System.Windows.Forms.Padding(2);
             this.resultButton.Name = "resultButton";
             this.resultButton.Size = new System.Drawing.Size(90, 19);
             this.resultButton.TabIndex = 2;
@@ -203,7 +205,7 @@ namespace Programming
             // dayInput
             // 
             this.dayInput.Location = new System.Drawing.Point(13, 51);
-            this.dayInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dayInput.Margin = new System.Windows.Forms.Padding(2);
             this.dayInput.Name = "dayInput";
             this.dayInput.Size = new System.Drawing.Size(224, 20);
             this.dayInput.TabIndex = 1;
@@ -228,9 +230,9 @@ namespace Programming
             this.enumerationsBox.Controls.Add(this.ValueListBox);
             this.enumerationsBox.Controls.Add(this.EnumsListBox);
             this.enumerationsBox.Location = new System.Drawing.Point(6, 6);
-            this.enumerationsBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.enumerationsBox.Margin = new System.Windows.Forms.Padding(2);
             this.enumerationsBox.Name = "enumerationsBox";
-            this.enumerationsBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.enumerationsBox.Padding = new System.Windows.Forms.Padding(2);
             this.enumerationsBox.Size = new System.Drawing.Size(644, 277);
             this.enumerationsBox.TabIndex = 0;
             this.enumerationsBox.TabStop = false;
@@ -269,7 +271,7 @@ namespace Programming
             // ValueTextBox
             // 
             this.ValueTextBox.Location = new System.Drawing.Point(331, 48);
-            this.ValueTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ValueTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.ValueTextBox.Name = "ValueTextBox";
             this.ValueTextBox.Size = new System.Drawing.Size(130, 20);
             this.ValueTextBox.TabIndex = 1;
@@ -279,7 +281,7 @@ namespace Programming
             // 
             this.ValueListBox.FormattingEnabled = true;
             this.ValueListBox.Location = new System.Drawing.Point(174, 48);
-            this.ValueListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ValueListBox.Margin = new System.Windows.Forms.Padding(2);
             this.ValueListBox.Name = "ValueListBox";
             this.ValueListBox.Size = new System.Drawing.Size(128, 212);
             this.ValueListBox.TabIndex = 2;
@@ -289,7 +291,7 @@ namespace Programming
             // 
             this.EnumsListBox.FormattingEnabled = true;
             this.EnumsListBox.Location = new System.Drawing.Point(13, 48);
-            this.EnumsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EnumsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.EnumsListBox.Name = "EnumsListBox";
             this.EnumsListBox.Size = new System.Drawing.Size(128, 212);
             this.EnumsListBox.TabIndex = 1;
@@ -301,12 +303,88 @@ namespace Programming
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(654, 505);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Classes";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.areaBox);
+            this.groupBox5.Controls.Add(this.label18);
+            this.groupBox5.Controls.Add(this.outerRadiusBox);
+            this.groupBox5.Controls.Add(this.label17);
+            this.groupBox5.Controls.Add(this.innerRadiusBox);
+            this.groupBox5.Controls.Add(this.label16);
+            this.groupBox5.Controls.Add(this.ringsBox);
+            this.groupBox5.Location = new System.Drawing.Point(13, 279);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(278, 218);
+            this.groupBox5.TabIndex = 2;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Rings";
+            // 
+            // areaBox
+            // 
+            this.areaBox.Location = new System.Drawing.Point(157, 113);
+            this.areaBox.Name = "areaBox";
+            this.areaBox.Size = new System.Drawing.Size(100, 20);
+            this.areaBox.TabIndex = 6;
+            this.areaBox.TextChanged += new System.EventHandler(this.areaBox_TextChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(155, 97);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 13);
+            this.label18.TabIndex = 5;
+            this.label18.Text = "Area";
+            // 
+            // outerRadiusBox
+            // 
+            this.outerRadiusBox.Location = new System.Drawing.Point(156, 74);
+            this.outerRadiusBox.Name = "outerRadiusBox";
+            this.outerRadiusBox.Size = new System.Drawing.Size(100, 20);
+            this.outerRadiusBox.TabIndex = 4;
+            this.outerRadiusBox.TextChanged += new System.EventHandler(this.outerRadiusBox_TextChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(155, 58);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(69, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Outer Radius";
+            // 
+            // innerRadiusBox
+            // 
+            this.innerRadiusBox.Location = new System.Drawing.Point(156, 35);
+            this.innerRadiusBox.Name = "innerRadiusBox";
+            this.innerRadiusBox.Size = new System.Drawing.Size(100, 20);
+            this.innerRadiusBox.TabIndex = 2;
+            this.innerRadiusBox.TextChanged += new System.EventHandler(this.innerRadiusBox_TextChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(155, 19);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(67, 13);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Inner Radius";
+            // 
+            // ringsBox
+            // 
+            this.ringsBox.FormattingEnabled = true;
+            this.ringsBox.Location = new System.Drawing.Point(10, 19);
+            this.ringsBox.Name = "ringsBox";
+            this.ringsBox.Size = new System.Drawing.Size(133, 186);
+            this.ringsBox.TabIndex = 0;
+            this.ringsBox.SelectedIndexChanged += new System.EventHandler(this.ringsBox_SelectedIndexChanged);
             // 
             // groupBox4
             // 
@@ -323,9 +401,9 @@ namespace Programming
             this.groupBox4.Controls.Add(this.movieNameBox);
             this.groupBox4.Controls.Add(this.moviesBox);
             this.groupBox4.Location = new System.Drawing.Point(296, 12);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(346, 262);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
@@ -334,7 +412,7 @@ namespace Programming
             // movieRatingButton
             // 
             this.movieRatingButton.Location = new System.Drawing.Point(159, 215);
-            this.movieRatingButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.movieRatingButton.Margin = new System.Windows.Forms.Padding(2);
             this.movieRatingButton.Name = "movieRatingButton";
             this.movieRatingButton.Size = new System.Drawing.Size(174, 30);
             this.movieRatingButton.TabIndex = 2;
@@ -395,7 +473,7 @@ namespace Programming
             // ratingBox
             // 
             this.ratingBox.Location = new System.Drawing.Point(157, 177);
-            this.ratingBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ratingBox.Margin = new System.Windows.Forms.Padding(2);
             this.ratingBox.Name = "ratingBox";
             this.ratingBox.Size = new System.Drawing.Size(175, 20);
             this.ratingBox.TabIndex = 7;
@@ -404,7 +482,7 @@ namespace Programming
             // genreBox
             // 
             this.genreBox.Location = new System.Drawing.Point(157, 138);
-            this.genreBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.genreBox.Margin = new System.Windows.Forms.Padding(2);
             this.genreBox.Name = "genreBox";
             this.genreBox.Size = new System.Drawing.Size(175, 20);
             this.genreBox.TabIndex = 6;
@@ -413,7 +491,7 @@ namespace Programming
             // releaseYearBox
             // 
             this.releaseYearBox.Location = new System.Drawing.Point(157, 101);
-            this.releaseYearBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.releaseYearBox.Margin = new System.Windows.Forms.Padding(2);
             this.releaseYearBox.Name = "releaseYearBox";
             this.releaseYearBox.Size = new System.Drawing.Size(175, 20);
             this.releaseYearBox.TabIndex = 5;
@@ -422,7 +500,7 @@ namespace Programming
             // movieTimeBox
             // 
             this.movieTimeBox.Location = new System.Drawing.Point(158, 63);
-            this.movieTimeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.movieTimeBox.Margin = new System.Windows.Forms.Padding(2);
             this.movieTimeBox.Name = "movieTimeBox";
             this.movieTimeBox.Size = new System.Drawing.Size(175, 20);
             this.movieTimeBox.TabIndex = 4;
@@ -431,7 +509,7 @@ namespace Programming
             // movieNameBox
             // 
             this.movieNameBox.Location = new System.Drawing.Point(158, 25);
-            this.movieNameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.movieNameBox.Margin = new System.Windows.Forms.Padding(2);
             this.movieNameBox.Name = "movieNameBox";
             this.movieNameBox.Size = new System.Drawing.Size(175, 20);
             this.movieNameBox.TabIndex = 3;
@@ -441,7 +519,7 @@ namespace Programming
             // 
             this.moviesBox.FormattingEnabled = true;
             this.moviesBox.Location = new System.Drawing.Point(9, 20);
-            this.moviesBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.moviesBox.Margin = new System.Windows.Forms.Padding(2);
             this.moviesBox.Name = "moviesBox";
             this.moviesBox.Size = new System.Drawing.Size(137, 225);
             this.moviesBox.TabIndex = 2;
@@ -449,7 +527,9 @@ namespace Programming
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.idBox);
             this.groupBox3.Controls.Add(this.centerYBox);
+            this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.centerXBox);
@@ -462,13 +542,47 @@ namespace Programming
             this.groupBox3.Controls.Add(this.lengthBox);
             this.groupBox3.Controls.Add(this.RectanglesBox);
             this.groupBox3.Location = new System.Drawing.Point(13, 12);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(278, 262);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Rectangles";
+            // 
+            // centerYBox
+            // 
+            this.centerYBox.Location = new System.Drawing.Point(158, 138);
+            this.centerYBox.Name = "centerYBox";
+            this.centerYBox.Size = new System.Drawing.Size(100, 20);
+            this.centerYBox.TabIndex = 11;
+            this.centerYBox.TextChanged += new System.EventHandler(this.centerYBox_TextChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(155, 123);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 13);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Y";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(155, 86);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(14, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "X";
+            // 
+            // centerXBox
+            // 
+            this.centerXBox.Location = new System.Drawing.Point(157, 101);
+            this.centerXBox.Name = "centerXBox";
+            this.centerXBox.Size = new System.Drawing.Size(100, 20);
+            this.centerXBox.TabIndex = 8;
+            this.centerXBox.TextChanged += new System.EventHandler(this.centerXBox_TextChanged);
             // 
             // label8
             // 
@@ -503,7 +617,7 @@ namespace Programming
             // findButton
             // 
             this.findButton.Location = new System.Drawing.Point(157, 219);
-            this.findButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.findButton.Margin = new System.Windows.Forms.Padding(2);
             this.findButton.Name = "findButton";
             this.findButton.Size = new System.Drawing.Size(100, 26);
             this.findButton.TabIndex = 4;
@@ -514,7 +628,7 @@ namespace Programming
             // colorBox
             // 
             this.colorBox.Location = new System.Drawing.Point(157, 177);
-            this.colorBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.colorBox.Margin = new System.Windows.Forms.Padding(2);
             this.colorBox.Name = "colorBox";
             this.colorBox.Size = new System.Drawing.Size(101, 20);
             this.colorBox.TabIndex = 3;
@@ -523,7 +637,7 @@ namespace Programming
             // widthBox
             // 
             this.widthBox.Location = new System.Drawing.Point(156, 63);
-            this.widthBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.widthBox.Margin = new System.Windows.Forms.Padding(2);
             this.widthBox.Name = "widthBox";
             this.widthBox.Size = new System.Drawing.Size(101, 20);
             this.widthBox.TabIndex = 2;
@@ -532,7 +646,7 @@ namespace Programming
             // lengthBox
             // 
             this.lengthBox.Location = new System.Drawing.Point(156, 25);
-            this.lengthBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lengthBox.Margin = new System.Windows.Forms.Padding(2);
             this.lengthBox.Name = "lengthBox";
             this.lengthBox.Size = new System.Drawing.Size(101, 20);
             this.lengthBox.TabIndex = 1;
@@ -542,121 +656,28 @@ namespace Programming
             // 
             this.RectanglesBox.FormattingEnabled = true;
             this.RectanglesBox.Location = new System.Drawing.Point(10, 20);
-            this.RectanglesBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RectanglesBox.Margin = new System.Windows.Forms.Padding(2);
             this.RectanglesBox.Name = "RectanglesBox";
-            this.RectanglesBox.Size = new System.Drawing.Size(133, 225);
+            this.RectanglesBox.Size = new System.Drawing.Size(133, 147);
             this.RectanglesBox.TabIndex = 0;
             this.RectanglesBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesBox_SelectedIndexChanged);
             // 
-            // centerXBox
+            // label19
             // 
-            this.centerXBox.Location = new System.Drawing.Point(157, 101);
-            this.centerXBox.Name = "centerXBox";
-            this.centerXBox.Size = new System.Drawing.Size(100, 20);
-            this.centerXBox.TabIndex = 8;
-            this.centerXBox.TextChanged += new System.EventHandler(this.centerXBox_TextChanged);
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(7, 177);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(18, 13);
+            this.label19.TabIndex = 7;
+            this.label19.Text = "ID";
             // 
-            // label14
+            // idBox
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(155, 86);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(14, 13);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "X";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(155, 123);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(14, 13);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "Y";
-            // 
-            // centerYBox
-            // 
-            this.centerYBox.Location = new System.Drawing.Point(158, 138);
-            this.centerYBox.Name = "centerYBox";
-            this.centerYBox.Size = new System.Drawing.Size(100, 20);
-            this.centerYBox.TabIndex = 11;
-            this.centerYBox.TextChanged += new System.EventHandler(this.centerYBox_TextChanged);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.areaBox);
-            this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.outerRadiusBox);
-            this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.innerRadiusBox);
-            this.groupBox5.Controls.Add(this.label16);
-            this.groupBox5.Controls.Add(this.ringsBox);
-            this.groupBox5.Location = new System.Drawing.Point(13, 279);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(278, 218);
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Rings";
-            // 
-            // ringsBox
-            // 
-            this.ringsBox.FormattingEnabled = true;
-            this.ringsBox.Location = new System.Drawing.Point(10, 19);
-            this.ringsBox.Name = "ringsBox";
-            this.ringsBox.Size = new System.Drawing.Size(133, 186);
-            this.ringsBox.TabIndex = 0;
-            this.ringsBox.SelectedIndexChanged += new System.EventHandler(this.ringsBox_SelectedIndexChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(155, 19);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(67, 13);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Inner Radius";
-            // 
-            // innerRadiusBox
-            // 
-            this.innerRadiusBox.Location = new System.Drawing.Point(156, 35);
-            this.innerRadiusBox.Name = "innerRadiusBox";
-            this.innerRadiusBox.Size = new System.Drawing.Size(100, 20);
-            this.innerRadiusBox.TabIndex = 2;
-            this.innerRadiusBox.TextChanged += new System.EventHandler(this.innerRadiusBox_TextChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(155, 58);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(69, 13);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Outer Radius";
-            // 
-            // outerRadiusBox
-            // 
-            this.outerRadiusBox.Location = new System.Drawing.Point(156, 74);
-            this.outerRadiusBox.Name = "outerRadiusBox";
-            this.outerRadiusBox.Size = new System.Drawing.Size(100, 20);
-            this.outerRadiusBox.TabIndex = 4;
-            this.outerRadiusBox.TextChanged += new System.EventHandler(this.outerRadiusBox_TextChanged);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(155, 97);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(29, 13);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "Area";
-            // 
-            // areaBox
-            // 
-            this.areaBox.Location = new System.Drawing.Point(157, 113);
-            this.areaBox.Name = "areaBox";
-            this.areaBox.Size = new System.Drawing.Size(100, 20);
-            this.areaBox.TabIndex = 6;
-            this.areaBox.TextChanged += new System.EventHandler(this.areaBox_TextChanged);
+            this.idBox.Location = new System.Drawing.Point(10, 193);
+            this.idBox.Name = "idBox";
+            this.idBox.Size = new System.Drawing.Size(100, 20);
+            this.idBox.TabIndex = 8;
+            this.idBox.TextChanged += new System.EventHandler(this.idBox_TextChanged);
             // 
             // MainForm
             // 
@@ -664,7 +685,7 @@ namespace Programming
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(662, 531);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -677,12 +698,12 @@ namespace Programming
             this.enumerationsBox.ResumeLayout(false);
             this.enumerationsBox.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -742,6 +763,8 @@ namespace Programming
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox innerRadiusBox;
         private System.Windows.Forms.TextBox areaBox;
+        private System.Windows.Forms.TextBox idBox;
+        private System.Windows.Forms.Label label19;
     }
 }
 
