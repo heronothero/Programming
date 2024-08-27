@@ -84,6 +84,11 @@ namespace Programming
             this.RectanglesBox = new System.Windows.Forms.ListBox();
             this.label19 = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.collisionRectanglesBox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.collisionRingsBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,6 +98,7 @@ namespace Programming
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -299,6 +305,7 @@ namespace Programming
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -679,6 +686,53 @@ namespace Programming
             this.idBox.TabIndex = 8;
             this.idBox.TextChanged += new System.EventHandler(this.idBox_TextChanged);
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.collisionRingsBox);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.collisionRectanglesBox);
+            this.groupBox6.Controls.Add(this.label20);
+            this.groupBox6.Location = new System.Drawing.Point(296, 279);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(346, 218);
+            this.groupBox6.TabIndex = 3;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Collision";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 35);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(101, 13);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Rectangles collision";
+            // 
+            // collisionRectanglesBox
+            // 
+            this.collisionRectanglesBox.Location = new System.Drawing.Point(9, 58);
+            this.collisionRectanglesBox.Name = "collisionRectanglesBox";
+            this.collisionRectanglesBox.Size = new System.Drawing.Size(137, 20);
+            this.collisionRectanglesBox.TabIndex = 1;
+            this.collisionRectanglesBox.TextChanged += new System.EventHandler(this.collisionRectanglesBox_TextChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 97);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 13);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "Rings collision";
+            // 
+            // collisionRingsBox
+            // 
+            this.collisionRingsBox.Location = new System.Drawing.Point(9, 122);
+            this.collisionRingsBox.Name = "collisionRingsBox";
+            this.collisionRingsBox.Size = new System.Drawing.Size(137, 20);
+            this.collisionRingsBox.TabIndex = 3;
+            this.collisionRingsBox.TextChanged += new System.EventHandler(this.collisionRingsBox_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -704,6 +758,8 @@ namespace Programming
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -765,6 +821,11 @@ namespace Programming
         private System.Windows.Forms.TextBox areaBox;
         private System.Windows.Forms.TextBox idBox;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox collisionRingsBox;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox collisionRectanglesBox;
+        private System.Windows.Forms.Label label20;
     }
 }
 

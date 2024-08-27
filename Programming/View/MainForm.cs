@@ -34,7 +34,9 @@ namespace Programming
             InitializeRings();
             UpdateRingFields();
             idBox.ReadOnly = true;
-            
+            collisionRectanglesBox.ReadOnly = true;
+            collisionRingsBox.ReadOnly = true;
+
         }
         private void InitializeRings()
         {
@@ -215,6 +217,16 @@ namespace Programming
                 _currentRectangle = _rectangles[selectedIndex];
                 UpdateFields();
             }
+            StringBuilder collisionResults = new StringBuilder();
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                if (i != selectedIndex)
+                {
+                    bool isCollision = CollisionManager.IsCollisionRectangles(_currentRectangle, _rectangles[i]);
+                    collisionResults.AppendLine($"Rectangle {selectedIndex + 1} vs Rectangle {i + 1}: {isCollision}");
+                }
+            }
+            collisionRectanglesBox.Text = collisionResults.ToString();
         }
 
         private void lengthBox_TextChanged(object sender, EventArgs e)
@@ -466,6 +478,16 @@ namespace Programming
                 _currentRing = _rings[selectedIndex];
                 UpdateRingFields();
             }
+            StringBuilder collisionResults = new StringBuilder();
+            for (int i = 0; i < _rings.Length; i++)
+            {
+                if (i != selectedIndex)
+                {
+                    bool isCollision = CollisionManager.IsCollisionRings(_currentRing, _rings[i]);
+                    collisionResults.AppendLine($"Ring {selectedIndex + 1} vs Ring {i + 1}: {isCollision}");
+                }
+            }
+            collisionRingsBox.Text = collisionResults.ToString();
         }
 
         private void innerRadiusBox_TextChanged(object sender, EventArgs e)
@@ -486,6 +508,36 @@ namespace Programming
         private void idBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void collisionRectanglesBox_TextChanged(object sender, EventArgs e)
+        {
+            if (RectanglesBox.SelectedIndex >= 0)
+            {
+                int selectedIndex = RectanglesBox.SelectedIndex;
+                if (selectedIndex < _rectangles.Length - 1)
+                {
+                    Model.Rectangle rectangle1 = _rectangles[selectedIndex];
+                    Model.Rectangle rectangle2 = _rectangles[selectedIndex + 1];
+                    bool isCollision = CollisionManager.IsCollisionRectangles(rectangle1, rectangle2);
+                    collisionRectanglesBox.Text = isCollision ? "Collision Detected" : "No Collision";
+                }
+            }
+        }
+
+        private void collisionRingsBox_TextChanged(object sender, EventArgs e)
+        {
+            if (ringsBox.SelectedIndex >= 0)
+            {
+                int selectedIndex = ringsBox.SelectedIndex;
+                if (selectedIndex < _rings.Length - 1)
+                {
+                    Ring ring1 = _rings[selectedIndex];
+                    Ring ring2 = _rings[selectedIndex + 1];
+                    bool isCollision = CollisionManager.IsCollisionRings(ring1, ring2);
+                    collisionRingsBox.Text = isCollision ? "Collision Detected" : "No Collision";
+                }
+            }
         }
     }
 }
