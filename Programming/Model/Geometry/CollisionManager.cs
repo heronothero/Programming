@@ -27,5 +27,6 @@ namespace Programming.Model
             bool isOneRingInsideAnother = distanceBetweenCenters + Math.Min(ring1.OuterRadius, ring2.OuterRadius) < Math.Max(ring1.OuterRadius, ring2.OuterRadius);
             return isOuterCollision && isOneRingInsideAnother;
         }
+
     }
 }

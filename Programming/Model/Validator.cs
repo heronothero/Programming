@@ -15,12 +15,13 @@ namespace Programming.Model
                 throw new ArgumentException($"{propertyName} must be positive");
             }
         }
-        public static void AssertOnPositiveValue(double value, string propertyName)
+        public static double AssertOnPositiveValue(double value, string propertyName)
         {
             if (value <= 0)
             {
                 throw new ArgumentException($"{propertyName} must be positive");
             }
+            return value;
         }
         public static void AssertValueInRange(int value, int min, int max, string propertyName)
         {
