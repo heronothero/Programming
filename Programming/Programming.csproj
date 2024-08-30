@@ -90,6 +90,12 @@
     <Compile Include="View\Panels\RectanglesCollisionControl.Designer.cs">
       <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Panels\SeasonHandleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\SeasonHandleControl.Designer.cs">
+      <DependentUpon>SeasonHandleControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Panels\WeekdayParsingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Panels\RectanglesCollisionControl.resx">
       <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panels\SeasonHandleControl.resx">
+      <DependentUpon>SeasonHandleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Panels\WeekdayParsingControl.resx">
       <DependentUpon>WeekdayParsingControl.cs</DependentUpon>

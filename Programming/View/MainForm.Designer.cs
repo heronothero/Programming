@@ -31,10 +31,6 @@ namespace Programming
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Enums = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.seasonComboBox = new System.Windows.Forms.ComboBox();
-            this.seasonButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.collisionRingsBox = new System.Windows.Forms.TextBox();
@@ -78,12 +74,12 @@ namespace Programming
             this.lengthBox = new System.Windows.Forms.TextBox();
             this.RectanglesBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.weekdayParsingControl1 = new Programming.View.Panels.WeekdayParsingControl();
             this.enumerationControl = new Programming.View.Panels.EnumerationControl();
             this.rectanglesCollisionControl = new Programming.View.Panels.RectanglesCollisionControl();
-            this.weekdayParsingControl1 = new Programming.View.Panels.WeekdayParsingControl();
+            this.seasonHandleControl1 = new Programming.View.Panels.SeasonHandleControl();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -107,9 +103,9 @@ namespace Programming
             // 
             // Enums
             // 
+            this.Enums.Controls.Add(this.seasonHandleControl1);
             this.Enums.Controls.Add(this.weekdayParsingControl1);
             this.Enums.Controls.Add(this.enumerationControl);
-            this.Enums.Controls.Add(this.groupBox2);
             this.Enums.Location = new System.Drawing.Point(4, 22);
             this.Enums.Margin = new System.Windows.Forms.Padding(2);
             this.Enums.Name = "Enums";
@@ -118,51 +114,6 @@ namespace Programming
             this.Enums.TabIndex = 1;
             this.Enums.Text = "Enums";
             this.Enums.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.seasonComboBox);
-            this.groupBox2.Controls.Add(this.seasonButton);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(364, 6);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(392, 131);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Season handle";
-            // 
-            // seasonComboBox
-            // 
-            this.seasonComboBox.FormattingEnabled = true;
-            this.seasonComboBox.Location = new System.Drawing.Point(14, 51);
-            this.seasonComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.seasonComboBox.Name = "seasonComboBox";
-            this.seasonComboBox.Size = new System.Drawing.Size(236, 21);
-            this.seasonComboBox.TabIndex = 3;
-            this.seasonComboBox.SelectedIndexChanged += new System.EventHandler(this.seasonComboBox_SelectedIndexChanged);
-            // 
-            // seasonButton
-            // 
-            this.seasonButton.Location = new System.Drawing.Point(279, 51);
-            this.seasonButton.Margin = new System.Windows.Forms.Padding(2);
-            this.seasonButton.Name = "seasonButton";
-            this.seasonButton.Size = new System.Drawing.Size(74, 19);
-            this.seasonButton.TabIndex = 2;
-            this.seasonButton.Text = "Go!";
-            this.seasonButton.UseVisualStyleBackColor = true;
-            this.seasonButton.Click += new System.EventHandler(this.seasonButton_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 27);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Choose a season:";
             // 
             // tabPage1
             // 
@@ -604,6 +555,13 @@ namespace Programming
             this.tabPage2.Text = "Rectangles";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // weekdayParsingControl1
+            // 
+            this.weekdayParsingControl1.Location = new System.Drawing.Point(359, 195);
+            this.weekdayParsingControl1.Name = "weekdayParsingControl1";
+            this.weekdayParsingControl1.Size = new System.Drawing.Size(397, 165);
+            this.weekdayParsingControl1.TabIndex = 6;
+            // 
             // enumerationControl
             // 
             this.enumerationControl.Location = new System.Drawing.Point(8, 0);
@@ -618,12 +576,12 @@ namespace Programming
             this.rectanglesCollisionControl.Size = new System.Drawing.Size(776, 535);
             this.rectanglesCollisionControl.TabIndex = 0;
             // 
-            // weekdayParsingControl1
+            // seasonHandleControl1
             // 
-            this.weekdayParsingControl1.Location = new System.Drawing.Point(359, 195);
-            this.weekdayParsingControl1.Name = "weekdayParsingControl1";
-            this.weekdayParsingControl1.Size = new System.Drawing.Size(397, 165);
-            this.weekdayParsingControl1.TabIndex = 6;
+            this.seasonHandleControl1.Location = new System.Drawing.Point(359, 3);
+            this.seasonHandleControl1.Name = "seasonHandleControl1";
+            this.seasonHandleControl1.Size = new System.Drawing.Size(397, 135);
+            this.seasonHandleControl1.TabIndex = 7;
             // 
             // MainForm
             // 
@@ -637,8 +595,6 @@ namespace Programming
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.Enums.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -657,10 +613,6 @@ namespace Programming
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Enums;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button seasonButton;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox seasonComboBox;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListBox RectanglesBox;
@@ -707,6 +659,7 @@ namespace Programming
         private View.Panels.RectanglesCollisionControl rectanglesCollisionControl;
         private View.Panels.EnumerationControl enumerationControl;
         private View.Panels.WeekdayParsingControl weekdayParsingControl1;
+        private View.Panels.SeasonHandleControl seasonHandleControl1;
     }
 }
 
