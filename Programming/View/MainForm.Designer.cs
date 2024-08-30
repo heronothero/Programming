@@ -29,7 +29,6 @@ namespace Programming
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Enums = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -91,8 +90,6 @@ namespace Programming
             this.lengthBox = new System.Windows.Forms.TextBox();
             this.RectanglesBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.addPictureBox = new System.Windows.Forms.PictureBox();
-            this.deletePictureBox = new System.Windows.Forms.PictureBox();
             this.rectanglesPanel = new System.Windows.Forms.Panel();
             this.lengthRectangleBox = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -107,6 +104,8 @@ namespace Programming
             this.label23 = new System.Windows.Forms.Label();
             this.rectanglesListBox = new System.Windows.Forms.ListBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.addPictureBox = new System.Windows.Forms.PictureBox();
+            this.deletePictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -780,28 +779,6 @@ namespace Programming
             this.tabPage2.Text = "Rectangles";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // addPictureBox
-            // 
-            this.addPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("addPictureBox.Image")));
-            this.addPictureBox.Location = new System.Drawing.Point(90, 250);
-            this.addPictureBox.Name = "addPictureBox";
-            this.addPictureBox.Size = new System.Drawing.Size(32, 32);
-            this.addPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.addPictureBox.TabIndex = 16;
-            this.addPictureBox.TabStop = false;
-            this.addPictureBox.Click += new System.EventHandler(this.addPictureBox_Click);
-            // 
-            // deletePictureBox
-            // 
-            this.deletePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("deletePictureBox.Image")));
-            this.deletePictureBox.Location = new System.Drawing.Point(164, 250);
-            this.deletePictureBox.Name = "deletePictureBox";
-            this.deletePictureBox.Size = new System.Drawing.Size(32, 32);
-            this.deletePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.deletePictureBox.TabIndex = 17;
-            this.deletePictureBox.TabStop = false;
-            this.deletePictureBox.Click += new System.EventHandler(this.deletePictureBox_Click);
-            // 
             // rectanglesPanel
             // 
             this.rectanglesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -922,6 +899,28 @@ namespace Programming
             this.label22.Size = new System.Drawing.Size(64, 13);
             this.label22.TabIndex = 0;
             this.label22.Text = "Rectangles:";
+            // 
+            // addPictureBox
+            // 
+            this.addPictureBox.Image = global::Programming.Properties.Resources.addIcon;
+            this.addPictureBox.Location = new System.Drawing.Point(90, 250);
+            this.addPictureBox.Name = "addPictureBox";
+            this.addPictureBox.Size = new System.Drawing.Size(32, 32);
+            this.addPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.addPictureBox.TabIndex = 16;
+            this.addPictureBox.TabStop = false;
+            this.addPictureBox.Click += new System.EventHandler(this.addPictureBox_Click);
+            // 
+            // deletePictureBox
+            // 
+            this.deletePictureBox.Image = global::Programming.Properties.Resources.deleteIcon;
+            this.deletePictureBox.Location = new System.Drawing.Point(164, 250);
+            this.deletePictureBox.Name = "deletePictureBox";
+            this.deletePictureBox.Size = new System.Drawing.Size(32, 32);
+            this.deletePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.deletePictureBox.TabIndex = 17;
+            this.deletePictureBox.TabStop = false;
+            this.deletePictureBox.Click += new System.EventHandler(this.deletePictureBox_Click);
             // 
             // MainForm
             // 

@@ -66,7 +66,7 @@ namespace Programming
             seasonComboBox.Items.Add(Season.Autumn);
         }
 
-        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+    private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValueListBox.Items.Clear();
             if (EnumsListBox != null && enumTypes.TryGetValue(EnumsListBox.SelectedItem.ToString(), out Type SelectedItem))
@@ -578,7 +578,9 @@ namespace Programming
 
         private void addPictureBox_Click(object sender, EventArgs e)
         {
-            var newRectangle = RectangleFactory.Randomize();
+            int canvasWidth = rectanglesPanel.Width;
+            int canvasHeight = rectanglesPanel.Height;
+            var newRectangle = RectangleFactory.Randomize(canvasWidth, canvasHeight, 30);
             _rectanglesList.Add(newRectangle);
             Panel newPanel = new Panel
             {
@@ -750,27 +752,93 @@ namespace Programming
                 }
             }
         }
-
         private void FindCollissions()
         {
+            var collisionGrid = new CollisionGrid(400);
+
             foreach (var rectangle in _rectanglesList)
             {
-                rectangle.Color = "Green";
+                collisionGrid.AddRectangle(rectangle);
             }
-            for (int i = 0; i < _rectanglesList.Count; i++)
+
+            foreach (var rectangle in _rectanglesList)
             {
-                for (int j = i + 1; j < _rectanglesList.Count; j++)
+                var possibleCollisions = collisionGrid.GetPossibleCollisions(rectangle);
+
+                foreach (var potentialCollision in possibleCollisions)
                 {
-                    var rect1 = _rectanglesList[i];
-                    var rect2 = _rectanglesList[j];
-                    if (CollisionManager.IsCollisionRectangles(rect1, rect2))
+                    if (rectangle != potentialCollision && CollisionManager.IsCollisionRectangles(rectangle, potentialCollision))
                     {
-                        rect1.Color = "Red";
-                        rect2.Color = "Red";
+                        rectangle.Color = "Red";
+                        potentialCollision.Color = "Red";
                     }
                 }
             }
+
             DrawRectangles();
+        }
+        public class CollisionGrid
+        {
+            private readonly int _cellSize;
+            private readonly Dictionary<Point, List<Model.Rectangle>> _cells;
+
+            public CollisionGrid(int cellSize)
+            {
+                _cellSize = cellSize;
+                _cells = new Dictionary<Point, List<Model.Rectangle>>();
+            }
+
+            public void AddRectangle(Model.Rectangle rectangle)
+            {
+                var (cellX, cellY) = GetCellCoordinates(rectangle);
+                var cellKey = new Point(cellX, cellY);
+
+                if (!_cells.ContainsKey(cellKey))
+                {
+                    _cells[cellKey] = new List<Model.Rectangle>();
+                }
+
+                _cells[cellKey].Add(rectangle);
+            }
+
+            public IEnumerable<Model.Rectangle> GetPossibleCollisions(Model.Rectangle rectangle)
+            {
+                var (cellX, cellY) = GetCellCoordinates(rectangle);
+                var cellsToCheck = new List<Point>
+        {
+            new Point(cellX, cellY),
+            new Point(cellX + 1, cellY),
+            new Point(cellX - 1, cellY),
+            new Point(cellX, cellY + 1),
+            new Point(cellX, cellY - 1),
+            new Point(cellX + 1, cellY + 1),
+            new Point(cellX - 1, cellY - 1),
+            new Point(cellX + 1, cellY - 1),
+            new Point(cellX - 1, cellY + 1)
+        };
+
+                var possibleCollisions = new HashSet<Model.Rectangle>();
+
+                foreach (var cell in cellsToCheck)
+                {
+                    if (_cells.ContainsKey(cell))
+                    {
+                        foreach (var rect in _cells[cell])
+                        {
+                            possibleCollisions.Add(rect);
+                        }
+                    }
+                }
+
+                return possibleCollisions;
+            }
+
+            private (int, int) GetCellCoordinates(Model.Rectangle rectangle)
+            {
+                int x = (int)(rectangle.Center.X / _cellSize);
+                int y = (int)(rectangle.Center.Y / _cellSize);
+                return (x, y);
+            }
         }
     }
 }
