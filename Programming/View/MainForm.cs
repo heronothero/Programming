@@ -48,37 +48,6 @@ namespace Programming
             seasonComboBox.Items.Add(Season.Autumn);
         }
 
-        private void resultLabel_Click(object sender, EventArgs e)
-        {
-            resultLabel.Text = " ";
-        }
-
-        private void resultButton_Click(object sender, EventArgs e)
-        {
-            string inputText = dayInput.Text.Trim();
-            if (!string.IsNullOrEmpty(inputText))
-            {
-                if (Enum.TryParse(inputText, true, out DayOfWeek parsedDay))
-                {
-                    int dayIndex = ((int)parsedDay + 6) % 7 + 1;
-                    resultLabel.Text = $"This day is ({parsedDay} = {dayIndex})";
-                }
-                else
-                {
-                    resultLabel.Text = "There is no day with this name";
-                }
-            }
-            else
-            {
-                resultLabel.Text = "Please enter the name of the day";
-            }
-        }
-
-        private void dayInput_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void seasonButton_Click(object sender, EventArgs e)
         {
             if (seasonComboBox.SelectedItem != null && seasonComboBox.SelectedItem is Season selectedSeason)

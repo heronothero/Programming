@@ -35,11 +35,6 @@ namespace Programming
             this.seasonComboBox = new System.Windows.Forms.ComboBox();
             this.seasonButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.resultLabel = new System.Windows.Forms.Label();
-            this.resultButton = new System.Windows.Forms.Button();
-            this.dayInput = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.collisionRingsBox = new System.Windows.Forms.TextBox();
@@ -83,12 +78,12 @@ namespace Programming
             this.lengthBox = new System.Windows.Forms.TextBox();
             this.RectanglesBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.enumerationControl = new Programming.View.Panels.EnumerationControl();
             this.rectanglesCollisionControl = new Programming.View.Panels.RectanglesCollisionControl();
-            this.enumerationControl1 = new Programming.View.Panels.EnumerationControl();
+            this.weekdayParsingControl1 = new Programming.View.Panels.WeekdayParsingControl();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -112,9 +107,9 @@ namespace Programming
             // 
             // Enums
             // 
-            this.Enums.Controls.Add(this.enumerationControl1);
+            this.Enums.Controls.Add(this.weekdayParsingControl1);
+            this.Enums.Controls.Add(this.enumerationControl);
             this.Enums.Controls.Add(this.groupBox2);
-            this.Enums.Controls.Add(this.groupBox1);
             this.Enums.Location = new System.Drawing.Point(4, 22);
             this.Enums.Margin = new System.Windows.Forms.Padding(2);
             this.Enums.Name = "Enums";
@@ -168,61 +163,6 @@ namespace Programming
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 0;
             this.label5.Text = "Choose a season:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.resultLabel);
-            this.groupBox1.Controls.Add(this.resultButton);
-            this.groupBox1.Controls.Add(this.dayInput);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(364, 170);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(392, 160);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Weekday parsing";
-            // 
-            // resultLabel
-            // 
-            this.resultLabel.AutoSize = true;
-            this.resultLabel.Location = new System.Drawing.Point(13, 115);
-            this.resultLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(0, 13);
-            this.resultLabel.TabIndex = 3;
-            this.resultLabel.Click += new System.EventHandler(this.resultLabel_Click);
-            // 
-            // resultButton
-            // 
-            this.resultButton.Location = new System.Drawing.Point(279, 80);
-            this.resultButton.Margin = new System.Windows.Forms.Padding(2);
-            this.resultButton.Name = "resultButton";
-            this.resultButton.Size = new System.Drawing.Size(90, 19);
-            this.resultButton.TabIndex = 2;
-            this.resultButton.Text = "Parse";
-            this.resultButton.UseVisualStyleBackColor = true;
-            this.resultButton.Click += new System.EventHandler(this.resultButton_Click);
-            // 
-            // dayInput
-            // 
-            this.dayInput.Location = new System.Drawing.Point(14, 79);
-            this.dayInput.Margin = new System.Windows.Forms.Padding(2);
-            this.dayInput.Name = "dayInput";
-            this.dayInput.Size = new System.Drawing.Size(236, 20);
-            this.dayInput.TabIndex = 1;
-            this.dayInput.TextChanged += new System.EventHandler(this.dayInput_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 49);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Type value for parsing:";
             // 
             // tabPage1
             // 
@@ -664,6 +604,13 @@ namespace Programming
             this.tabPage2.Text = "Rectangles";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // enumerationControl
+            // 
+            this.enumerationControl.Location = new System.Drawing.Point(8, 0);
+            this.enumerationControl.Name = "enumerationControl";
+            this.enumerationControl.Size = new System.Drawing.Size(330, 360);
+            this.enumerationControl.TabIndex = 5;
+            // 
             // rectanglesCollisionControl
             // 
             this.rectanglesCollisionControl.Location = new System.Drawing.Point(0, 0);
@@ -671,12 +618,12 @@ namespace Programming
             this.rectanglesCollisionControl.Size = new System.Drawing.Size(776, 535);
             this.rectanglesCollisionControl.TabIndex = 0;
             // 
-            // enumerationControl1
+            // weekdayParsingControl1
             // 
-            this.enumerationControl1.Location = new System.Drawing.Point(8, 0);
-            this.enumerationControl1.Name = "enumerationControl1";
-            this.enumerationControl1.Size = new System.Drawing.Size(330, 360);
-            this.enumerationControl1.TabIndex = 5;
+            this.weekdayParsingControl1.Location = new System.Drawing.Point(359, 195);
+            this.weekdayParsingControl1.Name = "weekdayParsingControl1";
+            this.weekdayParsingControl1.Size = new System.Drawing.Size(397, 165);
+            this.weekdayParsingControl1.TabIndex = 6;
             // 
             // MainForm
             // 
@@ -692,8 +639,6 @@ namespace Programming
             this.Enums.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -712,11 +657,6 @@ namespace Programming
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Enums;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label resultLabel;
-        private System.Windows.Forms.Button resultButton;
-        private System.Windows.Forms.TextBox dayInput;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button seasonButton;
         private System.Windows.Forms.Label label5;
@@ -765,7 +705,8 @@ namespace Programming
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TabPage tabPage2;
         private View.Panels.RectanglesCollisionControl rectanglesCollisionControl;
-        private View.Panels.EnumerationControl enumerationControl1;
+        private View.Panels.EnumerationControl enumerationControl;
+        private View.Panels.WeekdayParsingControl weekdayParsingControl1;
     }
 }
 
