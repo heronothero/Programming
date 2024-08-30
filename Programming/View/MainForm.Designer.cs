@@ -35,28 +35,20 @@ namespace Programming
             this.weekdayParsingControl1 = new Programming.View.Panels.WeekdayParsingControl();
             this.enumerationControl = new Programming.View.Panels.EnumerationControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.moviesControl1 = new Programming.View.Panels.MoviesControl();
             this.rectanglesControl1 = new Programming.View.Panels.RectanglesControl();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.collisionRingsBox = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.collisionRectanglesBox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.areaBox = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.outerRadiusBox = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.innerRadiusBox = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.ringsBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.rectanglesCollisionControl = new Programming.View.Panels.RectanglesCollisionControl();
-            this.moviesControl1 = new Programming.View.Panels.MoviesControl();
+            this.ringsControl1 = new Programming.View.Panels.RingsControl();
             this.tabControl1.SuspendLayout();
             this.Enums.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,10 +102,10 @@ namespace Programming
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ringsControl1);
             this.tabPage1.Controls.Add(this.moviesControl1);
             this.tabPage1.Controls.Add(this.rectanglesControl1);
             this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
@@ -121,6 +113,13 @@ namespace Programming
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Classes";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // moviesControl1
+            // 
+            this.moviesControl1.Location = new System.Drawing.Point(368, 8);
+            this.moviesControl1.Name = "moviesControl1";
+            this.moviesControl1.Size = new System.Drawing.Size(400, 360);
+            this.moviesControl1.TabIndex = 5;
             // 
             // rectanglesControl1
             // 
@@ -175,82 +174,6 @@ namespace Programming
             this.label20.TabIndex = 0;
             this.label20.Text = "Rectangles collision";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.areaBox);
-            this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.outerRadiusBox);
-            this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.innerRadiusBox);
-            this.groupBox5.Controls.Add(this.label16);
-            this.groupBox5.Controls.Add(this.ringsBox);
-            this.groupBox5.Location = new System.Drawing.Point(13, 369);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(345, 158);
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Rings";
-            // 
-            // areaBox
-            // 
-            this.areaBox.Location = new System.Drawing.Point(157, 117);
-            this.areaBox.Name = "areaBox";
-            this.areaBox.Size = new System.Drawing.Size(167, 20);
-            this.areaBox.TabIndex = 6;
-            this.areaBox.TextChanged += new System.EventHandler(this.areaBox_TextChanged);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(155, 101);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(29, 13);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "Area";
-            // 
-            // outerRadiusBox
-            // 
-            this.outerRadiusBox.Location = new System.Drawing.Point(156, 78);
-            this.outerRadiusBox.Name = "outerRadiusBox";
-            this.outerRadiusBox.Size = new System.Drawing.Size(168, 20);
-            this.outerRadiusBox.TabIndex = 4;
-            this.outerRadiusBox.TextChanged += new System.EventHandler(this.outerRadiusBox_TextChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(155, 62);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(69, 13);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "Outer Radius";
-            // 
-            // innerRadiusBox
-            // 
-            this.innerRadiusBox.Location = new System.Drawing.Point(156, 38);
-            this.innerRadiusBox.Name = "innerRadiusBox";
-            this.innerRadiusBox.Size = new System.Drawing.Size(168, 20);
-            this.innerRadiusBox.TabIndex = 2;
-            this.innerRadiusBox.TextChanged += new System.EventHandler(this.innerRadiusBox_TextChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(155, 22);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(67, 13);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Inner Radius";
-            // 
-            // ringsBox
-            // 
-            this.ringsBox.FormattingEnabled = true;
-            this.ringsBox.Location = new System.Drawing.Point(10, 19);
-            this.ringsBox.Name = "ringsBox";
-            this.ringsBox.Size = new System.Drawing.Size(133, 121);
-            this.ringsBox.TabIndex = 0;
-            this.ringsBox.SelectedIndexChanged += new System.EventHandler(this.ringsBox_SelectedIndexChanged);
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.rectanglesCollisionControl);
@@ -268,12 +191,12 @@ namespace Programming
             this.rectanglesCollisionControl.Size = new System.Drawing.Size(776, 535);
             this.rectanglesCollisionControl.TabIndex = 0;
             // 
-            // moviesControl1
+            // ringsControl1
             // 
-            this.moviesControl1.Location = new System.Drawing.Point(368, 8);
-            this.moviesControl1.Name = "moviesControl1";
-            this.moviesControl1.Size = new System.Drawing.Size(400, 360);
-            this.moviesControl1.TabIndex = 5;
+            this.ringsControl1.Location = new System.Drawing.Point(8, 372);
+            this.ringsControl1.Name = "ringsControl1";
+            this.ringsControl1.Size = new System.Drawing.Size(350, 160);
+            this.ringsControl1.TabIndex = 6;
             // 
             // MainForm
             // 
@@ -290,8 +213,6 @@ namespace Programming
             this.tabPage1.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -302,14 +223,6 @@ namespace Programming
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Enums;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ListBox ringsBox;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox outerRadiusBox;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox innerRadiusBox;
-        private System.Windows.Forms.TextBox areaBox;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox collisionRingsBox;
         private System.Windows.Forms.Label label21;
@@ -322,6 +235,7 @@ namespace Programming
         private View.Panels.SeasonHandleControl seasonHandleControl1;
         private View.Panels.RectanglesControl rectanglesControl1;
         private View.Panels.MoviesControl moviesControl1;
+        private View.Panels.RingsControl ringsControl1;
     }
 }
 

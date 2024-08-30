@@ -102,6 +102,12 @@
     <Compile Include="View\Panels\RectanglesControl.Designer.cs">
       <DependentUpon>RectanglesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Panels\RingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\RingsControl.Designer.cs">
+      <DependentUpon>RingsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Panels\SeasonHandleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Panels\RectanglesControl.resx">
       <DependentUpon>RectanglesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panels\RingsControl.resx">
+      <DependentUpon>RingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Panels\SeasonHandleControl.resx">
       <DependentUpon>SeasonHandleControl.cs</DependentUpon>
