@@ -25,7 +25,7 @@ namespace Programming.Model.Geometry
             Point2D center = new Point2D(x, y);
             return new Model.Rectangle(length, width, color, center);
         }
-        private static string GetRandomColor()
+        public static string GetRandomColor()
         {
             string[] availableColors = { "blue", "red", "green", "yellow", "black", "white" };
             return availableColors[random.Next(availableColors.Length)];
