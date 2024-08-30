@@ -84,6 +84,12 @@
     <Compile Include="View\Panels\EnumerationControl.Designer.cs">
       <DependentUpon>EnumerationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Panels\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Panels\RectanglesCollisionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </Compile>
     <EmbeddedResource Include="View\Panels\EnumerationControl.resx">
       <DependentUpon>EnumerationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panels\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Panels\RectanglesCollisionControl.resx">
       <DependentUpon>RectanglesCollisionControl.cs</DependentUpon>
