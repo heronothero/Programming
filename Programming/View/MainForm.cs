@@ -18,15 +18,15 @@ namespace Programming
     {
         private Dictionary<string, Type> enumTypes;
         private Model.Rectangle[] _rectangles;
-        private List<Model.Rectangle> _rectanglesList;
+        //private List<Model.Rectangle> _rectanglesList;
         private Model.Rectangle _currentRectangle;
         private Ring[] _rings;
         private Ring _currentRing;
         private Random random = new Random();
         private Movie[] _movies;
         private Movie _currentMovie;
-        private Panel _rectanglesPanel;
-        private List<Panel> _rectanglePanels = new List<Panel>();
+        //private Panel _rectanglesPanel;
+        //private List<Panel> _rectanglePanels = new List<Panel>();
         public MainForm()
         {
             InitializeComponent();
@@ -34,12 +34,12 @@ namespace Programming
             enumTypes = new Dictionary<string, Type>();
             centerXBox.KeyPress += centerBox_KeyPress;
             centerYBox.KeyPress += centerBox_KeyPress; 
-            _rectanglesList = new List<Model.Rectangle>();
+            /*_rectanglesList = new List<Model.Rectangle>();
             _rectanglesPanel = new Panel();
             _rectanglePanels = new List<Panel>();
-            _rectanglesPanel.Paint += rectanglesPanel_Paint;
+            _rectanglesPanel.Paint += rectanglesPanel_Paint;*/
             idBox.ReadOnly = true;
-            IDRectangleBox.ReadOnly = true;
+            //IDRectangleBox.ReadOnly = true;
             collisionRectanglesBox.ReadOnly = true;
             collisionRingsBox.ReadOnly = true;
             InitializeRectangles();
@@ -47,7 +47,7 @@ namespace Programming
             InitializeMovies();
             InitializeRings();
             UpdateRingFields();
-            Controls.Add(_rectanglesPanel);
+            //Controls.Add(_rectanglesPanel);
 
         }
 
@@ -562,7 +562,7 @@ namespace Programming
             }
         }
 
-        private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        /*private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = rectanglesListBox.SelectedIndex;
             if (selectedIndex >= 0 && selectedIndex < _rectanglesList.Count)
@@ -839,6 +839,6 @@ namespace Programming
                 int y = (int)(rectangle.Center.Y / _cellSize);
                 return (x, y);
             }
-        }
+        }*/
     }
 }
