@@ -23,7 +23,6 @@ namespace Programming.View.Panels
             centerXBox.KeyPress += centerBox_KeyPress;
             centerYBox.KeyPress += centerBox_KeyPress;
             idBox.ReadOnly = true;
-            //collisionRectanglesBox.ReadOnly = true;
             InitializeRectangles();
             UpdateFields();
         }
@@ -44,12 +43,6 @@ namespace Programming.View.Panels
             {
                 _currentRectangle = _rectangles[0];
             }
-        }
-
-        private string GetRandomColor()
-        {
-            string[] availableColors = { "blue", "red", "green", "yellow", "black", "white" };
-            return availableColors[random.Next(availableColors.Length)];
         }
 
         private void UpdateFields()
@@ -79,7 +72,6 @@ namespace Programming.View.Panels
                     collisionResults.AppendLine($"Rectangle {selectedIndex + 1} vs Rectangle {i + 1}: {isCollision}");
                 }
             }
-            //collisionRectanglesBox.Text = collisionResults.ToString();
         }
 
         private void idBox_TextChanged(object sender, EventArgs e)
@@ -98,20 +90,20 @@ namespace Programming.View.Panels
                     if (double.TryParse(text, out double length))
                     {
                         _currentRectangle.Length = length;
-                        textBox.BackColor = SystemColors.Window;
+                        textBox.BackColor = AppColors.ValidationSuccess;
                     }
                     else
                     {
-                        textBox.BackColor = Color.LightPink;
+                        textBox.BackColor = AppColors.ValidationError;
                     }
                 }
                 catch (FormatException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
             }
         }
@@ -127,20 +119,20 @@ namespace Programming.View.Panels
                     if (double.TryParse(text, out double width))
                     {
                         _currentRectangle.Width = width;
-                        textBox.BackColor = SystemColors.Window;
+                        textBox.BackColor = AppColors.ValidationSuccess;
                     }
                     else
                     {
-                        textBox.BackColor = Color.LightPink;
+                        textBox.BackColor = AppColors.ValidationError;
                     }
                 }
                 catch (FormatException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
             }
         }
@@ -161,20 +153,20 @@ namespace Programming.View.Panels
                     if (double.TryParse(text, out double centerX))
                     {
                         _currentRectangle.SetCenter(centerX, _currentRectangle.Center.Y);
-                        textBox.BackColor = SystemColors.Window;
+                        textBox.BackColor = AppColors.ValidationSuccess;
                     }
                     else
                     {
-                        textBox.BackColor = Color.LightPink;
+                        textBox.BackColor = AppColors.ValidationError;
                     }
                 }
                 catch (FormatException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
             }
         }
@@ -190,20 +182,20 @@ namespace Programming.View.Panels
                     if (double.TryParse(text, out double centerY))
                     {
                         _currentRectangle.SetCenter(_currentRectangle.Center.X, centerY);
-                        textBox.BackColor = SystemColors.Window;
+                        textBox.BackColor = AppColors.ValidationSuccess;
                     }
                     else
                     {
-                        textBox.BackColor = Color.LightPink;
+                        textBox.BackColor = AppColors.ValidationError;
                     }
                 }
                 catch (FormatException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    textBox.BackColor = Color.LightPink;
+                    textBox.BackColor = AppColors.ValidationError;
                 }
             }
         }

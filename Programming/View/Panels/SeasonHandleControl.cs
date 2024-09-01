@@ -40,15 +40,17 @@ namespace Programming.View.Panels
                 {
                     case Season.Winter:
                         MessageBox.Show("Brrr! Its cold!");
+                        this.BackColor = AppColors.Winter;
                         break;
                     case Season.Spring:
-                        this.BackColor = Color.LightGreen;
+                        this.BackColor = AppColors.Spring;
                         break;
                     case Season.Summer:
                         MessageBox.Show("Hooray! The sun!");
+                        this.BackColor = AppColors.Summer;
                         break;
                     case Season.Autumn:
-                        this.BackColor = Color.Orange;
+                        this.BackColor = AppColors.Autumn;
                         break;
                 }
             }

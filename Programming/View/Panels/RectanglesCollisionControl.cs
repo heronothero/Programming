@@ -34,10 +34,10 @@ namespace Programming.View.Panels
             Graphics g = e.Graphics;
             foreach (var rectangle in _rectanglesList)
             {
-                Color fillColor = Color.FromArgb(127, 127, 255, 127);
+                Color fillColor = AppColors.RectangleNoCollision;
                 if (rectangle.Color == "Red")
                 {
-                    fillColor = Color.FromArgb(127, 255, 127, 127);
+                    fillColor = AppColors.RectangleCollision;
                 }
                 using (Brush brush = new SolidBrush(fillColor))
                 {
@@ -77,7 +77,7 @@ namespace Programming.View.Panels
             _rectanglesList.Add(newRectangle);
             Panel newPanel = new Panel
             {
-                BackColor = Color.FromArgb(127, 127, 255, 127),
+                BackColor = AppColors.RectangleNoCollision,
                 Size = new Size((int)newRectangle.Width, (int)newRectangle.Length),
                 Location = new Point((int)(newRectangle.Center.X - newRectangle.Width / 2), (int)(newRectangle.Center.Y - newRectangle.Length / 2))
             };
