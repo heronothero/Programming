@@ -9,22 +9,22 @@ namespace Programming.Model
     public class Time
     {
         /// <summary>
-        /// A private property of hours
+        /// A private property of hours.
         /// </summary>
         private int hours;
 
         /// <summary>
-        /// A private property of minutes
+        /// A private property of minutes.
         /// </summary>
         private int minutes;
 
         /// <summary>
-        /// A private property of seconds
+        /// A private property of seconds.
         /// </summary>
         private int seconds;
 
         /// <summary>
-        /// Hours must be in range 0 and 23
+        /// Hours must be in range 0 and 23.
         /// </summary>
         public int Hours
         {
@@ -37,7 +37,7 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// Minutes must be in range 0 and 60
+        /// Minutes must be in range 0 and 60.
         /// </summary>
         public int Minutes
         {
@@ -50,7 +50,7 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// Seconds must be in range 0 and 60
+        /// Seconds must be in range 0 and 60.
         /// </summary>
         public int Seconds
         {
@@ -63,11 +63,11 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A time's constructor
+        /// A time's constructor.
         /// </summary>
-        /// <param name="hours"> The field must be int in range </param>
-        /// <param name="minutes"> The field must be int in range </param>
-        /// <param name="seconds"> The field must be int in range </param>
+        /// <param name="hours"> The field must be int in range. </param>
+        /// <param name="minutes"> The field must be int in range. </param>
+        /// <param name="seconds"> The field must be int in range. </param>
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;

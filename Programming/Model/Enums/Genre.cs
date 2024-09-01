@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Programming.Model
 {
     /// <summary>
-    /// Enumeration of genres
+    /// Enumeration of genres.
     /// </summary>
     public enum Genre
     {

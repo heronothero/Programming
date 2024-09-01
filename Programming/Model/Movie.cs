@@ -9,27 +9,27 @@ namespace Programming.Model
     public class Movie
     {
         /// <summary>
-        /// A private property of movie time
+        /// A private property of movie time.
         /// </summary>
         private int movieTime;
 
         /// <summary>
-        /// A private property of release year
+        /// A private property of release year.
         /// </summary>
         private int releaseYear;
 
         /// <summary>
-        /// A private property of rating
+        /// A private property of rating.
         /// </summary>
         private double rating;
 
         /// <summary>
-        /// A public property of the name of the movie
+        /// A public property of the name of the movie.
         /// </summary>
         public string NameOfTheMovie{ get; set; }
 
         /// <summary>
-        /// A public property of movie time, which must be positive and int
+        /// A public property of movie time, which must be positive and int.
         /// </summary>
         public int MovieTime
         {
@@ -42,7 +42,7 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A public property of release year which must be int in range of 1900 and current year
+        /// A public property of release year which must be int in range of 1900 and current year.
         /// </summary>
         public int ReleaseYear
         {
@@ -55,12 +55,12 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A public property of genre
+        /// A public property of genre.
         /// </summary>
         public string Genre{ get; set; }
 
         /// <summary>
-        /// A public property of rating which must be in range of 0 and 10 and double
+        /// A public property of rating which must be in range of 0 and 10 and double.
         /// </summary>
         public double Rating
         {
@@ -73,13 +73,13 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A movie's constructor
+        /// A movie's constructor.
         /// </summary>
-        /// <param name="nameOfTheMovie"> The field can contain letters and numbers </param>
-        /// <param name="movieTime"> The field must be positive and int </param>
-        /// <param name="releaseYear"> The field must be a date in range </param>
-        /// <param name="genre"> The field can contain letters and numbers </param>
-        /// <param name="rating"> The field must be positive and double </param>
+        /// <param name="nameOfTheMovie"> The field can contain letters and numbers. </param>
+        /// <param name="movieTime"> The field must be positive and int. </param>
+        /// <param name="releaseYear"> The field must be a date in range. </param>
+        /// <param name="genre"> The field can contain letters and numbers. </param>
+        /// <param name="rating"> The field must be positive and double. </param>
         public Movie(string nameOfTheMovie, int movieTime, int releaseYear, string genre, double rating)
         {
             NameOfTheMovie = nameOfTheMovie;

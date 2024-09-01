@@ -14,17 +14,17 @@ namespace Programming.View.Panels
     public partial class MoviesControl : UserControl
     {
         /// <summary>
-        /// A private property of array of movies
+        /// A private property of array of movies.
         /// </summary>
         private Movie[] _movies;
 
         /// <summary>
-        /// A private property of a current movie
+        /// A private property of a current movie.
         /// </summary>
         private Movie _currentMovie;
 
         /// <summary>
-        /// Initialazing components
+        /// Initialazing components.
         /// </summary>
         public MoviesControl()
         {
@@ -33,7 +33,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A list of movies which must be >= 0 and less it's array's length
+        /// A list of movies which must be >= 0 and less it's array's length.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -47,7 +47,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of the name of the movie
+        /// The field of the name of the movie.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,7 +57,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of the duration of the movie
+        /// The field of the duration of the movie.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -67,7 +67,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of the release year of the movie
+        /// The field of the release year of the movie.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -77,7 +77,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of genre of the movie
+        /// The field of genre of the movie.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -87,7 +87,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of the rating of the movie
+        /// The field of the rating of the movie.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -97,10 +97,10 @@ namespace Programming.View.Panels
         }
         
         /// <summary>
-        /// A function of finding a movie with max rating
+        /// A function of finding a movie with max rating.
         /// </summary>
-        /// <param name="movies"> An array of movies </param>
-        /// <returns> Returns max index of the movie with high rating </returns>
+        /// <param name="movies"> An array of movies. </param>
+        /// <returns> Returns max index of the movie with high rating. </returns>
         private int FindMovieWithMaxRating(Movie[] movies)
         {
             if (movies == null || movies.Length == 0)
@@ -121,7 +121,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A button of finding a movie with high rating (function)
+        /// A button of finding a movie with high rating (function).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -140,7 +140,7 @@ namespace Programming.View.Panels
 
 
         /// <summary>
-        /// An array of movies filled manually
+        /// An array of movies filled manually.
         /// </summary>
         private void InitializeMovies()
         {
@@ -159,7 +159,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of updating fields of a current movie
+        /// A function of updating fields of a current movie.
         /// </summary>
         private void UpdateMovieFields()
         {

@@ -14,22 +14,22 @@ namespace Programming.View.Panels
     public partial class RingsControl : UserControl
     {
         /// <summary>
-        /// A private property of rings' array
+        /// A private property of rings' array.
         /// </summary>
         private Ring[] _rings;
 
         /// <summary>
-        /// A private property of a current ring
+        /// A private property of a current ring.
         /// </summary>
         private Ring _currentRing;
 
         /// <summary>
-        /// A private property of random
+        /// A private property of random.
         /// </summary>
         private Random random = new Random();
 
         /// <summary>
-        /// Initializing components
+        /// Initializing components.
         /// </summary>
         public RingsControl()
         {
@@ -39,7 +39,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The rings array in which user chooses a ring and sees info in textboxes
+        /// The rings array in which user chooses a ring and sees info in textboxes.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -63,7 +63,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a ring's inner radius
+        /// The field of a ring's inner radius.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -73,7 +73,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a ring's outer radius
+        /// The field of a ring's outer radius.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -83,7 +83,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a ring's area
+        /// The field of a ring's area.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,7 +93,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of initializing 5 rings with random values
+        /// A function of initializing 5 rings with random values.
         /// </summary>
         private void InitializeRings()
         {
@@ -114,7 +114,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of updating current ring's fields
+        /// A function of updating current ring's fields.
         /// </summary>
         private void UpdateRingFields()
         {

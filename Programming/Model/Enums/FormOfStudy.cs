@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Programming.Model
 {
     /// <summary>
-    /// Enumeration of forms of study
+    /// Enumeration of forms of study.
     /// </summary>
     public enum FormOfStudy
     {

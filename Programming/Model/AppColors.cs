@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Programming.Model
 {
     /// <summary>
-    /// A function of colors for enums and rectangles' collisions
+    /// A function of colors for enums and rectangles' collisions.
     /// </summary>
     public static class AppColors
     {

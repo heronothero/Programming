@@ -10,14 +10,14 @@ namespace Programming.Model.Geometry
     public static class RectangleUtils
     {
         /// <summary>
-        /// A function of updating rectangle's fields
+        /// A function of updating rectangle's fields.
         /// </summary>
-        /// <param name="rectangle"> Current rectangle </param>
-        /// <param name="IDRectangleBox"> The field is readonly </param>
-        /// <param name="widthRectangleBox"> The field must be positive and double </param>
-        /// <param name="lengthRectangleBox"> The field must be positive and double </param>
-        /// <param name="XCenterBox"> The field must be positiveand double </param>
-        /// <param name="YCenterBox"> The field must be positive and double </param>
+        /// <param name="rectangle"> Current rectangle. </param>
+        /// <param name="IDRectangleBox"> The field is readonly. </param>
+        /// <param name="widthRectangleBox"> The field must be positive and double. </param>
+        /// <param name="lengthRectangleBox"> The field must be positive and double. </param>
+        /// <param name="XCenterBox"> The field must be positiveand double. </param>
+        /// <param name="YCenterBox"> The field must be positive and double. </param>
         public static void UpdateRectangleInfo(Model.Rectangle rectangle, TextBox IDRectangleBox, TextBox widthRectangleBox, TextBox lengthRectangleBox, TextBox XCenterBox, TextBox YCenterBox)
         {
             if (rectangle != null)
@@ -31,7 +31,7 @@ namespace Programming.Model.Geometry
         }
 
         /// <summary>
-        /// Deleting rectangle's data in fields
+        /// Deleting rectangle's data in fields.
         /// </summary>
         /// <param name="IDRectangleBox"></param>
         /// <param name="widthRectangleBox"></param>

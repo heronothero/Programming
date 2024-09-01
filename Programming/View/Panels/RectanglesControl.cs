@@ -15,22 +15,22 @@ namespace Programming.View.Panels
     public partial class RectanglesControl : UserControl
     {
         /// <summary>
-        /// A private property of rectangles' array
+        /// A private property of rectangles' array.
         /// </summary>
         private Model.Rectangle[] _rectangles;
 
         /// <summary>
-        /// A private property of a current rectangle
+        /// A private property of a current rectangle.
         /// </summary>
         private Model.Rectangle _currentRectangle;
 
         /// <summary>
-        /// A private property of random
+        /// A private property of random.
         /// </summary>
         private Random random = new Random();
 
         /// <summary>
-        /// Initializing components
+        /// Initializing components.
         /// </summary>
         public RectanglesControl()
         {
@@ -43,7 +43,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of initializing 5 rectangles in the array with random values in range
+        /// A function of initializing 5 rectangles in the array with random values in range.
         /// </summary>
         private void InitializeRectangles()
         {
@@ -64,7 +64,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of updating rectangle's fields
+        /// A function of updating rectangle's fields.
         /// </summary>
         private void UpdateFields()
         {
@@ -77,7 +77,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Rectangles' list (array) in which user can choose an item and see info in textboxes
+        /// Rectangles' list (array) in which user can choose an item and see info in textboxes.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -106,7 +106,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a rectangle's length which must be valid (positive and double)
+        /// The field of a rectangle's length which must be valid (positive and double).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -140,7 +140,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a rectangle's width which must be valid (positive and double)
+        /// The field of a rectangle's width which must be valid (positive and double).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -174,7 +174,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Indicates that the event handler has already processed the event and dealt with it, so it doesn't need to be processed any further
+        /// Indicates that the event handler has already processed the event and dealt with it, so it doesn't need to be processed any further.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -184,7 +184,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a rectangle's x, checking if the value is valid or not (positive and less than 1000)
+        /// The field of a rectangle's x, checking if the value is valid or not (positive and less than 1000).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -218,7 +218,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a rectangle's y, checking if the value is valid or not (positive and less than 1000)
+        /// The field of a rectangle's y, checking if the value is valid or not (positive and less than 1000).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -252,7 +252,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of a rectangle's color
+        /// The field of a rectangle's color.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -265,7 +265,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A button's event which after a click shows a rectangle with max width
+        /// A button's event which after a click shows a rectangle with max width.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -283,7 +283,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of finding a rectangle with max width if the array isn't null
+        /// A function of finding a rectangle with max width if the array isn't null.
         /// </summary>
         /// <param name="rectangles"> An array of rectangles </param>
         /// <returns> Returns an index of the rectangle with max width </returns>

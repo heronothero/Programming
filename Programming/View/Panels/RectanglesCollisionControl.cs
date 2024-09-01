@@ -15,27 +15,27 @@ namespace Programming.View.Panels
     public partial class RectanglesCollisionControl : UserControl
     {
         /// <summary>
-        /// A private property of rectangles' list
+        /// A private property of rectangles' list.
         /// </summary>
         private List<Model.Rectangle> _rectanglesList;
 
         /// <summary>
-        /// A private property of a current rectangle
+        /// A private property of a current rectangle.
         /// </summary>
         private Model.Rectangle _currentRectangle;
 
         /// <summary>
-        /// A private property of rectangles' main panel
+        /// A private property of rectangles' main panel.
         /// </summary>
         private Panel _rectanglesPanel;
 
         /// <summary>
-        /// A private property of rectangles' panels, which are shown on the main panel
+        /// A private property of rectangles' panels, which are shown on the main panel.
         /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
 
         /// <summary>
-        /// Initializing components
+        /// Initializing components.
         /// </summary>
         public RectanglesCollisionControl()
         {
@@ -49,7 +49,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Drawing rectangle and choosing fill color depending on whether it has collision or not
+        /// Drawing rectangle and choosing fill color depending on whether it has collision or not.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -75,7 +75,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of showing rectangles on the main panel
+        /// A function of showing rectangles on the main panel.
         /// </summary>
         private void DrawRectangles()
         {
@@ -83,7 +83,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Rectangles' list in which user can choose an item and see info in textboxes
+        /// Rectangles' list in which user can choose an item and see info in textboxes.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -102,7 +102,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of creating a rectangle with random values in range on the main panel and list
+        /// A function of creating a rectangle with random values in range on the main panel and list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -128,7 +128,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of deleting a rectangle from main panel and list
+        /// A function of deleting a rectangle from main panel and list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -160,7 +160,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of updating values of a chosen rectangle and redrawing it on the main panel
+        /// A function of updating values of a chosen rectangle and redrawing it on the main panel.
         /// </summary>
         private void UpdateRectanglesList()
         {
@@ -173,7 +173,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of rectangle's ID
+        /// The field of rectangle's ID.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -183,7 +183,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of the rectangle's x coordinate which must be valid (positive and less than 1000)
+        /// The field of the rectangle's x coordinate which must be valid (positive and less than 1000).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -210,7 +210,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of rectangle's y coordinate which must be valid (positive and less than 1000)
+        /// The field of rectangle's y coordinate which must be valid (positive and less than 1000).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -237,7 +237,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of rectangle's width which must be valid (positive)
+        /// The field of rectangle's width which must be valid (positive).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -264,7 +264,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The field of rectangle's length which must be valid (positive)
+        /// The field of rectangle's length which must be valid (positive).
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -291,9 +291,9 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A function of finding collisions
+        /// A function of finding collisions.
         /// Insted of using loops we are creatin a grid in which rectangle has its own place. 
-        /// It works faster, the value of grid can be changed
+        /// It works faster, the value of grid can be changed.
         /// </summary>
         private void FindCollissions()
         {
@@ -322,24 +322,24 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Properties of the grid
+        /// Properties of the grid.
         /// </summary>
         public class CollisionGrid
         {
             /// <summary>
-            /// A private property of a cell size
+            /// A private property of a cell size.
             /// </summary>
             private readonly int _cellSize;
 
             /// <summary>
-            /// A private property of a dictionary which contains points and its list of rectangles
+            /// A private property of a dictionary which contains points and its list of rectangles.
             /// </summary>
             private readonly Dictionary<Point, List<Model.Rectangle>> _cells;
 
             /// <summary>
-            /// Initializing a rectangle's place in the grid
+            /// Initializing a rectangle's place in the grid.
             /// </summary>
-            /// <param name="cellSize"> A cell's size in the grid </param>
+            /// <param name="cellSize"> A cell's size in the grid. </param>
             public CollisionGrid(int cellSize)
             {
                 _cellSize = cellSize;
@@ -347,9 +347,9 @@ namespace Programming.View.Panels
             }
 
             /// <summary>
-            /// Creating a rectangle which will be checked if it has collision with other rectangles
+            /// Creating a rectangle which will be checked if it has collision with other rectangles.
             /// </summary>
-            /// <param name="rectangle"> A current rectangle which' cells will be checked and added to the list </param>
+            /// <param name="rectangle"> A current rectangle which' cells will be checked and added to the list. </param>
             public void AddRectangle(Model.Rectangle rectangle)
             {
                 var (cellX, cellY) = GetCellCoordinates(rectangle);
@@ -364,10 +364,10 @@ namespace Programming.View.Panels
             }
 
             /// <summary>
-            /// A function of checking possible collisions with current rectangle
+            /// A function of checking possible collisions with current rectangle.
             /// </summary>
-            /// <param name="rectangle"> A current rectangle which's cells will be checked on possible collisions</param>
-            /// <returns></returns>
+            /// <param name="rectangle"> A current rectangle which's cells will be checked on possible collisions. </param>
+            /// <returns> Returns possible collisions. </returns>
             public IEnumerable<Model.Rectangle> GetPossibleCollisions(Model.Rectangle rectangle)
             {
                 var (cellX, cellY) = GetCellCoordinates(rectangle);
@@ -401,9 +401,9 @@ namespace Programming.View.Panels
             }
 
             /// <summary>
-            /// A function of getting coodrinates of rectangle's cell
+            /// A function of getting coodrinates of rectangle's cell.
             /// </summary>
-            /// <param name="rectangle"> A current rectangle which coordinates must be known </param>
+            /// <param name="rectangle"> A current rectangle which coordinates must be known. </param>
             /// <returns></returns>
             private (int, int) GetCellCoordinates(Model.Rectangle rectangle)
             {

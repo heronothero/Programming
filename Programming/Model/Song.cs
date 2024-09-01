@@ -9,17 +9,17 @@ namespace Programming.Model
     public class Song
     {
         /// <summary>
-        /// A private property of duration
+        /// A private property of duration.
         /// </summary>
         private double duration;
 
         /// <summary>
-        /// A public property of the name of the song
+        /// A public property of the name of the song.
         /// </summary>
         public string NameOfTheSong { get; set; }
 
         /// <summary>
-        /// A public property of duration which must be positive and double
+        /// A public property of duration which must be positive and double.
         /// </summary>
         public double Duration
         {
@@ -32,7 +32,7 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A public property of lyrics
+        /// A public property of lyrics.
         /// </summary>
         public bool Lyrics { get; set; }
     }

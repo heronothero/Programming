@@ -14,7 +14,7 @@ namespace Programming.View.Panels
     public partial class SeasonHandleControl : UserControl
     {
         /// <summary>
-        /// Initializing components
+        /// Initializing components.
         /// </summary>
         public SeasonHandleControl()
         {
@@ -23,7 +23,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Initializing seasons' list
+        /// Initializing seasons' list.
         /// </summary>
         private void InitializeSeasons()
         {
@@ -34,7 +34,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The combo box of seasons
+        /// The combo box of seasons.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -44,7 +44,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A button's event which handles different scenarios depending on what option user chooses
+        /// A button's event which handles different scenarios depending on what option user chooses.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

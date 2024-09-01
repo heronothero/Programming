@@ -13,7 +13,7 @@ namespace Programming.View.Panels
     public partial class WeekdayParsingControl : UserControl
     {
         /// <summary>
-        /// Initializing components
+        /// Initializing components.
         /// </summary>
         public WeekdayParsingControl()
         {
@@ -21,7 +21,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Text input for entering data
+        /// Text input for entering data.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -31,7 +31,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A button's event which handles a check of input data and shows the result
+        /// A button's event which handles a check of input data and shows the result.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,7 +57,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// The label which shows the result
+        /// The label which shows the result.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

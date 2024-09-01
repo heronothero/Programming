@@ -9,10 +9,10 @@ namespace Programming.Model
     public static class Validator
     {
         /// <summary>
-        /// A function for checking a value for a positive int value
+        /// A function for checking a value for a positive int value.
         /// </summary>
-        /// <param name="value"> The (int) value which should be checked </param>
-        /// <param name="propertyName"> The name of the checking value </param>
+        /// <param name="value"> The (int) value which should be checked. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
         public static void AssertOnPositiveValue(int value, string propertyName)
         {
             if (value <= 0)
@@ -22,11 +22,11 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A function for checking a value for a positive double value
+        /// A function for checking a value for a positive double value.
         /// </summary>
-        /// <param name="value"> The (double) value which should be checked </param>
-        /// <param name="propertyName"> The name of the checking value </param>
-        /// <returns></returns>
+        /// <param name="value"> The (double) value which should be checked. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
+        /// <returns> Returns value if it's positive. </returns>
         public static double AssertOnPositiveValue(double value, string propertyName)
         {
             if (value <= 0)
@@ -37,12 +37,12 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A function for checking int value to be in range int min value and int max value
+        /// A function for checking int value to be in range int min value and int max value.
         /// </summary>
-        /// <param name="value"> The (int) value which should be checked </param>
-        /// <param name="min"> The start point of range </param>
-        /// <param name="max"> The end point of range </param>
-        /// <param name="propertyName"> The name of the checking value </param>
+        /// <param name="value"> The (int) value which should be checked. </param>
+        /// <param name="min"> The start point of range. </param>
+        /// <param name="max"> The end point of range. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
         public static void AssertValueInRange(int value, int min, int max, string propertyName)
         {
             if (value < min || value > max)
@@ -52,12 +52,12 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A function for checking double value to be in range double min value and double max value
+        /// A function for checking double value to be in range double min value and double max value.
         /// </summary>
-        /// <param name="value"> The (double) value which should be checked </param>
-        /// <param name="min"> The start point of range </param>
-        /// <param name="max"> The end point of range </param>
-        /// <param name="propertyName"> The name of the checking value </param>
+        /// <param name="value"> The (double) value which should be checked. </param>
+        /// <param name="min"> The start point of range. </param>
+        /// <param name="max"> The end point of range. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
         public static void AssertValueInRange(double value, double min, double max, string propertyName)
         {
             if (value < min || value > max)
@@ -67,11 +67,11 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A function for cheking value's symbols length
+        /// A function for cheking value's symbols length.
         /// </summary>
-        /// <param name="value"> The (int) value which should be checked </param>
-        /// <param name="max"> A number of value's symbols length which must be equal </param>
-        /// <param name="propetyName"> The name of the checking value </param>
+        /// <param name="value"> The (int) value which should be checked. </param>
+        /// <param name="max"> A number of value's symbols length which must be equal. </param>
+        /// <param name="propetyName"> The name of the checking value. </param>
         public static void AssertValueLength(int value, int max, string propetyName)
         {
             value = value.ToString().Length;
@@ -82,10 +82,10 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A function for checking that value contains only letters
+        /// A function for checking that value contains only letters.
         /// </summary>
-        /// <param name="value"> The (string) value which should be checked </param>
-        /// <param name="propertyName"> The name of the checking value </param>
+        /// <param name="value"> The (string) value which should be checked. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
         public static void AssertStringContainsOnlyLetters(string value, string propertyName)
         {
             if (string.IsNullOrEmpty(value))
@@ -102,11 +102,11 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A function for checking whether coordinates are valide or not
+        /// A function for checking whether coordinates are valide or not.
         /// </summary>
-        /// <param name="value"> The (double) value which should be checked </param>
-        /// <param name="propertyName"> The name of the checking value </param>
-        /// <returns> Returns value if it's positive and less than 1000 </returns>
+        /// <param name="value"> The (double) value which should be checked. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
+        /// <returns> Returns value if it's positive and less than 1000. </returns>
         public static double ValidateCoordinate(double value, string propertyName)
         {
             if (value < 0)

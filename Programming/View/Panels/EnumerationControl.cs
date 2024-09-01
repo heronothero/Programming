@@ -14,12 +14,12 @@ namespace Programming.View.Panels
     public partial class EnumerationControl : UserControl
     {
         /// <summary>
-        /// Creating a dictionary for enumerations
+        /// Creating a dictionary for enumerations.
         /// </summary>
         private Dictionary<string, Type> enumTypes;
 
         /// <summary>
-        /// Initializing components
+        /// Initializing components.
         /// </summary>
         public EnumerationControl()
         {
@@ -30,7 +30,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Creating a first list of enumerations
+        /// Creating a first list of enumerations.
         /// </summary>
         private void InitializeEnumTypes()
         {
@@ -43,7 +43,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Showing the index of a chosen item of enumerations if it's not null
+        /// Showing the index of a chosen item of enumerations if it's not null.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,7 +57,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// Showing list of items of the chosen enumeration
+        /// Showing list of items of the chosen enumeration.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -75,7 +75,7 @@ namespace Programming.View.Panels
         }
 
         /// <summary>
-        /// A textbox where shows the index of the chosen value of enumerations
+        /// A textbox where shows the index of the chosen value of enumerations.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

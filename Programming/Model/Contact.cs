@@ -9,17 +9,17 @@ namespace Programming.Model
     public class Contact
     {
         /// <summary>
-        /// A private property of phone number
+        /// A private property of phone number.
         /// </summary>
         private int phoneNumber;
 
         /// <summary>
-        /// A private property of contact name
+        /// A private property of contact name.
         /// </summary>
         private string contactName;
 
         /// <summary>
-        /// Checking contact name's field which must contain only letters
+        /// Checking contact name's field which must contain only letters.
         /// </summary>
         public string ContactName 
         { 
@@ -32,7 +32,7 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// Checking phone number's field which must be int and contain only 11 numbers
+        /// Checking phone number's field which must be int and contain only 11 numbers.
         /// </summary>
         public int PhoneNumber
         {
@@ -45,17 +45,17 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A public property of organization
+        /// A public property of organization.
         /// </summary>
         public string Organization { get; set; }
 
         /// <summary>
-        /// A private property of surname
+        /// A private property of surname.
         /// </summary>
         private string surname;
 
         /// <summary>
-        /// Checling surname's field which must contain only letters
+        /// Checling surname's field which must contain only letters.
         /// </summary>
         public string Surname 
         { 
@@ -68,12 +68,12 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// Contact's constructor
+        /// Contact's constructor.
         /// </summary>
-        /// <param name="contactName"> The field must contain only letters </param>
-        /// <param name="surname"> The field must contain only letters </param>
-        /// <param name="phoneNumber"> The field contain only 11 numbers </param>
-        /// <param name="organization"> The field can contain letters and numbers </param>
+        /// <param name="contactName"> The field must contain only letters. </param>
+        /// <param name="surname"> The field must contain only letters. </param>
+        /// <param name="phoneNumber"> The field contain only 11 numbers. </param>
+        /// <param name="organization"> The field can contain letters and numbers. </param>
         public Contact(string contactName, string surname, int phoneNumber, string organization)
         {
             ContactName = contactName;

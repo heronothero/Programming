@@ -9,27 +9,27 @@ namespace Programming.Model
     public class Discipline
     {
         /// <summary>
-        /// Private property of mark
+        /// Private property of mark.
         /// </summary>
         private int mark;
 
         /// <summary>
-        /// A private property of date
+        /// A private property of date.
         /// </summary>
         private int date;
 
         /// <summary>
-        /// A public property of the name of the subject
+        /// A public property of the name of the subject.
         /// </summary>
         public string NameOfTheSubject { get; set; }
 
         /// <summary>
-        /// A public property of professor
+        /// A public property of professor.
         /// </summary>
         public string Professor { get; set; }
 
         /// <summary>
-        /// Checking mark's field which must be int and between 1 and 5
+        /// Checking mark's field which must be int and between 1 and 5.
         /// </summary>
         public int Mark
         {
@@ -42,7 +42,7 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// Checking date's field which must be int and between 2021 and this day of the year
+        /// Checking date's field which must be int and between 2021 and this day of the year.
         /// </summary>
         public int Date
         {
@@ -55,12 +55,12 @@ namespace Programming.Model
         }
 
         /// <summary>
-        /// A discipline's constructor
+        /// A discipline's constructor.
         /// </summary>
-        /// <param name="nameOfTheSubject"> The field can contain letters and numbers </param>
-        /// <param name="professor"> This field can contain letters and numbers </param>
-        /// <param name="mark"> The field must be int in range </param>
-        /// <param name="date"> The field must be a date </param>
+        /// <param name="nameOfTheSubject"> The field can contain letters and numbers. </param>
+        /// <param name="professor"> This field can contain letters and numbers. </param>
+        /// <param name="mark"> The field must be int in range. </param>
+        /// <param name="date"> The field must be a date. </param>
         public Discipline(string nameOfTheSubject, string professor, int mark, int date)
         {
             NameOfTheSubject = nameOfTheSubject;

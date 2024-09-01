@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Programming.Model
 {
     /// <summary>
-    /// Enumeration of seasons
+    /// Enumeration of seasons.
     /// </summary>
     public enum Season
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Programming.Model
 {
     /// <summary>
-    /// Enumeration of weekdays
+    /// Enumeration of weekdays.
     /// </summary>
     public enum Weekday
     {
