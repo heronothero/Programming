@@ -13,7 +13,14 @@ namespace Programming.View.Panels
 {
     public partial class EnumerationControl : UserControl
     {
+        /// <summary>
+        /// Creating a dictionary for enumerations
+        /// </summary>
         private Dictionary<string, Type> enumTypes;
+
+        /// <summary>
+        /// Initializing components
+        /// </summary>
         public EnumerationControl()
         {
             InitializeComponent();
@@ -22,6 +29,9 @@ namespace Programming.View.Panels
             EnumsListBox.DataSource = new List<string>(enumTypes.Keys);
         }
 
+        /// <summary>
+        /// Creating a first list of enumerations
+        /// </summary>
         private void InitializeEnumTypes()
         {
             enumTypes.Add("Colour", typeof(Colour));
@@ -32,6 +42,11 @@ namespace Programming.View.Panels
             enumTypes.Add("Weekday", typeof(Weekday));
         }
 
+        /// <summary>
+        /// Showing the index of a chosen item of enumerations if it's not null
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ValueListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ValueListBox != null)
@@ -41,6 +56,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Showing list of items of the chosen enumeration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValueListBox.Items.Clear();
@@ -54,6 +74,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// A textbox where shows the index of the chosen value of enumerations
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ValueTextBox_TextChanged(object sender, EventArgs e)
         {
 

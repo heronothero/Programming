@@ -8,12 +8,29 @@ namespace Programming.Model
 {
     public class Movie
     {
-        private string nameOfTheMovie;
+        /// <summary>
+        /// A private property of movie time
+        /// </summary>
         private int movieTime;
+
+        /// <summary>
+        /// A private property of release year
+        /// </summary>
         private int releaseYear;
-        private string genre;
+
+        /// <summary>
+        /// A private property of rating
+        /// </summary>
         private double rating;
+
+        /// <summary>
+        /// A public property of the name of the movie
+        /// </summary>
         public string NameOfTheMovie{ get; set; }
+
+        /// <summary>
+        /// A public property of movie time, which must be positive and int
+        /// </summary>
         public int MovieTime
         {
             get { return movieTime; }
@@ -23,6 +40,10 @@ namespace Programming.Model
                 movieTime = value;
             }
         }
+
+        /// <summary>
+        /// A public property of release year which must be int in range of 1900 and current year
+        /// </summary>
         public int ReleaseYear
         {
             get { return releaseYear; }
@@ -32,7 +53,15 @@ namespace Programming.Model
                 releaseYear = value;
             }
         }
+
+        /// <summary>
+        /// A public property of genre
+        /// </summary>
         public string Genre{ get; set; }
+
+        /// <summary>
+        /// A public property of rating which must be in range of 0 and 10 and double
+        /// </summary>
         public double Rating
         {
             get { return rating; }
@@ -42,6 +71,15 @@ namespace Programming.Model
                 rating = value;
             }
         }
+
+        /// <summary>
+        /// A movie's constructor
+        /// </summary>
+        /// <param name="nameOfTheMovie"> The field can contain letters and numbers </param>
+        /// <param name="movieTime"> The field must be positive and int </param>
+        /// <param name="releaseYear"> The field must be a date in range </param>
+        /// <param name="genre"> The field can contain letters and numbers </param>
+        /// <param name="rating"> The field must be positive and double </param>
         public Movie(string nameOfTheMovie, int movieTime, int releaseYear, string genre, double rating)
         {
             NameOfTheMovie = nameOfTheMovie;

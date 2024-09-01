@@ -13,9 +13,24 @@ namespace Programming.View.Panels
 {
     public partial class RingsControl : UserControl
     {
+        /// <summary>
+        /// A private property of rings' array
+        /// </summary>
         private Ring[] _rings;
+
+        /// <summary>
+        /// A private property of a current ring
+        /// </summary>
         private Ring _currentRing;
+
+        /// <summary>
+        /// A private property of random
+        /// </summary>
         private Random random = new Random();
+
+        /// <summary>
+        /// Initializing components
+        /// </summary>
         public RingsControl()
         {
             InitializeComponent();
@@ -23,6 +38,11 @@ namespace Programming.View.Panels
             UpdateRingFields();
         }
 
+        /// <summary>
+        /// The rings array in which user chooses a ring and sees info in textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ringsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = ringsBox.SelectedIndex;
@@ -42,21 +62,39 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// The field of a ring's inner radius
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void innerRadiusBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// The field of a ring's outer radius
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void outerRadiusBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// The field of a ring's area
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void areaBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// A function of initializing 5 rings with random values
+        /// </summary>
         private void InitializeRings()
         {
             _rings = new Ring[5];
@@ -75,6 +113,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of updating current ring's fields
+        /// </summary>
         private void UpdateRingFields()
         {
             if (_currentRing != null)

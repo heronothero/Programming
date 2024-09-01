@@ -13,12 +13,18 @@ namespace Programming.View.Panels
 {
     public partial class SeasonHandleControl : UserControl
     {
+        /// <summary>
+        /// Initializing components
+        /// </summary>
         public SeasonHandleControl()
         {
             InitializeComponent();
             InitializeSeasons();
         }
 
+        /// <summary>
+        /// Initializing seasons' list
+        /// </summary>
         private void InitializeSeasons()
         {
             seasonComboBox.Items.Add(Season.Winter);
@@ -27,11 +33,21 @@ namespace Programming.View.Panels
             seasonComboBox.Items.Add(Season.Autumn);
         }
 
+        /// <summary>
+        /// The combo box of seasons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void seasonComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// A button's event which handles different scenarios depending on what option user chooses
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void seasonButton_Click(object sender, EventArgs e)
         {
             if (seasonComboBox.SelectedItem != null && seasonComboBox.SelectedItem is Season selectedSeason)

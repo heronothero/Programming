@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Enumeration of weekdays
+    /// </summary>
     public enum Weekday
     {
         Monday,

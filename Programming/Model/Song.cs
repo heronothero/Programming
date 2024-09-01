@@ -8,10 +8,19 @@ namespace Programming.Model
 {
     public class Song
     {
-        private string nameOfTheSong;
+        /// <summary>
+        /// A private property of duration
+        /// </summary>
         private double duration;
-        private bool lyrics;
+
+        /// <summary>
+        /// A public property of the name of the song
+        /// </summary>
         public string NameOfTheSong { get; set; }
+
+        /// <summary>
+        /// A public property of duration which must be positive and double
+        /// </summary>
         public double Duration
         {
             get { return duration; }
@@ -21,10 +30,10 @@ namespace Programming.Model
                 duration = value;
             }
         }
-        public bool Lyrics
-        {
-            get { return lyrics; }
-            set { }
-        }
+
+        /// <summary>
+        /// A public property of lyrics
+        /// </summary>
+        public bool Lyrics { get; set; }
     }
 }

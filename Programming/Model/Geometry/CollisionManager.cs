@@ -8,6 +8,12 @@ namespace Programming.Model
 {
     public static class CollisionManager
     {
+        /// <summary>
+        /// A function of finding rectangles' collisions
+        /// </summary>
+        /// <param name="rectangle1"> A first rectangle which will be checked with next rectangle </param>
+        /// <param name="rectangle2"> A second rectangle which will be checked with a previous rectangle </param>
+        /// <returns> A bool value that returns intersected rectangles on the vertical axis or horizontal </returns>
         public static bool IsCollisionRectangles(Rectangle rectangle1, Rectangle rectangle2)
         {
             double deltaX = Math.Abs(rectangle1.Center.X - rectangle2.Center.X);
@@ -20,6 +26,13 @@ namespace Programming.Model
             bool isYCollision = deltaY < (halfLength1 + halfLength2);
             return isXCollision && isYCollision;
         }
+
+        /// <summary>
+        /// A function of finding rings' collisions
+        /// </summary>
+        /// <param name="ring1"> A first ring which will be checked with next ring </param>
+        /// <param name="ring2"> A second ring which will be checked with the previous ring </param>
+        /// <returns> A bool value that returns intersected rings in outer radius or inner radius  </returns>
         public static bool IsCollisionRings(Ring ring1, Ring ring2)
         {
             double distanceBetweenCenters = Math.Sqrt(Math.Pow(ring1.Center.X - ring2.Center.X, 2) + Math.Pow(ring1.Center.Y - ring2.Center.Y, 2));

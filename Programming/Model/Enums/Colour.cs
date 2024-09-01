@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Enumeration of colors for rectangles
+    /// </summary>
     public enum Colour
     {
         Red,

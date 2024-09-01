@@ -12,16 +12,29 @@ namespace Programming.View.Panels
 {
     public partial class WeekdayParsingControl : UserControl
     {
+        /// <summary>
+        /// Initializing components
+        /// </summary>
         public WeekdayParsingControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Text input for entering data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dayInput_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// A button's event which handles a check of input data and shows the result
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resultButton_Click(object sender, EventArgs e)
         {
             string inputText = dayInput.Text.Trim();
@@ -43,6 +56,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// The label which shows the result
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resultLabel_Click(object sender, EventArgs e)
         {
             resultLabel.Text = " ";

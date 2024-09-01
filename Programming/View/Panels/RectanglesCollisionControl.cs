@@ -14,10 +14,29 @@ namespace Programming.View.Panels
 {
     public partial class RectanglesCollisionControl : UserControl
     {
+        /// <summary>
+        /// A private property of rectangles' list
+        /// </summary>
         private List<Model.Rectangle> _rectanglesList;
+
+        /// <summary>
+        /// A private property of a current rectangle
+        /// </summary>
         private Model.Rectangle _currentRectangle;
+
+        /// <summary>
+        /// A private property of rectangles' main panel
+        /// </summary>
         private Panel _rectanglesPanel;
+
+        /// <summary>
+        /// A private property of rectangles' panels, which are shown on the main panel
+        /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
+
+        /// <summary>
+        /// Initializing components
+        /// </summary>
         public RectanglesCollisionControl()
         {
             InitializeComponent();
@@ -29,6 +48,11 @@ namespace Programming.View.Panels
             Controls.Add(_rectanglesPanel);
         }
 
+        /// <summary>
+        /// Drawing rectangle and choosing fill color depending on whether it has collision or not
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rectanglesPanel_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -50,11 +74,19 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of showing rectangles on the main panel
+        /// </summary>
         private void DrawRectangles()
         {
             rectanglesPanel.Invalidate();
         }
 
+        /// <summary>
+        /// Rectangles' list in which user can choose an item and see info in textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = rectanglesListBox.SelectedIndex;
@@ -69,6 +101,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of creating a rectangle with random values in range on the main panel and list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addPictureBox_Click(object sender, EventArgs e)
         {
             int canvasWidth = rectanglesPanel.Width;
@@ -90,6 +127,11 @@ namespace Programming.View.Panels
             FindCollissions();
         }
 
+        /// <summary>
+        /// A function of deleting a rectangle from main panel and list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deletePictureBox_Click(object sender, EventArgs e)
         {
             int selectedIndex = rectanglesListBox.SelectedIndex;
@@ -117,6 +159,9 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of updating values of a chosen rectangle and redrawing it on the main panel
+        /// </summary>
         private void UpdateRectanglesList()
         {
             rectanglesListBox.Items.Clear();
@@ -127,11 +172,21 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// The field of rectangle's ID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IDRectangleBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// The field of the rectangle's x coordinate which must be valid (positive and less than 1000)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void XCenterBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle != null)
@@ -154,6 +209,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// The field of rectangle's y coordinate which must be valid (positive and less than 1000)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void YCenterBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle != null)
@@ -176,6 +236,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// The field of rectangle's width which must be valid (positive)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void widthRectangleBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle != null)
@@ -198,6 +263,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// The field of rectangle's length which must be valid (positive)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lengthRectangleBox_TextChanged(object sender, EventArgs e)
         {
             if (_currentRectangle != null)
@@ -220,6 +290,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of finding collisions
+        /// Insted of using loops we are creatin a grid in which rectangle has its own place. 
+        /// It works faster, the value of grid can be changed
+        /// </summary>
         private void FindCollissions()
         {
             var collisionGrid = new CollisionGrid(400);
@@ -245,17 +320,36 @@ namespace Programming.View.Panels
 
             DrawRectangles();
         }
+
+        /// <summary>
+        /// Properties of the grid
+        /// </summary>
         public class CollisionGrid
         {
+            /// <summary>
+            /// A private property of a cell size
+            /// </summary>
             private readonly int _cellSize;
+
+            /// <summary>
+            /// A private property of a dictionary which contains points and its list of rectangles
+            /// </summary>
             private readonly Dictionary<Point, List<Model.Rectangle>> _cells;
 
+            /// <summary>
+            /// Initializing a rectangle's place in the grid
+            /// </summary>
+            /// <param name="cellSize"> A cell's size in the grid </param>
             public CollisionGrid(int cellSize)
             {
                 _cellSize = cellSize;
                 _cells = new Dictionary<Point, List<Model.Rectangle>>();
             }
 
+            /// <summary>
+            /// Creating a rectangle which will be checked if it has collision with other rectangles
+            /// </summary>
+            /// <param name="rectangle"> A current rectangle which' cells will be checked and added to the list </param>
             public void AddRectangle(Model.Rectangle rectangle)
             {
                 var (cellX, cellY) = GetCellCoordinates(rectangle);
@@ -269,6 +363,11 @@ namespace Programming.View.Panels
                 _cells[cellKey].Add(rectangle);
             }
 
+            /// <summary>
+            /// A function of checking possible collisions with current rectangle
+            /// </summary>
+            /// <param name="rectangle"> A current rectangle which's cells will be checked on possible collisions</param>
+            /// <returns></returns>
             public IEnumerable<Model.Rectangle> GetPossibleCollisions(Model.Rectangle rectangle)
             {
                 var (cellX, cellY) = GetCellCoordinates(rectangle);
@@ -301,6 +400,11 @@ namespace Programming.View.Panels
                 return possibleCollisions;
             }
 
+            /// <summary>
+            /// A function of getting coodrinates of rectangle's cell
+            /// </summary>
+            /// <param name="rectangle"> A current rectangle which coordinates must be known </param>
+            /// <returns></returns>
             private (int, int) GetCellCoordinates(Model.Rectangle rectangle)
             {
                 int x = (int)(rectangle.Center.X / _cellSize);
