@@ -18,9 +18,9 @@ namespace BooksListApp.Model
         public static void AssertValueInRange(int value, int min, int max, string propertyName)
         {
             value = value.ToString().Length;
-            if (value < min && value > max)
+            if (value < min || value > max)
             {
-                throw new ArgumentException($"{propertyName} must be more than min and less than max");
+                throw new ArgumentException($"{propertyName} must be between {min} and {max}");
             }
         }
 
