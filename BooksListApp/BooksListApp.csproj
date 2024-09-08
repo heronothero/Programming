@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Validator.cs" />
     <Compile Include="View\BooksListApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,8 +90,6 @@
   <ItemGroup>
     <None Include="Resources\editBookIcon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
