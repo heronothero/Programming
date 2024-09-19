@@ -18,6 +18,7 @@ namespace BooksListApp
         {
             InitializeComponent();
             InitialGenres();
+            InitializeToolTips();
 
             addBookPictureBox.MouseEnter += addBookPictureBox_MouseEnter;
             addBookPictureBox.MouseLeave += addBookPictureBox_MouseLeave;
@@ -125,6 +126,7 @@ namespace BooksListApp
 
         private void addBookPictureBox_Click(object sender, EventArgs e)
         {
+            ValidateInput();
             try
             {
                 if (string.IsNullOrWhiteSpace(selectedBookTitleBox.Text) ||
@@ -166,6 +168,7 @@ namespace BooksListApp
 
         private void editBookPictureBox_Click(object sender, EventArgs e)
         {
+            ValidateInput();
             if (bookBox.SelectedItem != null)
             {
                 try
@@ -267,6 +270,77 @@ namespace BooksListApp
         private void selectedBookGenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ValidateInput()
+        {
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(selectedBookTitleBox.Text) || selectedBookTitleBox.Text.Length > 100)
+            {
+                selectedBookTitleBox.BackColor = Color.LightCoral;
+                isValid = false;
+            }
+            else
+            {
+                selectedBookTitleBox.BackColor = Color.White;
+            }
+
+            if (!int.TryParse(selectedBookReleaseYearBox.Text, out int releaseYear) || releaseYear < 1000 || releaseYear > DateTime.Now.Year)
+            {
+                selectedBookReleaseYearBox.BackColor = Color.LightCoral;
+                isValid = false;
+            }
+            else
+            {
+                selectedBookReleaseYearBox.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(selectedBookAuthorBox.Text))
+            {
+                selectedBookAuthorBox.BackColor = Color.LightCoral;
+                isValid = false;
+            }
+            else
+            {
+                selectedBookAuthorBox.BackColor = Color.White;
+            }
+
+            if (!int.TryParse(selectedBookNumberOfPagesBox.Text, out int pages) || pages <= 0)
+            {
+                selectedBookNumberOfPagesBox.BackColor = Color.LightCoral;
+                isValid = false;
+            }
+            else
+            {
+                selectedBookNumberOfPagesBox.BackColor = Color.White;
+            }
+
+            if (selectedBookGenreComboBox.SelectedItem == null)
+            {
+                selectedBookGenreComboBox.BackColor = Color.LightCoral;
+                isValid = false;
+            }
+            else
+            {
+                selectedBookGenreComboBox.BackColor = Color.White;
+            }
+
+            if (!isValid)
+            {
+                MessageBox.Show("Please correct the highlighted fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private ToolTip toolTip = new ToolTip();
+
+        private void InitializeToolTips()
+        {
+            toolTip.SetToolTip(selectedBookTitleBox, "Title must be between 1 and 100 characters.");
+            toolTip.SetToolTip(selectedBookReleaseYearBox, "Release year must be between 1000 and the current year.");
+            toolTip.SetToolTip(selectedBookAuthorBox, "Author name cannot be empty.");
+            toolTip.SetToolTip(selectedBookNumberOfPagesBox, "Number of pages must be a positive number.");
+            toolTip.SetToolTip(selectedBookGenreComboBox, "Please select a genre.");
         }
     }
 }
