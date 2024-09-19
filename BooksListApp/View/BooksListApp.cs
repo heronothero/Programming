@@ -33,25 +33,16 @@ namespace BooksListApp
             deleteBookPictureBox.MouseLeave += deleteBookPictureBox_MouseLeave;
             deleteBookPictureBox.MouseDown += deleteBookPictureBox_MouseDown;
             deleteBookPictureBox.MouseUp += deleteBookPictureBox_MouseUp;
+
+            bookBox.SelectedIndexChanged += bookBox_SelectedIndexChanged;
         }
 
         private void InitialGenres()
         {
-            selectedBookGenreComboBox.Items.Add(Genre.Action);
-            selectedBookGenreComboBox.Items.Add(Genre.Adventures);
-            selectedBookGenreComboBox.Items.Add(Genre.Comedy);
-            selectedBookGenreComboBox.Items.Add(Genre.Detective);
-            selectedBookGenreComboBox.Items.Add(Genre.Drama);
-            selectedBookGenreComboBox.Items.Add(Genre.Fantasy);
-            selectedBookGenreComboBox.Items.Add(Genre.History);
-            selectedBookGenreComboBox.Items.Add(Genre.Horror);
-            selectedBookGenreComboBox.Items.Add(Genre.Manga);
-            selectedBookGenreComboBox.Items.Add(Genre.Mysticism);
-            selectedBookGenreComboBox.Items.Add(Genre.Novel);
-            selectedBookGenreComboBox.Items.Add(Genre.Poetry);
-            selectedBookGenreComboBox.Items.Add(Genre.Romance);
-            selectedBookGenreComboBox.Items.Add(Genre.Science);
-            selectedBookGenreComboBox.Items.Add(Genre.Thriller);
+            foreach (Genre genre in Enum.GetValues(typeof(Genre)))
+            {
+                selectedBookGenreComboBox.Items.Add(genre);
+            }
         }
 
         private Image SetImageOpacity(Image image, float opacity)
@@ -150,12 +141,6 @@ namespace BooksListApp
                 int pages = int.Parse(selectedBookNumberOfPagesBox.Text);
                 Genre genre = (Genre)selectedBookGenreComboBox.SelectedItem;
 
-                Validator.AssertValueInRange(title, 0, 100, "Title");
-                Validator.AssertReleaseYear(releaseYear, 1000, DateTime.Now.Year, "Release year");
-                Validator.AssertValueContainsOnlyLetters(author, "Author");
-                Validator.AssertOnPositiveValue(pages, "Pages");
-                Validator.AssertGenre(genre, "Genre");
-
                 Book newBook = new Book(title, releaseYear, author, pages, genre);
                 bookBox.Items.Add(newBook);
                 ClearBookFields();
@@ -163,6 +148,10 @@ namespace BooksListApp
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Please ensure all numeric fields are filled correctly.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -177,7 +166,44 @@ namespace BooksListApp
 
         private void editBookPictureBox_Click(object sender, EventArgs e)
         {
+            if (bookBox.SelectedItem != null)
+            {
+                try
+                {
+                    Book selectedBook = (Book)bookBox.SelectedItem;
 
+                    string title = selectedBookTitleBox.Text;
+                    if (!int.TryParse(selectedBookReleaseYearBox.Text, out int releaseYear))
+                    {
+                        throw new ArgumentException("Invalid release year format.");
+                    }
+                    string author = selectedBookAuthorBox.Text;
+                    if (!int.TryParse(selectedBookNumberOfPagesBox.Text, out int pages))
+                    {
+                        throw new ArgumentException("Invalid number of pages format.");
+                    }
+                    Genre genre = (Genre)selectedBookGenreComboBox.SelectedItem;
+
+                    selectedBook.Title = title;
+                    selectedBook.ReleaseYear = releaseYear;
+                    selectedBook.Author = author;
+                    selectedBook.Pages = pages;
+                    selectedBook.Genre = genre;
+
+                    int selectedIndex = bookBox.SelectedIndex;
+                    bookBox.Items[selectedIndex] = selectedBook;
+
+                    bookBox.Refresh();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a book to edit.", "Edit Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void deleteBookPictureBox_Click(object sender, EventArgs e)
@@ -226,7 +252,16 @@ namespace BooksListApp
 
         private void bookBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (bookBox.SelectedItem != null)
+            {
+                Book selectedBook = (Book)bookBox.SelectedItem;
 
+                selectedBookTitleBox.Text = selectedBook.Title;
+                selectedBookReleaseYearBox.Text = selectedBook.ReleaseYear.ToString();
+                selectedBookAuthorBox.Text = selectedBook.Author;
+                selectedBookNumberOfPagesBox.Text = selectedBook.Pages.ToString();
+                selectedBookGenreComboBox.SelectedItem = selectedBook.Genre;
+            }
         }
 
         private void selectedBookGenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
