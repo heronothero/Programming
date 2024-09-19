@@ -15,10 +15,9 @@ namespace BooksListApp.Model
         /// <param name="min"> The start point of range. </param>
         /// <param name="max"> The end point of range. </param>
         /// <param name="propertyName"> The name of the checking value. </param>
-        public static void AssertValueInRange(int value, int min, int max, string propertyName)
+        public static void AssertValueInRange(string value, int min, int max, string propertyName)
         {
-            value = value.ToString().Length;
-            if (value < min || value > max)
+            if (value.Length < min || value.Length > max)
             {
                 throw new ArgumentException($"{propertyName} must be between {min} and {max}");
             }
@@ -37,7 +36,7 @@ namespace BooksListApp.Model
             }
             foreach (char c in value)
             {
-                if (!char.IsLetter(c))
+                if (!char.IsLetter(c) && !char.IsWhiteSpace(c))
                 {
                     throw new ArgumentException($"{propertyName} must contain only letters");
                 }
@@ -69,6 +68,37 @@ namespace BooksListApp.Model
             if (value <= 0)
             {
                 throw new ArgumentException($"{propertyName} must be positive");
+            }
+        }
+
+        /// <summary>
+        /// A function for checking a value in range.
+        /// </summary>
+        /// <param name="value"> The (int) value which should be checked. </param>
+        /// <param name="minYear"> The min value. </param>
+        /// <param name="currentYear"> The max value. </param>
+        /// <param name="propertyName"> The name of the checking value. </param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void AssertReleaseYear(int value, int  minYear, int currentYear, string propertyName)
+        {
+            currentYear = DateTime.Now.Year;
+            if (value > currentYear || value < minYear)
+            {
+                throw new ArgumentException($"{propertyName} must be between {minYear} and {currentYear}");
+            }
+        }
+
+        /// <summary>
+        /// A function for checking a field
+        /// </summary>
+        /// <param name="value"> The (obj) value which should be checked. </param>
+        /// <param name="propertyName"> The name of the value. </param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void AssertGenre(object value, string propertyName)
+        {
+            if (value == null)
+            {
+                throw new ArgumentException($"{propertyName} can't be null");
             }
         }
     }
