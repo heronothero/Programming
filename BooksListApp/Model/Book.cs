@@ -66,7 +66,7 @@ namespace BooksListApp.Model
 
         public override string ToString()
         {
-            return $"{Title} | {ReleaseYear} | {Author} | {Pages} | {Genre}";
+            return $"{Title} | {Author} | {Genre}";
         }
     }
 }

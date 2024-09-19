@@ -44,11 +44,7 @@ namespace BooksListApp
         private void LoadBooksFromFile()
         {
             books = BookDataManager.LoadBooks();
-            bookBox.Items.Clear();
-            foreach (var book in books)
-            {
-                bookBox.Items.Add(book);
-            }
+            SortAndUpdateBookList();
         }
 
         private void SaveBooksToFile()
@@ -160,6 +156,7 @@ namespace BooksListApp
                 Book newBook = new Book(title, releaseYear, author, pages, genre);
                 books.Add(newBook);
                 bookBox.Items.Add(newBook);
+                SortAndUpdateBookList();
                 ClearBookFields();
             }
         }
@@ -203,7 +200,8 @@ namespace BooksListApp
                     int selectedIndex = bookBox.SelectedIndex;
                     bookBox.Items[selectedIndex] = selectedBook;
 
-                    bookBox.Refresh();
+                    SortAndUpdateBookList();
+                    ClearBookFields();
                 }
                 catch (ArgumentException ex)
                 {
@@ -233,12 +231,35 @@ namespace BooksListApp
                 {
                     var bookToRemove = (Book)bookBox.SelectedItem;
                     books.Remove(bookToRemove);
-                    bookBox.Items.Remove(bookToRemove);
+                    SortAndUpdateBookList();
                 }
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SortAndUpdateBookList()
+        {
+            books = books.OrderBy(b => b.Title).ToList();
+            bookBox.Items.Clear();
+            foreach (var book in books)
+            {
+                bookBox.Items.Add(book);
+            }
+            if (bookBox.SelectedItem != null)
+            {
+                Book selectedBook = (Book)bookBox.SelectedItem;
+                int index = books.IndexOf(selectedBook);
+                if (index != -1)
+                {
+                    bookBox.SelectedIndex = index;
+                }
+                else
+                {
+                    bookBox.SelectedIndex = -1;
+                }
             }
         }
 
