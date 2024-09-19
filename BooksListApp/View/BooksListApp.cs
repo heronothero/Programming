@@ -14,10 +14,12 @@ namespace BooksListApp
 {
     public partial class BookForm : Form
     {
+        private List<Book> books = new List<Book>();
         public BookForm()
         {
             InitializeComponent();
             InitialGenres();
+            LoadBooksFromFile();
             InitializeToolTips();
 
             addBookPictureBox.MouseEnter += addBookPictureBox_MouseEnter;
@@ -36,6 +38,22 @@ namespace BooksListApp
             deleteBookPictureBox.MouseUp += deleteBookPictureBox_MouseUp;
 
             bookBox.SelectedIndexChanged += bookBox_SelectedIndexChanged;
+            this.FormClosing += BookForm_FormClosing;
+        }
+
+        private void LoadBooksFromFile()
+        {
+            books = BookDataManager.LoadBooks();
+            bookBox.Items.Clear();
+            foreach (var book in books)
+            {
+                bookBox.Items.Add(book);
+            }
+        }
+
+        private void SaveBooksToFile()
+        {
+            BookDataManager.SaveBooks(books);
         }
 
         private void InitialGenres()
@@ -127,16 +145,12 @@ namespace BooksListApp
         private void addBookPictureBox_Click(object sender, EventArgs e)
         {
             ValidateInput();
-            try
+            if (selectedBookTitleBox.BackColor == Color.White &&
+            selectedBookReleaseYearBox.BackColor == Color.White &&
+            selectedBookAuthorBox.BackColor == Color.White &&
+            selectedBookNumberOfPagesBox.BackColor == Color.White &&
+            selectedBookGenreComboBox.BackColor == Color.White)
             {
-                if (string.IsNullOrWhiteSpace(selectedBookTitleBox.Text) ||
-                    string.IsNullOrWhiteSpace(selectedBookAuthorBox.Text) ||
-                    string.IsNullOrWhiteSpace(selectedBookReleaseYearBox.Text) ||
-                    string.IsNullOrWhiteSpace(selectedBookNumberOfPagesBox.Text) ||
-                    selectedBookGenreComboBox.SelectedItem == null)
-                {
-                    throw new ArgumentException("All fields must be filled in.");
-                }
                 string title = selectedBookTitleBox.Text;
                 int releaseYear = int.Parse(selectedBookReleaseYearBox.Text);
                 string author = selectedBookAuthorBox.Text;
@@ -144,16 +158,9 @@ namespace BooksListApp
                 Genre genre = (Genre)selectedBookGenreComboBox.SelectedItem;
 
                 Book newBook = new Book(title, releaseYear, author, pages, genre);
+                books.Add(newBook);
                 bookBox.Items.Add(newBook);
                 ClearBookFields();
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Please ensure all numeric fields are filled correctly.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -224,7 +231,9 @@ namespace BooksListApp
                                                     MessageBoxIcon.Question);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    bookBox.Items.RemoveAt(bookBox.SelectedIndex);
+                    var bookToRemove = (Book)bookBox.SelectedItem;
+                    books.Remove(bookToRemove);
+                    bookBox.Items.Remove(bookToRemove);
                 }
             }
             catch (ArgumentException ex)
@@ -341,6 +350,11 @@ namespace BooksListApp
             toolTip.SetToolTip(selectedBookAuthorBox, "Author name cannot be empty.");
             toolTip.SetToolTip(selectedBookNumberOfPagesBox, "Number of pages must be a positive number.");
             toolTip.SetToolTip(selectedBookGenreComboBox, "Please select a genre.");
+        }
+
+        private void BookForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveBooksToFile();
         }
     }
 }
