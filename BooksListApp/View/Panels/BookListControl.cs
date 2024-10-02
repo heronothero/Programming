@@ -14,7 +14,14 @@ namespace BooksListApp.View.Panels
 {
     public partial class BookListControl : UserControl
     {
+        /// <summary>
+        /// Creating a new list for using.
+        /// </summary>
         private List<Book> books = new List<Book>();
+
+        /// <summary>
+        /// Initializing components, adding mouse events and changing selected index of the book.
+        /// </summary>
         public BookListControl()
         {
             InitializeComponent();
@@ -40,17 +47,26 @@ namespace BooksListApp.View.Panels
             bookBox.SelectedIndexChanged += bookBox_SelectedIndexChanged;
         }
 
+        /// <summary>
+        /// A function of loading a book using BookDataManager and sorting it.
+        /// </summary>
         private void LoadBooksFromFile()
         {
             books = BookDataManager.LoadBooks();
             SortAndUpdateBookList();
         }
 
+        /// <summary>
+        /// A function of saving books to file.
+        /// </summary>
         public void SaveBooksToFile()
         {
             BookDataManager.SaveBooks(books);
         }
 
+        /// <summary>
+        /// A function of initializing genres for combobox.
+        /// </summary>
         private void InitialGenres()
         {
             foreach (Genre genre in Enum.GetValues(typeof(Genre)))
@@ -59,6 +75,12 @@ namespace BooksListApp.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function for editing opacity for mouse events.
+        /// </summary>
+        /// <param name="image"> A picturebox of the button. </param>
+        /// <param name="opacity"> Opacity for a picturebox. </param>
+        /// <returns></returns>
         private Image SetImageOpacity(Image image, float opacity)
         {
             Bitmap bmp = new Bitmap(image.Width, image.Height);
@@ -73,6 +95,7 @@ namespace BooksListApp.View.Panels
             return bmp;
         }
 
+        //A set of functions of mouse events (editing opacity).
         private void addBookPictureBox_MouseEnter(object sender, EventArgs e)
         {
             addBookPictureBox.Image = SetImageOpacity(Properties.Resources.addBookIcon, 0.8f);
@@ -133,6 +156,9 @@ namespace BooksListApp.View.Panels
             deleteBookPictureBox.Image = SetImageOpacity(Properties.Resources.deleteBookIcon, 0.8f);
         }
 
+        /// <summary>
+        /// A function of clearing book fields.
+        /// </summary>
         private void ClearBookFields()
         {
             selectedBookTitleBox.Clear();
@@ -142,6 +168,9 @@ namespace BooksListApp.View.Panels
             selectedBookGenreComboBox.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// A function of sorting and updating book list.
+        /// </summary>
         private void SortAndUpdateBookList()
         {
             books = books.OrderBy(b => b.Title).ToList();
@@ -165,6 +194,11 @@ namespace BooksListApp.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of showing data of selected book.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bookBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (bookBox.SelectedItem != null)
@@ -179,6 +213,11 @@ namespace BooksListApp.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of adding a book by clicking on the picturebox and adding it on the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addBookPictureBox_Click(object sender, EventArgs e)
         {
             ValidateInput();
@@ -202,6 +241,11 @@ namespace BooksListApp.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of editing selected book by clicking and updating the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void editBookPictureBox_Click(object sender, EventArgs e)
         {
             ValidateInput();
@@ -246,6 +290,11 @@ namespace BooksListApp.View.Panels
             }
         }
 
+        /// <summary>
+        /// A function of deleting selected book from list and file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteBookPictureBox_Click(object sender, EventArgs e)
         {
             try
@@ -298,6 +347,9 @@ namespace BooksListApp.View.Panels
 
         }
 
+        /// <summary>
+        /// A function of checking whether a field is valid or not.
+        /// </summary>
         private void ValidateInput()
         {
             bool isValid = true;
@@ -358,8 +410,14 @@ namespace BooksListApp.View.Panels
             }
         }
 
+        /// <summary>
+        /// Initializing tooltip.
+        /// </summary>
         private ToolTip toolTip = new ToolTip();
 
+        /// <summary>
+        /// A function of showing tips of how to fill fields.
+        /// </summary>
         private void InitializeToolTips()
         {
             toolTip.SetToolTip(selectedBookTitleBox, "Title must be between 1 and 100 characters.");

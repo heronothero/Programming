@@ -10,8 +10,15 @@ namespace BooksListApp.Model
 {
     public class BookDataManager
     {
+        /// <summary>
+        /// A const for storing file path.
+        /// </summary>
         private const string FilePath = "books.json";
 
+        /// <summary>
+        /// A function of saving books, using json format.
+        /// </summary>
+        /// <param name="books"> Objects for saving. </param>
         public static void SaveBooks(List<Book> books)
         {
             try
@@ -26,6 +33,10 @@ namespace BooksListApp.Model
             }
         }
 
+        /// <summary>
+        /// A function of loading books, using json format.
+        /// </summary>
+        /// <returns> An updated list of books. </returns>
         public static List<Book> LoadBooks()
         {
             try

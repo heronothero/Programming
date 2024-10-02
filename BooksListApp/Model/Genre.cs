@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BooksListApp.Model
 {
+    /// <summary>
+    /// An enum of genres for books.
+    /// </summary>
     public enum Genre
     {
         Action,

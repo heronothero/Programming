@@ -32,6 +32,11 @@ namespace BooksListApp
 
         }
 
+        /// <summary>
+        /// A function of saving books when the form closes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             BookListControl.SaveBooksToFile();
