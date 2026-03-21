@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Property of the Info with limit of 1000 characters
+        /// Property of the Address with limit of 1000 characters
         /// </summary>
         public string Address
         {
