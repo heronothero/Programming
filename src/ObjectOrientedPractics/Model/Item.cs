@@ -8,78 +8,75 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Class item
+    /// Класс товара
     /// </summary>
     internal class Item
     {
+        /// <summary>
+        /// Статичные поля
+        /// </summary>
         private readonly int _id;
         private string _name;
         private string _info;
         private decimal _cost;
 
         /// <summary>
-        /// Constructor of the class
-        /// </summary>
-        /// <param name="id">Parametr of the unique identificator of an item</param>
-        /// <param name="name">Parametr of the name of an item</param>
-        /// <param name="info">Parametr of info of an item</param>
-        /// <param name="cost">Parametr of the cost of an item</param>
-        public Item(string name, string info, decimal cost)
-        {
-            _id = IdGenerator.GetNextId();
-            Name = name;
-            Info = info;
-            Cost = cost;
-        }
-
-        /// <summary>
-        /// Property of the Id
+        /// Свойство идентификатора товара
         /// </summary>
         public int Id => _id;
 
         /// <summary>
-        /// Property of the name with limit of 200 characters
+        /// Свойство названия товара, при котором оно не может быть пустым и превышать 200 символов
         /// </summary>
         public string Name
         {
             get => _name;
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("The parametr can't be empty.");
-                if (value.Length > 200)
-                    throw new ArgumentException("The parametr must not exceed 200 symbols");
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
             }
         }
 
         /// <summary>
-        /// Property of the Info with limit of 1000 characters
+        /// Свойство описания товара, при котором оно может быть пустым, но не должно превышать 1000 символов
         /// </summary>
         public string Info
         {
             get => _info;
             set
             {
-                if (value == null) value = string.Empty; //it MIGHT be empty
-                if (value.Length > 1000)
-                    throw new ArgumentException("The prametr must not exceed 1000 symbols");
+                ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
                 _info = value;
             }
         }
 
         /// <summary>
-        /// Property of the Cost with limit between 0 and 100000
+        /// Свойство цены товара, которое не может быть равным 0 или больше 100000
         /// </summary>
         public decimal Cost
         {
             get => _cost;
             set
             {
-                if (value < 0 || value > 100000) 
-                    throw new ArgumentNullException(nameof(value), "The parametr must be between 0 and 100000");
+                ValueValidator.AssertNumberInRange(value, 0m, 100000m, nameof(Cost));
                 _cost = value;
             }
+        }
+
+        /// <summary>
+        /// Конструктор товара
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор товара</param>
+        /// <param name="name">Название товара</param>
+        /// <param name="info">Описание товара</param>
+        /// <param name="cost">Цена товара</param>
+        public Item(string name, string info, decimal cost)
+        {
+            _id = IdGenerator.GetNextId();
+            Name = name;
+            Info = info;
+            Cost = cost;
         }
     }
 }
