@@ -18,11 +18,6 @@ namespace ObjectOrientedPractics.Model
         private decimal _cost;
 
         /// <summary>
-        /// Static count of the Id
-        /// </summary>
-        private static int _nextId = 1;
-
-        /// <summary>
         /// Constructor of the class
         /// </summary>
         /// <param name="id">Parametr of the unique identificator of an item</param>
@@ -50,7 +45,8 @@ namespace ObjectOrientedPractics.Model
             get => _name;
             set
             {
-                if (value == null) throw new ArgumentNullException(nameof(value));
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("The parametr can't be empty.");
                 if (value.Length > 200)
                     throw new ArgumentException("The parametr must not exceed 200 symbols");
                 _name = value;
@@ -65,7 +61,7 @@ namespace ObjectOrientedPractics.Model
             get => _info;
             set
             {
-                if (value == null) throw new ArgumentNullException(nameof(value));
+                if (value == null) value = string.Empty; //it MIGHT be empty
                 if (value.Length > 1000)
                     throw new ArgumentException("The prametr must not exceed 1000 symbols");
                 _info = value;
