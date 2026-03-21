@@ -14,11 +14,11 @@ namespace ObjectOrientedPractics.Model
         private string _address;
 
         /// <summary>
-        /// Constructor of the class
+        /// Конструктор класса клиента
         /// </summary>
-        /// <param name="id">Parametr of the unique identificator of a customer</param>
-        /// <param name="fullName">Parametr of the name of a customer</param>
-        /// <param name="address">Parametr of the address of a customer</param>
+        /// <param name="id">Уникальный идентификатор клиента</param>
+        /// <param name="fullName">ФИО клиента</param>
+        /// <param name="address">Адрес клиента</param>
         public Customer(string fullName, string address)
         {
             _id = IdGenerator.GetNextId();
@@ -27,12 +27,12 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Property of the Id
+        /// Свойство идентификатора
         /// </summary>
         public int Id => _id;
 
         /// <summary>
-        /// Property of the name with limit of 200 characters
+        /// Свойство ФИО, при котором оно не может быть пустым и превышать 200 символов
         /// </summary>
         public string FullName
         {
@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Property of the Address with limit of 1000 characters
+        /// Свойство адреса, при котором оно не может быть пустым и превышать 500 символов
         /// </summary>
         public string Address
         {
