@@ -85,7 +85,7 @@ namespace ObjectOrientedPractics.Model
             _id = IdGenerator.GetNextIdItem();
             _name = "New Item";
             _info = "";
-            _cost = 1; // важно: не 0!
+            _cost = 1;
         }
     }
 }
