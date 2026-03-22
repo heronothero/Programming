@@ -65,18 +65,27 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Перевод значений в строковые данные
+        /// </summary>
+        /// <returns>Возвращает измененный тип данных</returns>
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        /// <summary>
         /// Конструктор товара
         /// </summary>
         /// <param name="id">Уникальный идентификатор товара</param>
         /// <param name="name">Название товара</param>
         /// <param name="info">Описание товара</param>
         /// <param name="cost">Цена товара</param>
-        public Item(string name, string info, decimal cost)
+        public Item()
         {
-            _id = IdGenerator.GetNextId();
-            Name = name;
-            Info = info;
-            Cost = cost;
+            _id = IdGenerator.GetNextIdItem();
+            _name = "New Item";
+            _info = "";
+            _cost = 1; // важно: не 0!
         }
     }
 }
