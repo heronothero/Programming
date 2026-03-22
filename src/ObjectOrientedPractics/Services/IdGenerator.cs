@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.Services
         private static int _customerId = 1;
 
         /// <summary>
-        /// Счет айди
+        /// Счет айди товара
         /// </summary>
         /// <returns>next id will be 1 more</returns>
         public static int GetNextIdItem()
@@ -27,6 +27,10 @@ namespace ObjectOrientedPractics.Services
             return _itemId++;
         }
 
+        /// <summary>
+        /// Счет айди покупателя
+        /// </summary>
+        /// <returns></returns>
         public static int GetNextIdCustomer()
         {
             return _customerId++;
