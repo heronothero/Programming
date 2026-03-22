@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -47,17 +48,22 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        public override string ToString()
+        {
+            return FullName;
+        }
+
         /// <summary>
         /// Конструктор класса клиента
         /// </summary>
         /// <param name="id">Уникальный идентификатор клиента</param>
         /// <param name="fullName">ФИО клиента</param>
         /// <param name="address">Адрес клиента</param>
-        public Customer(string fullName, string address)
+        public Customer()
         {
-            _id = IdGenerator.GetNextId();
-            FullName = fullName;
-            Address = address;
+            _id = IdGenerator.GetNextIdCustomer();
+            _fullName = "Andrew Stone";
+            _address = "St Pt";
         }
     }
 }
