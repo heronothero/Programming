@@ -14,15 +14,22 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Установлено начальное значение в качестве единицы
         /// </summary>
-        private static int _currentId = 1;
+        private static int _itemId = 1;
+
+        private static int _customerId = 1;
 
         /// <summary>
         /// Счет айди
         /// </summary>
         /// <returns>next id will be 1 more</returns>
-        public static int GetNextId()
+        public static int GetNextIdItem()
         {
-            return _currentId++;
+            return _itemId++;
+        }
+
+        public static int GetNextIdCustomer()
+        {
+            return _customerId++;
         }
     }
 }
