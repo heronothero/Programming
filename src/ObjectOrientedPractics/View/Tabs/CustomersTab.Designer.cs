@@ -43,6 +43,7 @@
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.SelectedCustomerLabel = new System.Windows.Forms.Label();
+            this.GenerateButton = new System.Windows.Forms.Button();
             this.CustomersTableLayoutPanel.SuspendLayout();
             this.CustomersPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -60,6 +61,7 @@
             this.CustomersTableLayoutPanel.Controls.Add(this.RemoveButton, 1, 2);
             this.CustomersTableLayoutPanel.Controls.Add(this.AddButton, 0, 2);
             this.CustomersTableLayoutPanel.Controls.Add(this.CustomersPanel, 3, 0);
+            this.CustomersTableLayoutPanel.Controls.Add(this.GenerateButton, 2, 2);
             this.CustomersTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CustomersTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.CustomersTableLayoutPanel.Name = "CustomersTableLayoutPanel";
@@ -181,10 +183,10 @@
             this.IdCustomerTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.IdCustomerTextBox.Location = new System.Drawing.Point(122, 8);
             this.IdCustomerTextBox.Name = "IdCustomerTextBox";
+            this.IdCustomerTextBox.ReadOnly = true;
             this.IdCustomerTextBox.Size = new System.Drawing.Size(142, 22);
             this.IdCustomerTextBox.TabIndex = 9;
             this.IdCustomerTextBox.TextChanged += new System.EventHandler(this.IdCustomerTextBox_TextChanged);
-            this.IdCustomerTextBox.ReadOnly = true;
             // 
             // FullNameTextBox
             // 
@@ -227,6 +229,17 @@
             this.SelectedCustomerLabel.TabIndex = 4;
             this.SelectedCustomerLabel.Text = "Selected Customer";
             // 
+            // GenerateButton
+            // 
+            this.GenerateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GenerateButton.Location = new System.Drawing.Point(243, 558);
+            this.GenerateButton.Name = "GenerateButton";
+            this.GenerateButton.Size = new System.Drawing.Size(114, 59);
+            this.GenerateButton.TabIndex = 6;
+            this.GenerateButton.Text = "Generate";
+            this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
+            // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -261,5 +274,6 @@
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.Panel CustomersPanel2;
+        private System.Windows.Forms.Button GenerateButton;
     }
 }
