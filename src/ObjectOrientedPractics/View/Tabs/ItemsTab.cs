@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -40,7 +41,14 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void ItemsTab_Load(object sender, EventArgs e)
         {
+            _items = ProjectSerializer.Load("items.json");
 
+            ItemsListBox.Items.Clear();
+
+            foreach (var item in _items)
+            {
+                ItemsListBox.Items.Add(item);
+            }
         }
 
         /// <summary>
@@ -59,6 +67,8 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add(item);
 
             ItemsListBox.SelectedIndex = _items.Count - 1;
+
+            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -73,6 +83,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _items.RemoveAt(index);
             ItemsListBox.Items.RemoveAt(index);
+
+            ProjectSerializer.Save("items.json", _items);
 
             ClearFields();
         }
@@ -180,6 +192,21 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 InfoTextBox.BackColor = Color.LightPink;
             }
+        }
+
+        /// <summary>
+        /// Обрабатывет генерацию случайного товара и отображения в списке через сервисный класс товаров
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void GenerateButton_Click(object sender, EventArgs e)
+        {
+            Item item = ItemFactory.CreateRandom();
+
+            _items.Add(item);
+            ItemsListBox.Items.Add(item);
+
+            ItemsListBox.SelectedIndex = _items.Count - 1;
         }
     }
 }

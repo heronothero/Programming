@@ -31,19 +31,20 @@
             this.ItemsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ItemsLabel = new System.Windows.Forms.Label();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
-            this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
-            this.SelectedItemLabel = new System.Windows.Forms.Label();
+            this.AddButton = new System.Windows.Forms.Button();
             this.ItemsPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.CostTextBox = new System.Windows.Forms.TextBox();
             this.IdLabel = new System.Windows.Forms.Label();
             this.CostLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.InfoLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.CostTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.InfoTextBox = new System.Windows.Forms.TextBox();
+            this.SelectedItemLabel = new System.Windows.Forms.Label();
+            this.GenerateButton = new System.Windows.Forms.Button();
             this.ItemsTableLayoutPanel.SuspendLayout();
             this.ItemsPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -61,6 +62,7 @@
             this.ItemsTableLayoutPanel.Controls.Add(this.RemoveButton, 1, 2);
             this.ItemsTableLayoutPanel.Controls.Add(this.AddButton, 0, 2);
             this.ItemsTableLayoutPanel.Controls.Add(this.ItemsPanel, 3, 0);
+            this.ItemsTableLayoutPanel.Controls.Add(this.GenerateButton, 2, 2);
             this.ItemsTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.ItemsTableLayoutPanel.Name = "ItemsTableLayoutPanel";
             this.ItemsTableLayoutPanel.RowCount = 3;
@@ -93,17 +95,6 @@
             this.ItemsListBox.TabIndex = 1;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
-            // AddButton
-            // 
-            this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddButton.Location = new System.Drawing.Point(3, 558);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(114, 59);
-            this.AddButton.TabIndex = 2;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-            // 
             // RemoveButton
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -115,16 +106,16 @@
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
-            // SelectedItemLabel
+            // AddButton
             // 
-            this.SelectedItemLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SelectedItemLabel.AutoSize = true;
-            this.SelectedItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedItemLabel.Location = new System.Drawing.Point(3, 3);
-            this.SelectedItemLabel.Name = "SelectedItemLabel";
-            this.SelectedItemLabel.Size = new System.Drawing.Size(124, 20);
-            this.SelectedItemLabel.TabIndex = 4;
-            this.SelectedItemLabel.Text = "Selected Item";
+            this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddButton.Location = new System.Drawing.Point(3, 558);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(114, 59);
+            this.AddButton.TabIndex = 2;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // ItemsPanel
             // 
@@ -136,6 +127,40 @@
             this.ItemsTableLayoutPanel.SetRowSpan(this.ItemsPanel, 3);
             this.ItemsPanel.Size = new System.Drawing.Size(440, 614);
             this.ItemsPanel.TabIndex = 5;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.62791F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.37209F));
+            this.tableLayoutPanel1.Controls.Add(this.CostTextBox, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.IdLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.CostLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.NameLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.InfoLabel, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.IdTextBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.NameTextBox, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.InfoTextBox, 0, 5);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 33);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(430, 438);
+            this.tableLayoutPanel1.TabIndex = 9;
+            // 
+            // CostTextBox
+            // 
+            this.CostTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CostTextBox.Location = new System.Drawing.Point(96, 53);
+            this.CostTextBox.Name = "CostTextBox";
+            this.CostTextBox.Size = new System.Drawing.Size(142, 22);
+            this.CostTextBox.TabIndex = 10;
+            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
             // IdLabel
             // 
@@ -177,49 +202,15 @@
             this.InfoLabel.TabIndex = 8;
             this.InfoLabel.Text = "Description:";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.62791F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.37209F));
-            this.tableLayoutPanel1.Controls.Add(this.CostTextBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.IdLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.CostLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.NameLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.InfoLabel, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.IdTextBox, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.NameTextBox, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.InfoTextBox, 0, 5);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 33);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(430, 438);
-            this.tableLayoutPanel1.TabIndex = 9;
-            // 
             // IdTextBox
             // 
             this.IdTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.IdTextBox.Location = new System.Drawing.Point(96, 10);
             this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(142, 22);
             this.IdTextBox.TabIndex = 9;
             this.IdTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
-            this.IdTextBox.ReadOnly = true;
-            // 
-            // CostTextBox
-            // 
-            this.CostTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.CostTextBox.Location = new System.Drawing.Point(96, 53);
-            this.CostTextBox.Name = "CostTextBox";
-            this.CostTextBox.Size = new System.Drawing.Size(142, 22);
-            this.CostTextBox.TabIndex = 10;
-            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
             // NameTextBox
             // 
@@ -242,6 +233,28 @@
             this.InfoTextBox.Size = new System.Drawing.Size(424, 173);
             this.InfoTextBox.TabIndex = 12;
             this.InfoTextBox.TextChanged += new System.EventHandler(this.InfoTextBox_TextChanged);
+            // 
+            // SelectedItemLabel
+            // 
+            this.SelectedItemLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.SelectedItemLabel.AutoSize = true;
+            this.SelectedItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectedItemLabel.Location = new System.Drawing.Point(3, 3);
+            this.SelectedItemLabel.Name = "SelectedItemLabel";
+            this.SelectedItemLabel.Size = new System.Drawing.Size(124, 20);
+            this.SelectedItemLabel.TabIndex = 4;
+            this.SelectedItemLabel.Text = "Selected Item";
+            // 
+            // GenerateButton
+            // 
+            this.GenerateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GenerateButton.Location = new System.Drawing.Point(243, 558);
+            this.GenerateButton.Name = "GenerateButton";
+            this.GenerateButton.Size = new System.Drawing.Size(114, 59);
+            this.GenerateButton.TabIndex = 6;
+            this.GenerateButton.Text = "Generate";
+            this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
             // ItemsTab
             // 
@@ -279,5 +292,6 @@
         private System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.TextBox InfoTextBox;
+        private System.Windows.Forms.Button GenerateButton;
     }
 }
