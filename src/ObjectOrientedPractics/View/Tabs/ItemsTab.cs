@@ -7,39 +7,179 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Создание списка
+        /// </summary>
+        private List<Item> _items = new List<Item>();
+
+        /// <summary>
+        /// Инициализация компонентов внутри класса ItemsTab
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
+
+            RemoveButton.Click += RemoveButton_Click;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
+
+            NameTextBox.TextChanged += NameTextBox_TextChanged;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            InfoTextBox.TextChanged += InfoTextBox_TextChanged;
         }
 
+        /// <summary>
+        /// Обрабатывает загрузку элементов
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
         private void ItemsTab_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Items_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обрабатывает добавление товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            Item item = new Item();
+            item.Name = "New Item";
+            item.Cost = 0;
+            item.Info = "";
+
+            _items.Add(item);
+            ItemsListBox.Items.Add(item);
+
+            ItemsListBox.SelectedIndex = _items.Count - 1;
+        }
+
+        /// <summary>
+        /// Обрабатывает удаление товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
+
+            _items.RemoveAt(index);
+            ItemsListBox.Items.RemoveAt(index);
+
+            ClearFields();
+        }
+
+        /// <summary>
+        /// Очищение полей для метода удаления товара
+        /// </summary>
+        private void ClearFields()
+        {
+            IdTextBox.Text = "";
+            NameTextBox.Text = "";
+            CostTextBox.Text = "";
+            InfoTextBox.Text = "";
+        }
+
+        /// <summary>
+        /// Обрабатывает изменения выбранного товара и отображает данные в текстовых полях
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+
+            if (index < 0) return;
+
+            Item item = _items[index];
+
+            IdTextBox.Text = item.Id.ToString();
+            NameTextBox.Text = item.Name;
+            CostTextBox.Text = item.Cost.ToString();
+            InfoTextBox.Text = item.Info;
+        }
+
+        /// <summary>
+        /// Обрабатывает изменеие поля идентификатора товара
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// Обрабатывает изменения поля цены с условием
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
 
+            try
+            {
+                decimal cost = decimal.Parse(CostTextBox.Text);
+                _items[index].Cost = cost;
+                CostTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                CostTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Обрабатывает изменение поля имени с условием
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
 
+            try
+            {
+                _items[index].Name = NameTextBox.Text;
+                ItemsListBox.Items[index] = _items[index];
+                NameTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
         }
 
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// Обрабатывает измененеи поля описания с условием
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
 
+            try
+            {
+                _items[index].Info = InfoTextBox.Text;
+                InfoTextBox.BackColor = Color.White;
+            }
+            catch
+            {
+                InfoTextBox.BackColor = Color.LightPink;
+            }
         }
     }
 }

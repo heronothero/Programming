@@ -91,6 +91,7 @@
             this.ItemsListBox.Name = "ItemsListBox";
             this.ItemsListBox.Size = new System.Drawing.Size(354, 516);
             this.ItemsListBox.TabIndex = 1;
+            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // AddButton
             // 
@@ -101,6 +102,7 @@
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // RemoveButton
             // 
@@ -111,6 +113,7 @@
             this.RemoveButton.TabIndex = 3;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // SelectedItemLabel
             // 
@@ -206,6 +209,8 @@
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.Size = new System.Drawing.Size(142, 22);
             this.IdTextBox.TabIndex = 9;
+            this.IdTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
+            this.IdTextBox.ReadOnly = true;
             // 
             // CostTextBox
             // 
@@ -214,6 +219,7 @@
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(142, 22);
             this.CostTextBox.TabIndex = 10;
+            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
             // NameTextBox
             // 
@@ -224,6 +230,7 @@
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(424, 81);
             this.NameTextBox.TabIndex = 11;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // InfoTextBox
             // 
@@ -234,6 +241,7 @@
             this.InfoTextBox.Name = "InfoTextBox";
             this.InfoTextBox.Size = new System.Drawing.Size(424, 173);
             this.InfoTextBox.TabIndex = 12;
+            this.InfoTextBox.TextChanged += new System.EventHandler(this.InfoTextBox_TextChanged);
             // 
             // ItemsTab
             // 
