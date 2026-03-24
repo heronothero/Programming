@@ -16,6 +16,7 @@ namespace ObjectOrientedPractics.Model
         private readonly int _id;
         private string _fullName;
         private Address _address = new Address();
+        private Cart _cart;
 
         /// <summary>
         /// Свойство идентификатора
@@ -36,12 +37,21 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство адреса, при котором оно не может быть пустым и превышать 500 символов
+        /// Свойство адреса
         /// </summary>
         public Address Address
         {
             get => _address;
             set => _address = value;
+        }
+
+        /// <summary>
+        /// Свойство корзины
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set => _cart = value ?? new Cart();
         }
 
         /// <summary>
@@ -59,11 +69,13 @@ namespace ObjectOrientedPractics.Model
         /// <param name="id">Уникальный идентификатор клиента</param>
         /// <param name="fullName">ФИО клиента</param>
         /// <param name="address">Адрес клиента</param>
+        /// <param name="cart">Корзина клиента</param>
         public Customer()
         {
             _id = IdGenerator.GetNextIdCustomer();
             _fullName = "Andrew Stone";
             _address = new Address();
+            _cart = new Cart();
         }
     }
 }
