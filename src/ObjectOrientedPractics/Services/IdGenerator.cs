@@ -15,7 +15,6 @@ namespace ObjectOrientedPractics.Services
         /// Установлено начальное значение в качестве единицы
         /// </summary>
         private static int _itemId = 1;
-
         private static int _customerId = 1;
 
         /// <summary>
