@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс товара
     /// </summary>
-    internal class Item
+    public class Item
     {
         /// <summary>
         /// Статичные поля

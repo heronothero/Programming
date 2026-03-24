@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Customer
+    public class Customer
     {
         /// <summary>
         /// Статические поля
