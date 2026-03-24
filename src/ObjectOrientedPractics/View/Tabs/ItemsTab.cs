@@ -32,6 +32,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             CostTextBox.TextChanged += CostTextBox_TextChanged;
             InfoTextBox.TextChanged += InfoTextBox_TextChanged;
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
         }
 
         /// <summary>
@@ -41,14 +42,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void ItemsTab_Load(object sender, EventArgs e)
         {
-            _items = ProjectSerializer.Load("items.json");
 
-            ItemsListBox.Items.Clear();
-
-            foreach (var item in _items)
-            {
-                ItemsListBox.Items.Add(item);
-            }
         }
 
         /// <summary>
@@ -58,17 +52,19 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item();
-            item.Name = "New Item";
-            item.Cost = 0;
-            item.Info = "";
+            Category category = Category.Аксессуары; //чтобы избежать ошибки с null в категории
+
+            if (CategoryComboBox.SelectedItem != null)
+            {
+                category = (Category)CategoryComboBox.SelectedItem;
+            }
+
+            Item item = new Item("New Item", "", 1, category);
 
             _items.Add(item);
             ItemsListBox.Items.Add(item);
 
             ItemsListBox.SelectedIndex = _items.Count - 1;
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -84,8 +80,6 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.RemoveAt(index);
             ItemsListBox.Items.RemoveAt(index);
 
-            ProjectSerializer.Save("items.json", _items);
-
             ClearFields();
         }
 
@@ -98,6 +92,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = "";
             CostTextBox.Text = "";
             InfoTextBox.Text = "";
+            CategoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -117,6 +112,7 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = item.Name;
             CostTextBox.Text = item.Cost.ToString();
             InfoTextBox.Text = item.Info;
+            CategoryComboBox.SelectedItem = item.Category;
         }
 
         /// <summary>
@@ -207,6 +203,38 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add(item);
 
             ItemsListBox.SelectedIndex = _items.Count - 1;
+        }
+
+        /// <summary>
+        /// Обрабатывает выпадающий список категорий
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
+
+            _items[index].Category = (Category)CategoryComboBox.SelectedItem;
+        }
+
+        /// <summary>
+        /// Добавление свойства товаров
+        /// </summary>
+        public List<Item> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value ?? new List<Item>();
+
+                ItemsListBox.Items.Clear();
+
+                foreach (var item in _items)
+                {
+                    ItemsListBox.Items.Add(item);
+                }
+            }
         }
     }
 }
