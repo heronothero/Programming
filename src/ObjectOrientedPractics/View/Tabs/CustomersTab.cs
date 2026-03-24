@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ObjectOrientedPractics.View.Controls;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -31,7 +31,20 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
 
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
+            AddressControl.AddressChanged += AddressControl_AddressChanged;
+        }
+
+        /// <summary>
+        /// Обрабатывает изменения данных в адресконтрол
+        /// </summary>
+        /// <param name="sender">Источник событий</param>
+        /// <param name="e">Данные события</param>
+        private void AddressControl_AddressChanged(object sender, EventArgs e)
+        {
+            int index = CustomersListBox.SelectedIndex;
+            if (index < 0) return;
+
+            _customers[index].Address = AddressControl.Address;
         }
 
         /// <summary>
@@ -67,27 +80,6 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обрабатывает изменения адреса покупателя
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = CustomersListBox.SelectedIndex;
-            if (index < 0) return;
-
-            try
-            {
-                _customers[index].Address = AddressTextBox.Text;
-                AddressTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                AddressTextBox.BackColor = Color.LightPink;
-            }
-        }
-
-        /// <summary>
         /// Обрабатывает изменения выбранного покупателя и отображает данные в текстовых полях
         /// </summary>
         /// <param name="sender">Источник события</param>
@@ -102,7 +94,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             IdCustomerTextBox.Text = customer.Id.ToString();
             FullNameTextBox.Text = customer.FullName;
-            AddressTextBox.Text = customer.Address;
+            AddressControl.Address = customer.Address;
         }
 
         /// <summary>
@@ -114,7 +106,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Customer customer = new Customer();
             customer.FullName = "Andrew Stone";
-            customer.Address = "St Pt";
+            customer.Address = new Address();
 
             _customers.Add(customer);
             CustomersListBox.Items.Add(customer);
@@ -145,7 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             IdCustomerTextBox.Text = "";
             FullNameTextBox.Text = "";
-            AddressTextBox.Text = "";
+            AddressControl.Address = new Address();
         }
 
         /// <summary>
@@ -171,6 +163,16 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Items.Add(customer);
 
             CustomersListBox.SelectedIndex = _customers.Count - 1;
+        }
+
+        /// <summary>
+        /// Обрабатывает загрузку элемента пользовательского интерфейса
+        /// </summary>
+        /// <param name="sender">Источник события</param>
+        /// <param name="e">Данные события</param>
+        private void AddressControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

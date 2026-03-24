@@ -15,7 +15,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private readonly int _id;
         private string _fullName;
-        private string _address;
+        private Address _address = new Address();
 
         /// <summary>
         /// Свойство идентификатора
@@ -38,16 +38,16 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Свойство адреса, при котором оно не может быть пустым и превышать 500 символов
         /// </summary>
-        public string Address
+        public Address Address
         {
             get => _address;
-            set
-            {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
-                _address = value;
-            }
+            set => _address = value;
         }
 
+        /// <summary>
+        /// Переписывает в строчные данные
+        /// </summary>
+        /// <returns>Возвращает результат данных в строковом типе</returns>
         public override string ToString()
         {
             return FullName;
@@ -63,7 +63,7 @@ namespace ObjectOrientedPractics.Model
         {
             _id = IdGenerator.GetNextIdCustomer();
             _fullName = "Andrew Stone";
-            _address = "St Pt";
+            _address = new Address();
         }
     }
 }
