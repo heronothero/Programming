@@ -174,5 +174,24 @@ namespace ObjectOrientedPractics.View.Tabs
         {
 
         }
+
+        /// <summary>
+        /// Добавление свойств покупателей
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get => _customers;
+            set
+            {
+                _customers = value ?? new List<Customer>();
+
+                CustomersListBox.Items.Clear();
+
+                foreach (var customer in _customers)
+                {
+                    CustomersListBox.Items.Add(customer);
+                }
+            }
+        }
     }
 }

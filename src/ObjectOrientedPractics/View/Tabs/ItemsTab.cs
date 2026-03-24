@@ -42,14 +42,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e">Данные события</param>
         private void ItemsTab_Load(object sender, EventArgs e)
         {
-            _items = ProjectSerializer.Load("items.json");
 
-            ItemsListBox.Items.Clear();
-
-            foreach (var item in _items)
-            {
-                ItemsListBox.Items.Add(item);
-            }
         }
 
         /// <summary>
@@ -72,8 +65,6 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add(item);
 
             ItemsListBox.SelectedIndex = _items.Count - 1;
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -90,8 +81,6 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.RemoveAt(index);
 
             ClearFields();
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -156,8 +145,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 CostTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -180,8 +167,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 NameTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -203,8 +188,6 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 InfoTextBox.BackColor = Color.LightPink;
             }
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -220,7 +203,6 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.Items.Add(item);
 
             ItemsListBox.SelectedIndex = _items.Count - 1;
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
@@ -234,8 +216,25 @@ namespace ObjectOrientedPractics.View.Tabs
             if (index < 0) return;
 
             _items[index].Category = (Category)CategoryComboBox.SelectedItem;
+        }
 
-            ProjectSerializer.Save("items.json", _items);
+        /// <summary>
+        /// Добавление свойства товаров
+        /// </summary>
+        public List<Item> Items
+        {
+            get => _items;
+            set
+            {
+                _items = value ?? new List<Item>();
+
+                ItemsListBox.Items.Clear();
+
+                foreach (var item in _items)
+                {
+                    ItemsListBox.Items.Add(item);
+                }
+            }
         }
     }
 }
