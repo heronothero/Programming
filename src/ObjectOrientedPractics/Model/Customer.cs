@@ -8,15 +8,16 @@ using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Класс покупателя
+    /// </summary>
     public class Customer
     {
-        /// <summary>
-        /// Статические поля
-        /// </summary>
         private readonly int _id;
         private string _fullName;
         private Address _address = new Address();
         private Cart _cart;
+        private List<Order> _orders;
 
         /// <summary>
         /// Свойство идентификатора
@@ -55,6 +56,15 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Свойство заказов
+        /// </summary>
+        public List<Order> Orders
+        {
+            get => _orders;
+            set => _orders = value ?? new List<Order>();
+        }
+
+        /// <summary>
         /// Переписывает в строчные данные
         /// </summary>
         /// <returns>Возвращает результат данных в строковом типе</returns>
@@ -70,12 +80,14 @@ namespace ObjectOrientedPractics.Model
         /// <param name="fullName">ФИО клиента</param>
         /// <param name="address">Адрес клиента</param>
         /// <param name="cart">Корзина клиента</param>
+        /// <param name="orders">Заказы клиента</param>
         public Customer()
         {
             _id = IdGenerator.GetNextIdCustomer();
             _fullName = "Andrew Stone";
             _address = new Address();
             _cart = new Cart();
+            _orders = new List<Order>();
         }
     }
 }

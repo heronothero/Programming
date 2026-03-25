@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
+            ObjectOrientedPractics.Model.Address address2 = new ObjectOrientedPractics.Model.Address();
             this.CustomersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.CustomersLabel = new System.Windows.Forms.Label();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
@@ -39,11 +39,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.IdCustomerLabel = new System.Windows.Forms.Label();
             this.IdCustomerTextBox = new System.Windows.Forms.TextBox();
-            this.FullNameTextBox = new System.Windows.Forms.TextBox();
             this.FullNameLabel = new System.Windows.Forms.Label();
+            this.AddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
+            this.FullNameTextBox = new System.Windows.Forms.TextBox();
             this.SelectedCustomerLabel = new System.Windows.Forms.Label();
             this.GenerateButton = new System.Windows.Forms.Button();
-            this.AddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.CustomersTableLayoutPanel.SuspendLayout();
             this.CustomersPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -77,18 +77,20 @@
             // 
             this.CustomersLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CustomersLabel.AutoSize = true;
-            this.CustomersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CustomersLabel.Location = new System.Drawing.Point(2, 0);
+            this.CustomersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CustomersLabel.Location = new System.Drawing.Point(2, 2);
             this.CustomersLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CustomersLabel.Name = "CustomersLabel";
-            this.CustomersLabel.Size = new System.Drawing.Size(76, 20);
+            this.CustomersLabel.Size = new System.Drawing.Size(82, 16);
             this.CustomersLabel.TabIndex = 0;
             this.CustomersLabel.Text = "Customers";
             // 
             // CustomersListBox
             // 
             this.CustomersTableLayoutPanel.SetColumnSpan(this.CustomersListBox, 3);
+            this.CustomersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CustomersListBox.FormattingEnabled = true;
+            this.CustomersListBox.ItemHeight = 16;
             this.CustomersListBox.Location = new System.Drawing.Point(2, 22);
             this.CustomersListBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomersListBox.Name = "CustomersListBox";
@@ -99,6 +101,7 @@
             // RemoveButton
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RemoveButton.Location = new System.Drawing.Point(89, 446);
             this.RemoveButton.Margin = new System.Windows.Forms.Padding(2);
             this.RemoveButton.Name = "RemoveButton";
@@ -111,6 +114,7 @@
             // AddButton
             // 
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddButton.Location = new System.Drawing.Point(2, 446);
             this.AddButton.Margin = new System.Windows.Forms.Padding(2);
             this.AddButton.Name = "AddButton";
@@ -168,10 +172,11 @@
             // 
             this.IdCustomerLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.IdCustomerLabel.AutoSize = true;
-            this.IdCustomerLabel.Location = new System.Drawing.Point(2, 12);
+            this.IdCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.IdCustomerLabel.Location = new System.Drawing.Point(2, 10);
             this.IdCustomerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.IdCustomerLabel.Name = "IdCustomerLabel";
-            this.IdCustomerLabel.Size = new System.Drawing.Size(19, 13);
+            this.IdCustomerLabel.Size = new System.Drawing.Size(23, 17);
             this.IdCustomerLabel.TabIndex = 5;
             this.IdCustomerLabel.Text = "Id:";
             this.IdCustomerLabel.Click += new System.EventHandler(this.IdCustomerLabel_Click);
@@ -180,7 +185,7 @@
             // 
             this.IdCustomerTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.IdCustomerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.IdCustomerTextBox.Location = new System.Drawing.Point(93, 8);
+            this.IdCustomerTextBox.Location = new System.Drawing.Point(92, 8);
             this.IdCustomerTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.IdCustomerTextBox.Name = "IdCustomerTextBox";
             this.IdCustomerTextBox.ReadOnly = true;
@@ -188,61 +193,27 @@
             this.IdCustomerTextBox.TabIndex = 9;
             this.IdCustomerTextBox.TextChanged += new System.EventHandler(this.IdCustomerTextBox_TextChanged);
             // 
-            // FullNameTextBox
-            // 
-            this.FullNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.FullNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FullNameTextBox.Location = new System.Drawing.Point(93, 45);
-            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.FullNameTextBox.Name = "FullNameTextBox";
-            this.FullNameTextBox.Size = new System.Drawing.Size(444, 20);
-            this.FullNameTextBox.TabIndex = 10;
-            this.FullNameTextBox.TextChanged += new System.EventHandler(this.FullNameTextBox_TextChanged);
-            // 
             // FullNameLabel
             // 
             this.FullNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.FullNameLabel.AutoSize = true;
-            this.FullNameLabel.Location = new System.Drawing.Point(2, 49);
+            this.FullNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FullNameLabel.Location = new System.Drawing.Point(2, 47);
             this.FullNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FullNameLabel.Name = "FullNameLabel";
-            this.FullNameLabel.Size = new System.Drawing.Size(57, 13);
+            this.FullNameLabel.Size = new System.Drawing.Size(75, 17);
             this.FullNameLabel.TabIndex = 7;
             this.FullNameLabel.Text = "Full Name:";
             // 
-            // SelectedCustomerLabel
-            // 
-            this.SelectedCustomerLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SelectedCustomerLabel.AutoSize = true;
-            this.SelectedCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedCustomerLabel.Location = new System.Drawing.Point(2, 3);
-            this.SelectedCustomerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.SelectedCustomerLabel.Name = "SelectedCustomerLabel";
-            this.SelectedCustomerLabel.Size = new System.Drawing.Size(144, 17);
-            this.SelectedCustomerLabel.TabIndex = 4;
-            this.SelectedCustomerLabel.Text = "Selected Customer";
-            // 
-            // GenerateButton
-            // 
-            this.GenerateButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GenerateButton.Location = new System.Drawing.Point(176, 446);
-            this.GenerateButton.Margin = new System.Windows.Forms.Padding(2);
-            this.GenerateButton.Name = "GenerateButton";
-            this.GenerateButton.Size = new System.Drawing.Size(83, 56);
-            this.GenerateButton.TabIndex = 6;
-            this.GenerateButton.Text = "Generate";
-            this.GenerateButton.UseVisualStyleBackColor = true;
-            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
-            // 
             // AddressControl
             // 
-            address1.Apartment = "";
-            address1.Building = "";
-            address1.City = "";
-            address1.Country = "";
-            address1.Index = 100000;
-            address1.Street = "";
-            this.AddressControl.Address = address1;
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 100000;
+            address2.Street = "";
+            this.AddressControl.Address = address2;
             this.tableLayoutPanel1.SetColumnSpan(this.AddressControl, 2);
             this.AddressControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddressControl.Location = new System.Drawing.Point(3, 77);
@@ -251,6 +222,42 @@
             this.AddressControl.Size = new System.Drawing.Size(538, 143);
             this.AddressControl.TabIndex = 11;
             this.AddressControl.Load += new System.EventHandler(this.AddressControl_Load);
+            // 
+            // FullNameTextBox
+            // 
+            this.FullNameTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.FullNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FullNameTextBox.Location = new System.Drawing.Point(92, 45);
+            this.FullNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.FullNameTextBox.Name = "FullNameTextBox";
+            this.FullNameTextBox.Size = new System.Drawing.Size(444, 20);
+            this.FullNameTextBox.TabIndex = 10;
+            this.FullNameTextBox.TextChanged += new System.EventHandler(this.FullNameTextBox_TextChanged);
+            // 
+            // SelectedCustomerLabel
+            // 
+            this.SelectedCustomerLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.SelectedCustomerLabel.AutoSize = true;
+            this.SelectedCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectedCustomerLabel.Location = new System.Drawing.Point(2, 3);
+            this.SelectedCustomerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SelectedCustomerLabel.Name = "SelectedCustomerLabel";
+            this.SelectedCustomerLabel.Size = new System.Drawing.Size(142, 16);
+            this.SelectedCustomerLabel.TabIndex = 4;
+            this.SelectedCustomerLabel.Text = "Selected Customer";
+            // 
+            // GenerateButton
+            // 
+            this.GenerateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GenerateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.GenerateButton.Location = new System.Drawing.Point(176, 446);
+            this.GenerateButton.Margin = new System.Windows.Forms.Padding(2);
+            this.GenerateButton.Name = "GenerateButton";
+            this.GenerateButton.Size = new System.Drawing.Size(83, 56);
+            this.GenerateButton.TabIndex = 6;
+            this.GenerateButton.Text = "Generate";
+            this.GenerateButton.UseVisualStyleBackColor = true;
+            this.GenerateButton.Click += new System.EventHandler(this.GenerateButton_Click);
             // 
             // CustomersTab
             // 

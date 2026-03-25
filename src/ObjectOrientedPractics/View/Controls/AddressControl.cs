@@ -11,21 +11,22 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Controls
 {
+    /// <summary>
+    /// Элемент управления для отображения и редактирования адреса
+    /// </summary>
     public partial class AddressControl : UserControl
     {
-        /// <summary>
-        /// Статические пооля
-        /// </summary>
         private Address _address = new Address();
         private ToolTip _toolTip = new ToolTip();
 
         /// <summary>
-        /// Объявление события для изменения дангнных
+        /// Событие вызывается при изменении данных в адресе покупателя
         /// </summary>
         public event EventHandler AddressChanged;
 
         /// <summary>
-        /// Триггер валидации всех полей
+        /// Текущий адрес
+        /// При получении свойства выполняется валидация всех полей
         /// </summary>
         public Address Address
         {
@@ -48,7 +49,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Инициализация компонентов
+        /// Конструктор. Инициализирует компоненты и подписывает обработчики событий на текстовые поля
         /// </summary>
         public AddressControl()
         {
@@ -63,7 +64,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обновление UI
+        /// Обновляет значения текстовых полей на форме согласно текущему адресу
         /// </summary>
         private void UpdateUI()
         {
@@ -78,40 +79,8 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обрабатывает загрузку элемента
+        /// Обрабатывает изменение почтового индекса. Подсвечивает поле при некорректном вводе и выводит подсказку
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void AddressControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Обрабатывает различные изменения с панелью-таблицей
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AdressTableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Обрабатывает событие клика на заголовок
-        /// </summary>
-        /// <param name="sender">Источник событий</param>
-        /// <param name="e">Данные события</param>
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Обрабатывает изменения в текстовом поле почтового индекса
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -128,10 +97,8 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обрабатывает изменения в текстовом поле страны
+        /// Обрабатывает изменение страны. Подсвечивает поле при ошибке
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -148,10 +115,26 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обрабатывает изменения в текстовом поле улицы
+        /// Обрабатывает изменения в городе. Подсвечивает поле при ошибке
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
+        private void CityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_address == null) return;
+
+            try
+            {
+                _address.City = CityTextBox.Text;
+                CityTextBox.BackColor = Color.White;
+            }
+            catch
+            {
+                CityTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// Обрабатывает изменение улицы. Подсвечивает поле при ошибке
+        /// </summary>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -168,10 +151,8 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обрабатывает изменения в текстовом поле здания
+        /// Обрабатывает изменения здания. Подсвечивает поле при ошибке
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -188,10 +169,8 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
-        /// Обрабатывает изменения в текстовом поле квартиры
+        /// Обрабатывает изменения квартиры. Подсвечивает поле при ошибке
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -207,24 +186,19 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
-        /// <summary>
-        /// Обрабатывает изменения в текстовом поле города
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void CityTextBox_TextChanged(object sender, EventArgs e)
+        private void AddressControl_Load(object sender, EventArgs e)
         {
-            if (_address == null) return;
 
-            try
-            {
-                _address.City = CityTextBox.Text;
-                CityTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                CityTextBox.BackColor = Color.LightPink;
-            }
+        }
+
+        private void AdressTableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

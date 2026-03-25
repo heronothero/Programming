@@ -12,15 +12,16 @@ namespace ObjectOrientedPractics.Services
     public static class IdGenerator
     {
         /// <summary>
-        /// Установлено начальное значение в качестве единицы
+        /// Установлено начальное значение
         /// </summary>
         private static int _itemId = 1;
         private static int _customerId = 1;
+        private static int _orderId = 0;
 
         /// <summary>
         /// Счет айди товара
         /// </summary>
-        /// <returns>next id will be 1 more</returns>
+        /// <returns>Следующее значение будет на 1 больше</returns>
         public static int GetNextIdItem()
         {
             return _itemId++;
@@ -29,10 +30,19 @@ namespace ObjectOrientedPractics.Services
         /// <summary>
         /// Счет айди покупателя
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Следующее значение будет на 1 больше</returns>
         public static int GetNextIdCustomer()
         {
             return _customerId++;
+        }
+
+        /// <summary>
+        /// Счет айди заказов
+        /// </summary>
+        /// <returns>Следующее значение будет на 1 больше</returns>
+        public static int GetNextIdOrder()
+        {
+            return _orderId++;
         }
     }
 }

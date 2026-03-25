@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Services
     internal class CustomerFactory
     {
         /// <summary>
-        /// Создание рандомайзера для покупателей
+        /// Статический генератор случайных чисел для создания случайных покупателей
         /// </summary>
         private static Random _random = new Random();
 
@@ -39,9 +39,9 @@ namespace ObjectOrientedPractics.Services
         private static string[] _streets = { "Ленина", "Мира", "Пушкина", "Советская", "Октябрьская" };
 
         /// <summary>
-        /// Генерация случайного покупателя с валидным адресом
+        /// Создает случайного покупателя с валидным адресом
         /// </summary>
-        /// <returns>Возвращает поккпателя с заполненными данными</returns>
+        /// <returns>Возвращает покупателя с заполненными адресом и ФИО</returns>
         public static Customer CreateRandom()
         {
             var address = new Address

@@ -11,15 +11,18 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics
 {
+    /// <summary>
+    /// Главная форма приложения
+    /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
-        /// Связка
+        /// Основной магазин с товарами и покупателями
         /// </summary>
         private Store _store;
 
         /// <summary>
-        /// Инициализация компонентов в главной форме
+        /// Инициализация компонентов и связывание вкладок с данными
         /// </summary>
         public MainForm()
         {
@@ -27,19 +30,36 @@ namespace ObjectOrientedPractics
 
             _store = new Store();
 
-            // Передача данных во вкладки
             itemsTab.Items = _store.Items;
             customersTab.Customers = _store.Customers;
+            cartsTab.Items = _store.Items;
+            cartsTab.Customers = _store.Customers;
+            ordersTab.Customers = _store.Customers;
+
+            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
         }
 
         /// <summary>
-        /// Обрабатывает загрузку главной формы
+        /// Обрабатка загрузку главной формы
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        /// <summary>
+        /// Обработка переключения вкладок
+        /// </summary>
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == CartsTabPage)
+            {
+                cartsTab.RefreshData();
+            }
+            else if (tabControl.SelectedTab == OrderTabPage)
+            {
+                ordersTab.RefreshData();
+            }
         }
     }
 }
