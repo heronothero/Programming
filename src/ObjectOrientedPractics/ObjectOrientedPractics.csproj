@@ -83,9 +83,11 @@
     <Compile Include="Model\Cart.cs" />
     <Compile Include="Model\Enums\Category.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\Enums\DeliveryTimeRange.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Enums\OrderStatus.cs" />
     <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\PriorityOrder.cs" />
     <Compile Include="Model\Store.cs" />
     <Compile Include="Services\CustomerFactory.cs" />
     <Compile Include="Services\IdGenerator.cs" />
@@ -130,6 +132,12 @@
     <Compile Include="View\Tabs\OrdersTab.Designer.cs">
       <DependentUpon>OrdersTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Tabs\PriorityOrdersTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\PriorityOrdersTab.Designer.cs">
+      <DependentUpon>PriorityOrdersTab.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\Controls\AddressControl.resx">
       <DependentUpon>AddressControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Tabs\OrdersTab.resx">
       <DependentUpon>OrdersTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Tabs\PriorityOrdersTab.resx">
+      <DependentUpon>PriorityOrdersTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
