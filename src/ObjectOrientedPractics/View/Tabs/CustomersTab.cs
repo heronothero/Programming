@@ -23,6 +23,8 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
+        private Customer selectedCustomer;
+
         /// <summary>
         /// Инициализация компонентов и событий в CustomersTab
         /// </summary>
@@ -104,14 +106,14 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = CustomersListBox.SelectedIndex;
-
             if (index < 0) return;
 
-            Customer customer = _customers[index];
+            selectedCustomer = _customers[index];
 
-            IdCustomerTextBox.Text = customer.Id.ToString();
-            FullNameTextBox.Text = customer.FullName;
-            AddressControl.Address = customer.Address;
+            IdCustomerTextBox.Text = selectedCustomer.Id.ToString();
+            FullNameTextBox.Text = selectedCustomer.FullName;
+            AddressControl.Address = selectedCustomer.Address;
+            IsPriorityCheckBox.Checked = selectedCustomer.IsPriority;
         }
 
         /// <summary>
@@ -170,6 +172,12 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddressControl_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectedCustomer != null)
+                selectedCustomer.IsPriority = IsPriorityCheckBox.Checked;
         }
     }
 }
