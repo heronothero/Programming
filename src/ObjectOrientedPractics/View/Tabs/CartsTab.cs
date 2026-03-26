@@ -159,7 +159,6 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Clicked");
             if (_currentCustomer == null) 
                 return; 
 
