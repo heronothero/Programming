@@ -127,6 +127,8 @@ namespace ObjectOrientedPractics.View.Tabs
             if (_currentOrder is PriorityOrder priorityOrder)
             {
                 _selectedPriorityOrder = priorityOrder;
+                DeliveryTimeLabel.Visible = true;
+                DeliveryTimeComboBox.Visible = true;
 
                 DeliveryTimeComboBox.SelectedIndexChanged -= DeliveryTimeComboBox_SelectedIndexChanged;
                 DeliveryTimeComboBox.SelectedItem = _selectedPriorityOrder.DeliveryTimeRange;
@@ -135,6 +137,8 @@ namespace ObjectOrientedPractics.View.Tabs
             else
             {
                 _selectedPriorityOrder = null;
+                DeliveryTimeLabel.Visible = false;
+                DeliveryTimeComboBox.Visible = false;
             }
         }
 
@@ -209,9 +213,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_selectedPriorityOrder == null) return;
-
-            if (DeliveryTimeComboBox.SelectedItem is DeliveryTimeRange time)
+            if (_selectedPriorityOrder != null && DeliveryTimeComboBox.SelectedItem is DeliveryTimeRange time)
             {
                 _selectedPriorityOrder.DeliveryTimeRange = time;
             }
