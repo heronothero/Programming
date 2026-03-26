@@ -19,6 +19,8 @@ namespace ObjectOrientedPractics.Model
         private Cart _cart;
         private List<Order> _orders;
 
+        public bool IsPriority { get; set; } = false;
+
         /// <summary>
         /// Свойство идентификатора
         /// </summary>
