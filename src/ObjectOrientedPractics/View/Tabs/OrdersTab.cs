@@ -17,20 +17,10 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class OrdersTab : UserControl
     {
-        /// <summary>
-        /// Все покупатели
-        /// </summary>
         private List<Customer> _customers = new List<Customer>();
-
-        /// <summary>
-        /// Все заказы
-        /// </summary>
         private List<Order> _orders = new List<Order>();
-
-        /// <summary>
-        /// Текущий заказ
-        /// </summary>
         private Order _currentOrder;
+        private PriorityOrder _selectedPriorityOrder;
 
         /// <summary>
         /// Инициализация компонентов вкладки OrdersTab
@@ -48,6 +38,9 @@ namespace ObjectOrientedPractics.View.Tabs
             OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
 
             StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
+
+            DeliveryTimeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTimeRange));
+            DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
         }
 
         /// <summary>
@@ -119,17 +112,30 @@ namespace ObjectOrientedPractics.View.Tabs
 
             IdTextBox.Text = _currentOrder.Id.ToString();
             CreatedTextBox.Text = _currentOrder.CreatedAt.ToString();
-
             addressControl1.Address = _currentOrder.DeliveryAddress;
 
             OrderItemsListBox.Items.Clear();
             foreach (var item in _currentOrder.Items)
-            {
                 OrderItemsListBox.Items.Add(item);
-            }
 
             SumLabel.Text = $"{_currentOrder.Amount} ₽";
+
+            StatusComboBox.SelectedIndexChanged -= StatusComboBox_SelectedIndexChanged;
             StatusComboBox.SelectedItem = _currentOrder.OrderStatus;
+            StatusComboBox.SelectedIndexChanged += StatusComboBox_SelectedIndexChanged;
+
+            if (_currentOrder is PriorityOrder priorityOrder)
+            {
+                _selectedPriorityOrder = priorityOrder;
+
+                DeliveryTimeComboBox.SelectedIndexChanged -= DeliveryTimeComboBox_SelectedIndexChanged;
+                DeliveryTimeComboBox.SelectedItem = _selectedPriorityOrder.DeliveryTimeRange;
+                DeliveryTimeComboBox.SelectedIndexChanged += DeliveryTimeComboBox_SelectedIndexChanged;
+            }
+            else
+            {
+                _selectedPriorityOrder = null;
+            }
         }
 
         /// <summary>
@@ -169,9 +175,11 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (_currentOrder == null) return;
 
-            _currentOrder.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
-
-            UpdateOrders();
+            if (StatusComboBox.SelectedItem is OrderStatus status)
+            {
+                _currentOrder.OrderStatus = status;
+                UpdateOrders();
+            }
         }
 
         private void IdTextBox_TextChanged(object sender, EventArgs e)
@@ -197,6 +205,16 @@ namespace ObjectOrientedPractics.View.Tabs
         private void SumLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_selectedPriorityOrder == null) return;
+
+            if (DeliveryTimeComboBox.SelectedItem is DeliveryTimeRange time)
+            {
+                _selectedPriorityOrder.DeliveryTimeRange = time;
+            }
         }
     }
 }

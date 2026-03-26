@@ -32,6 +32,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.OrdersLabel = new System.Windows.Forms.Label();
             this.OrdersDataGridView = new System.Windows.Forms.DataGridView();
+            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelectedOrderLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
             this.CreatedLabel = new System.Windows.Forms.Label();
@@ -44,14 +50,13 @@
             this.OrderItemsListBox = new System.Windows.Forms.ListBox();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.SumLabel = new System.Windows.Forms.Label();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryTimeLabel = new System.Windows.Forms.Label();
+            this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
+            this.PriorityPanel = new System.Windows.Forms.Panel();
+            this.IsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
+            this.PriorityPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -59,9 +64,9 @@
             this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.0199F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.452736F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.90547F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.079602F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.0398F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.41294F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.43284F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.1791F));
             this.tableLayoutPanel1.Controls.Add(this.OrdersLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.OrdersDataGridView, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.SelectedOrderLabel, 1, 0);
@@ -76,6 +81,9 @@
             this.tableLayoutPanel1.Controls.Add(this.OrderItemsListBox, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.AmountLabel, 4, 9);
             this.tableLayoutPanel1.Controls.Add(this.SumLabel, 4, 10);
+            this.tableLayoutPanel1.Controls.Add(this.DeliveryTimeLabel, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DeliveryTimeComboBox, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.PriorityPanel, 1, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -125,6 +133,48 @@
             this.OrdersDataGridView.Size = new System.Drawing.Size(362, 473);
             this.OrdersDataGridView.TabIndex = 1;
             // 
+            // IdColumn
+            // 
+            this.IdColumn.HeaderText = "Id";
+            this.IdColumn.MinimumWidth = 6;
+            this.IdColumn.Name = "IdColumn";
+            this.IdColumn.Width = 125;
+            // 
+            // CreatedColumn
+            // 
+            this.CreatedColumn.HeaderText = "Created At";
+            this.CreatedColumn.MinimumWidth = 6;
+            this.CreatedColumn.Name = "CreatedColumn";
+            this.CreatedColumn.Width = 125;
+            // 
+            // CustomerColumn
+            // 
+            this.CustomerColumn.HeaderText = "Customer";
+            this.CustomerColumn.MinimumWidth = 6;
+            this.CustomerColumn.Name = "CustomerColumn";
+            this.CustomerColumn.Width = 125;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.MinimumWidth = 6;
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.Width = 125;
+            // 
+            // AmountColumn
+            // 
+            this.AmountColumn.HeaderText = "Amount";
+            this.AmountColumn.MinimumWidth = 6;
+            this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.Width = 125;
+            // 
+            // StatusColumn
+            // 
+            this.StatusColumn.HeaderText = "Status";
+            this.StatusColumn.MinimumWidth = 6;
+            this.StatusColumn.Name = "StatusColumn";
+            this.StatusColumn.Width = 125;
+            // 
             // SelectedOrderLabel
             // 
             this.SelectedOrderLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -172,11 +222,10 @@
             // 
             // IdTextBox
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.IdTextBox, 2);
             this.IdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.IdTextBox.Location = new System.Drawing.Point(446, 28);
             this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.Size = new System.Drawing.Size(135, 23);
+            this.IdTextBox.Size = new System.Drawing.Size(133, 23);
             this.IdTextBox.TabIndex = 6;
             this.IdTextBox.TextChanged += new System.EventHandler(this.IdTextBox_TextChanged);
             // 
@@ -268,47 +317,48 @@
             this.SumLabel.Text = "4999.90";
             this.SumLabel.Click += new System.EventHandler(this.SumLabel_Click);
             // 
-            // IdColumn
+            // DeliveryTimeLabel
             // 
-            this.IdColumn.HeaderText = "Id";
-            this.IdColumn.MinimumWidth = 6;
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.Width = 125;
+            this.DeliveryTimeLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.DeliveryTimeLabel.AutoSize = true;
+            this.DeliveryTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.DeliveryTimeLabel.Location = new System.Drawing.Point(585, 30);
+            this.DeliveryTimeLabel.Name = "DeliveryTimeLabel";
+            this.DeliveryTimeLabel.Size = new System.Drawing.Size(98, 17);
+            this.DeliveryTimeLabel.TabIndex = 14;
+            this.DeliveryTimeLabel.Text = "Delivery Time:";
             // 
-            // CreatedColumn
+            // DeliveryTimeComboBox
             // 
-            this.CreatedColumn.HeaderText = "Created At";
-            this.CreatedColumn.MinimumWidth = 6;
-            this.CreatedColumn.Name = "CreatedColumn";
-            this.CreatedColumn.Width = 125;
+            this.DeliveryTimeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeliveryTimeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DeliveryTimeComboBox.FormattingEnabled = true;
+            this.DeliveryTimeComboBox.Location = new System.Drawing.Point(692, 28);
+            this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            this.DeliveryTimeComboBox.Size = new System.Drawing.Size(109, 24);
+            this.DeliveryTimeComboBox.TabIndex = 15;
+            this.DeliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
             // 
-            // CustomerColumn
+            // PriorityPanel
             // 
-            this.CustomerColumn.HeaderText = "Customer";
-            this.CustomerColumn.MinimumWidth = 6;
-            this.CustomerColumn.Name = "CustomerColumn";
-            this.CustomerColumn.Width = 125;
+            this.tableLayoutPanel1.SetColumnSpan(this.PriorityPanel, 2);
+            this.PriorityPanel.Controls.Add(this.IsPriorityCheckBox);
+            this.PriorityPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PriorityPanel.Location = new System.Drawing.Point(371, 407);
+            this.PriorityPanel.Name = "PriorityPanel";
+            this.PriorityPanel.Size = new System.Drawing.Size(208, 27);
+            this.PriorityPanel.TabIndex = 16;
             // 
-            // AddressColumn
+            // IsPriorityCheckBox
             // 
-            this.AddressColumn.HeaderText = "Address";
-            this.AddressColumn.MinimumWidth = 6;
-            this.AddressColumn.Name = "AddressColumn";
-            this.AddressColumn.Width = 125;
-            // 
-            // AmountColumn
-            // 
-            this.AmountColumn.HeaderText = "Amount";
-            this.AmountColumn.MinimumWidth = 6;
-            this.AmountColumn.Name = "AmountColumn";
-            this.AmountColumn.Width = 125;
-            // 
-            // StatusColumn
-            // 
-            this.StatusColumn.HeaderText = "Status";
-            this.StatusColumn.MinimumWidth = 6;
-            this.StatusColumn.Name = "StatusColumn";
-            this.StatusColumn.Width = 125;
+            this.IsPriorityCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.IsPriorityCheckBox.AutoSize = true;
+            this.IsPriorityCheckBox.Location = new System.Drawing.Point(0, 3);
+            this.IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            this.IsPriorityCheckBox.Size = new System.Drawing.Size(78, 19);
+            this.IsPriorityCheckBox.TabIndex = 0;
+            this.IsPriorityCheckBox.Text = "Is Priority";
+            this.IsPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // OrdersTab
             // 
@@ -320,6 +370,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).EndInit();
+            this.PriorityPanel.ResumeLayout(false);
+            this.PriorityPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,5 +399,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusColumn;
+        private System.Windows.Forms.Label DeliveryTimeLabel;
+        private System.Windows.Forms.ComboBox DeliveryTimeComboBox;
+        private System.Windows.Forms.Panel PriorityPanel;
+        private System.Windows.Forms.CheckBox IsPriorityCheckBox;
     }
 }
