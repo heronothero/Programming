@@ -90,10 +90,27 @@ namespace ObjectOrientedPractics.Model
         {
             _id = IdGenerator.GetNextIdOrder();
             _createdAt = DateTime.Now;
+            _orderStatus = OrderStatus.New;
+            _deliveryAddress = deliveryAddress ?? new Address();
+            _items = items ?? new List<Item>();
+        }
 
-            Items = items;
-            DeliveryAddress = deliveryAddress;
-            OrderStatus = OrderStatus.New;
+        public Order()
+        {
+            _id = IdGenerator.GetNextIdOrder();
+            _createdAt = DateTime.Now;
+            _orderStatus = OrderStatus.New;
+            _deliveryAddress = new Address();
+            _items = new List<Item>();
+        }
+
+        protected Order(int id, DateTime createdAt, OrderStatus status, Address deliveryAddress, List<Item> items)
+        {
+            _id = id;
+            _createdAt = createdAt;
+            _orderStatus = status;
+            _deliveryAddress = deliveryAddress ?? new Address();
+            _items = items ?? new List<Item>();
         }
     }
 }
