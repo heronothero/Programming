@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,16 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
         private List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
+        private OrdersTab _ordersTab;
+
+        /// <summary>
+        /// Инициализация компонентов вкладки CartsTab
+        /// </summary>
+        public CartsTab(OrdersTab ordersTab)
+        {
+            InitializeComponent();
+            _ordersTab = ordersTab;
+        }
 
         /// <summary>
         /// Инициализация компонентов вкладки CartsTab
@@ -65,27 +76,23 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             var selectedCustomer = _currentCustomer;
 
-            // Заполнение списка всех товаров
             AllItemsListBox.Items.Clear();
             foreach (var item in _items)
             {
                 AllItemsListBox.Items.Add(item);
             }
 
-            // Заполнение списка покупателей
             CustomersComboBox.Items.Clear();
             foreach (var customer in _customers)
             {
                 CustomersComboBox.Items.Add(customer);
             }
 
-            // Очистка корзины
             CartListBox.Items.Clear();
             SumLabel.Text = "0 ₽";
 
             _currentCustomer = null;
 
-            // Восстановление выбранного покупателя, если был выбран ранее
             if (selectedCustomer != null)
             {
                 int index = _customers.IndexOf(selectedCustomer);
@@ -159,17 +166,34 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
-            if (_currentCustomer == null) 
-                return; 
+            if (_currentCustomer == null) return;
 
-            if (_currentCustomer.Cart.Items.Count == 0) 
-                return; 
+            List<Item> items = new List<Item>(_currentCustomer.Cart.Items);
+            Address deliveryAddress = _currentCustomer.Address;
 
-            Order order = new Order(new List<Item>(_currentCustomer.Cart.Items), _currentCustomer.Address); 
+            Order newOrder;
 
-            _currentCustomer.Orders.Add(order); 
-            _currentCustomer.Cart.Items.Clear(); 
+            if (_currentCustomer.IsPriority)
+            {
+                var priorityOrder = new PriorityOrder();
+                priorityOrder.Items = new List<Item>(items);
+                priorityOrder.DeliveryAddress = deliveryAddress;
+                priorityOrder.DeliveryDate = DateTime.Now.AddDays(1);
+                priorityOrder.DeliveryTimeRange = DeliveryTimeRange.NineToEleven;
+
+                newOrder = priorityOrder;
+            }
+            else
+            {
+                newOrder = new Order(items, deliveryAddress);
+            }
+
+            _currentCustomer.Orders.Add(newOrder);
+
+            _currentCustomer.Cart.Items.Clear();
             UpdateCart();
+
+            _ordersTab?.RefreshData();
         }
 
         /// <summary>
