@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Класс товара
     /// </summary>
-    internal class Item
+    public class Item
     {
         /// <summary>
         /// Статичные поля
@@ -19,6 +20,11 @@ namespace ObjectOrientedPractics.Model
         private string _name;
         private string _info;
         private decimal _cost;
+
+        /// <summary>
+        /// Объявление категорий
+        /// </summary>
+        public Category Category { get; set; }
 
         /// <summary>
         /// Свойство идентификатора товара
@@ -80,12 +86,13 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара</param>
         /// <param name="info">Описание товара</param>
         /// <param name="cost">Цена товара</param>
-        public Item()
+        public Item(string name, string info, decimal cost, Category category)
         {
             _id = IdGenerator.GetNextIdItem();
-            _name = "New Item";
-            _info = "";
-            _cost = 1;
+            Name = name;
+            Info = info;
+            Cost = cost;
+            Category = category;
         }
     }
 }

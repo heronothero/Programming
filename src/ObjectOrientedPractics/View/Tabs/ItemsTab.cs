@@ -9,18 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Вкладка управления товарами
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
         /// <summary>
-        /// Создание списка
+        /// Список всех товаров
         /// </summary>
         private List<Item> _items = new List<Item>();
 
         /// <summary>
-        /// Инициализация компонентов внутри класса ItemsTab
+        /// Инициализация компонентов и событий вкладки ItemsTab
         /// </summary>
         public ItemsTab()
         {
@@ -32,50 +36,70 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             CostTextBox.TextChanged += CostTextBox_TextChanged;
             InfoTextBox.TextChanged += InfoTextBox_TextChanged;
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+        }
+
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
-        /// Обрабатывает загрузку элементов
+        /// Коллекция всех товаров для UI
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void ItemsTab_Load(object sender, EventArgs e)
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Item> Items
         {
-            _items = ProjectSerializer.Load("items.json");
-
-            ItemsListBox.Items.Clear();
-
-            foreach (var item in _items)
+            get => _items;
+            set
             {
-                ItemsListBox.Items.Add(item);
+                _items = value ?? new List<Item>();
+
+                ItemsListBox.Items.Clear();
+
+                foreach (var item in _items)
+                {
+                    ItemsListBox.Items.Add(item);
+                }
             }
         }
 
         /// <summary>
-        /// Обрабатывает добавление товара
+        /// Очистка полей ввода
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
+        private void ClearFields()
+        {
+            IdTextBox.Text = "";
+            NameTextBox.Text = "";
+            CostTextBox.Text = "";
+            InfoTextBox.Text = "";
+            CategoryComboBox.SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Обработка добавления нового товара
+        /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item();
-            item.Name = "New Item";
-            item.Cost = 0;
-            item.Info = "";
+            Category category = Category.Аксессуары; //чтобы избежать ошибки с null в категории
+
+            if (CategoryComboBox.SelectedItem != null)
+            {
+                category = (Category)CategoryComboBox.SelectedItem;
+            }
+
+            Item item = new Item("New Item", "", 1, category);
 
             _items.Add(item);
             ItemsListBox.Items.Add(item);
 
             ItemsListBox.SelectedIndex = _items.Count - 1;
-
-            ProjectSerializer.Save("items.json", _items);
         }
 
         /// <summary>
-        /// Обрабатывает удаление товара
+        /// Удаление выбранного товара
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
@@ -84,27 +108,25 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.RemoveAt(index);
             ItemsListBox.Items.RemoveAt(index);
 
-            ProjectSerializer.Save("items.json", _items);
-
             ClearFields();
         }
 
         /// <summary>
-        /// Очищение полей для метода удаления товара
+        /// Генерация случайного товара через ItemFactory
         /// </summary>
-        private void ClearFields()
+        private void GenerateButton_Click(object sender, EventArgs e)
         {
-            IdTextBox.Text = "";
-            NameTextBox.Text = "";
-            CostTextBox.Text = "";
-            InfoTextBox.Text = "";
+            Item item = ItemFactory.CreateRandom();
+
+            _items.Add(item);
+            ItemsListBox.Items.Add(item);
+
+            ItemsListBox.SelectedIndex = _items.Count - 1;
         }
 
         /// <summary>
-        /// Обрабатывает изменения выбранного товара и отображает данные в текстовых полях
+        /// Обработка изменения выбора товара в списке
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
@@ -117,45 +139,17 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = item.Name;
             CostTextBox.Text = item.Cost.ToString();
             InfoTextBox.Text = item.Info;
+            CategoryComboBox.SelectedItem = item.Category;
         }
 
-        /// <summary>
-        /// Обрабатывает изменеие поля идентификатора товара
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Обрабатывает изменения поля цены с условием
+        /// Обновление имени выбранного товара
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CostTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
-
-            try
-            {
-                decimal cost = decimal.Parse(CostTextBox.Text);
-                _items[index].Cost = cost;
-                CostTextBox.BackColor = System.Drawing.Color.White;
-            }
-            catch
-            {
-                CostTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        /// <summary>
-        /// Обрабатывает изменение поля имени с условием
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
@@ -174,10 +168,8 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обрабатывает измененеи поля описания с условием
+        /// Обновление описания выбранного товара
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
@@ -195,18 +187,34 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обрабатывет генерацию случайного товара и отображения в списке через сервисный класс товаров
+        /// Обновление цены выбранного товара
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void GenerateButton_Click(object sender, EventArgs e)
+        private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            Item item = ItemFactory.CreateRandom();
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
 
-            _items.Add(item);
-            ItemsListBox.Items.Add(item);
+            try
+            {
+                decimal cost = decimal.Parse(CostTextBox.Text);
+                _items[index].Cost = cost;
+                CostTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                CostTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
 
-            ItemsListBox.SelectedIndex = _items.Count - 1;
+        /// <summary>
+        /// Изменение категории выбранного товара
+        /// </summary>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
+
+            _items[index].Category = (Category)CategoryComboBox.SelectedItem;
         }
     }
 }
