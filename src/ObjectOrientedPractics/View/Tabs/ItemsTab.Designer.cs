@@ -81,10 +81,10 @@
             this.ItemsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ItemsLabel.AutoSize = true;
             this.ItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemsLabel.Location = new System.Drawing.Point(2, 5);
+            this.ItemsLabel.Location = new System.Drawing.Point(2, 3);
             this.ItemsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ItemsLabel.Name = "ItemsLabel";
-            this.ItemsLabel.Size = new System.Drawing.Size(46, 17);
+            this.ItemsLabel.Size = new System.Drawing.Size(55, 20);
             this.ItemsLabel.TabIndex = 0;
             this.ItemsLabel.Text = "Items";
             // 
@@ -178,10 +178,10 @@
             // 
             this.IdLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(2, 11);
+            this.IdLabel.Location = new System.Drawing.Point(2, 10);
             this.IdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(19, 13);
+            this.IdLabel.Size = new System.Drawing.Size(20, 15);
             this.IdLabel.TabIndex = 5;
             this.IdLabel.Text = "Id:";
             // 
@@ -189,10 +189,10 @@
             // 
             this.CostLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CostLabel.AutoSize = true;
-            this.CostLabel.Location = new System.Drawing.Point(2, 46);
+            this.CostLabel.Location = new System.Drawing.Point(2, 45);
             this.CostLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(31, 13);
+            this.CostLabel.Size = new System.Drawing.Size(34, 15);
             this.CostLabel.TabIndex = 6;
             this.CostLabel.Text = "Cost:";
             // 
@@ -211,10 +211,10 @@
             // 
             this.NameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(2, 116);
+            this.NameLabel.Location = new System.Drawing.Point(2, 115);
             this.NameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(38, 13);
+            this.NameLabel.Size = new System.Drawing.Size(44, 15);
             this.NameLabel.TabIndex = 7;
             this.NameLabel.Text = "Name:";
             // 
@@ -222,10 +222,10 @@
             // 
             this.CategoryLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Location = new System.Drawing.Point(2, 81);
+            this.CategoryLabel.Location = new System.Drawing.Point(2, 80);
             this.CategoryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CategoryLabel.Name = "CategoryLabel";
-            this.CategoryLabel.Size = new System.Drawing.Size(52, 13);
+            this.CategoryLabel.Size = new System.Drawing.Size(58, 15);
             this.CategoryLabel.TabIndex = 13;
             this.CategoryLabel.Text = "Category:";
             // 
@@ -233,7 +233,7 @@
             // 
             this.CategoryComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(95, 77);
+            this.CategoryComboBox.Location = new System.Drawing.Point(95, 76);
             this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(108, 21);
@@ -256,10 +256,10 @@
             // 
             this.InfoLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.InfoLabel.AutoSize = true;
-            this.InfoLabel.Location = new System.Drawing.Point(2, 222);
+            this.InfoLabel.Location = new System.Drawing.Point(2, 221);
             this.InfoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(63, 13);
+            this.InfoLabel.Size = new System.Drawing.Size(72, 15);
             this.InfoLabel.TabIndex = 8;
             this.InfoLabel.Text = "Description:";
             // 
@@ -283,7 +283,7 @@
             this.SelectedItemLabel.Location = new System.Drawing.Point(2, 2);
             this.SelectedItemLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SelectedItemLabel.Name = "SelectedItemLabel";
-            this.SelectedItemLabel.Size = new System.Drawing.Size(106, 17);
+            this.SelectedItemLabel.Size = new System.Drawing.Size(124, 20);
             this.SelectedItemLabel.TabIndex = 4;
             this.SelectedItemLabel.Text = "Selected Item";
             // 
