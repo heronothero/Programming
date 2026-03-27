@@ -25,6 +25,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _displayedItems = new List<Item>();
         private Func<List<Item>, List<Item>> _currentSorter = DataTools.SortByName;
 
+        public event EventHandler ItemsChanged;
+
         /// <summary>
         /// Инициализация компонентов и событий вкладки ItemsTab
         /// </summary>
@@ -45,6 +47,8 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderByComboBox.Items.Add("Цена ↓");
 
             OrderByComboBox.SelectedIndex = 0;
+
+            UpdateDisplayedItems();
         }
 
         private void ItemsTab_Load(object sender, EventArgs e)
@@ -79,6 +83,11 @@ namespace ObjectOrientedPractics.View.Tabs
             CategoryComboBox.SelectedIndex = -1;
         }
 
+        private void OnItemsChanged()
+        {
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         /// <summary>
         /// Обработка добавления нового товара
         /// </summary>
@@ -97,6 +106,7 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateDisplayedItems();
 
             ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+            OnItemsChanged();
         }
 
         /// <summary>
@@ -111,8 +121,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _items.Remove(item);
             UpdateDisplayedItems();
-
             ClearFields();
+
+            OnItemsChanged();
         }
 
         /// <summary>
@@ -126,6 +137,7 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateDisplayedItems();
 
             ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+            OnItemsChanged();
         }
 
         /// <summary>
@@ -134,7 +146,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
             Item item = _displayedItems[index];
 
@@ -156,7 +168,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
             try
             {
@@ -167,6 +179,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
 
                 NameTextBox.BackColor = Color.White;
+                OnItemsChanged();
             }
             catch
             {
@@ -180,7 +193,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
             try
             {
@@ -191,6 +204,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
 
                 InfoTextBox.BackColor = Color.White;
+                OnItemsChanged();
             }
             catch
             {
@@ -204,7 +218,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
             try
             {
@@ -217,6 +231,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
 
                 CostTextBox.BackColor = Color.White;
+                OnItemsChanged();
             }
             catch
             {
@@ -230,13 +245,17 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
+
+            if (CategoryComboBox.SelectedItem == null) return;
 
             var item = _displayedItems[index];
             item.Category = (Category)CategoryComboBox.SelectedItem;
 
             UpdateDisplayedItems();
             ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+
+            OnItemsChanged();
         }
 
         private void FindTextBox_TextChanged(object sender, EventArgs e)
@@ -265,7 +284,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             IEnumerable<Item> result = _items;
 
-            string text = FindTextBox.Text.ToLower();
+            string text = FindTextBox.Text?.ToLower() ?? "";
 
             if (!string.IsNullOrWhiteSpace(text))
             {

@@ -21,6 +21,10 @@ namespace ObjectOrientedPractics.Model
         private string _info;
         private decimal _cost;
 
+        public event EventHandler NameChanged;
+        public event EventHandler CostChanged;
+        public event EventHandler InfoChanged;
+
         /// <summary>
         /// Объявление категорий
         /// </summary>
@@ -39,8 +43,10 @@ namespace ObjectOrientedPractics.Model
             get => _name;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
+                if (_name == value) return;
+
                 _name = value;
+                NameChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -52,8 +58,10 @@ namespace ObjectOrientedPractics.Model
             get => _info;
             set
             {
-                ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
+                if (_info == value) return;
+
                 _info = value;
+                InfoChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -65,8 +73,10 @@ namespace ObjectOrientedPractics.Model
             get => _cost;
             set
             {
-                ValueValidator.AssertNumberInRange(value, 0m, 100000m, nameof(Cost));
+                if (_cost == value) return;
+
                 _cost = value;
+                CostChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

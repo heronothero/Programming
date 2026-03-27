@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics
             cartsTab.Customers = _store.Customers;
             ordersTab.Customers = _store.Customers;
 
-            tabControl.SelectedIndexChanged += tabControl_SelectedIndexChanged;
+            itemsTab.ItemsChanged += ItemsTab_ItemsChanged;
         }
 
         /// <summary>
@@ -60,6 +60,12 @@ namespace ObjectOrientedPractics
             {
                 ordersTab.RefreshData();
             }
+        }
+
+        private void ItemsTab_ItemsChanged(object sender, EventArgs e)
+        {
+            cartsTab.RefreshData();
+            ordersTab.RefreshData();
         }
     }
 }

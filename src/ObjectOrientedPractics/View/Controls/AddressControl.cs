@@ -30,17 +30,7 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         public Address Address
         {
-            get
-            {
-                PostIndexTextBox_TextChanged(null, null);
-                CountryTextBox_TextChanged(null, null);
-                CityTextBox_TextChanged(null, null);
-                StreetTextBox_TextChanged(null, null);
-                BuildingTextBox_TextChanged(null, null);
-                ApartmentTextBox_TextChanged(null, null);
-
-                return _address;
-            }
+            get => _address;
             set
             {
                 _address = value ?? new Address();
@@ -78,6 +68,11 @@ namespace ObjectOrientedPractics.View.Controls
             ApartmentTextBox.Text = _address.Apartment;
         }
 
+        private void OnAddressChanged()
+        {
+            AddressChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         /// <summary>
         /// Обрабатывает изменение почтового индекса. Подсвечивает поле при некорректном вводе и выводит подсказку
         /// </summary>
@@ -86,8 +81,11 @@ namespace ObjectOrientedPractics.View.Controls
             try
             {
                 _address.Index = int.Parse(PostIndexTextBox.Text);
+
                 PostIndexTextBox.BackColor = Color.White;
                 _toolTip.SetToolTip(PostIndexTextBox, "");
+
+                OnAddressChanged();
             }
             catch (Exception ex)
             {
@@ -101,12 +99,12 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_address == null) return;
-
             try
             {
                 _address.Country = CountryTextBox.Text;
+
                 CountryTextBox.BackColor = Color.White;
+                OnAddressChanged();
             }
             catch
             {
@@ -119,12 +117,12 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_address == null) return;
-
             try
             {
                 _address.City = CityTextBox.Text;
+
                 CityTextBox.BackColor = Color.White;
+                OnAddressChanged();
             }
             catch
             {
@@ -137,12 +135,12 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_address == null) return;
-
             try
             {
                 _address.Street = StreetTextBox.Text;
+
                 StreetTextBox.BackColor = Color.White;
+                OnAddressChanged();
             }
             catch
             {
@@ -155,12 +153,12 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_address == null) return;
-
             try
             {
                 _address.Building = BuildingTextBox.Text;
+
                 BuildingTextBox.BackColor = Color.White;
+                OnAddressChanged();
             }
             catch
             {
@@ -173,12 +171,12 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_address == null) return;
-
             try
             {
                 _address.Apartment = ApartmentTextBox.Text;
+
                 ApartmentTextBox.BackColor = Color.White;
+                OnAddressChanged();
             }
             catch
             {
