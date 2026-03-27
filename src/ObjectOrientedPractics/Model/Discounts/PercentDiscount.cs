@@ -60,5 +60,10 @@ namespace ObjectOrientedPractics.Model.Discounts
 
             Percent = newPercent;
         }
+
+        public override string ToString()
+        {
+            return Info;
+        }
     }
 }

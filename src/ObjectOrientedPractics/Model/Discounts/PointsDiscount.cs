@@ -42,5 +42,10 @@ namespace ObjectOrientedPractics.Model.Discounts
             int earnedPoints = (int)Math.Ceiling(total * 0.1);
             Points += earnedPoints;
         }
+
+        public override string ToString()
+        {
+            return Info;
+        }
     }
 }
