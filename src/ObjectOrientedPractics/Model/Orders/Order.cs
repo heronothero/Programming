@@ -13,7 +13,7 @@ namespace ObjectOrientedPractics.Model.Orders
     /// <summary>
     /// Представляет заказ пользователя, содержащий список товаров, адрес доставки, статус и время создания заказа
     /// </summary>
-    public class Order
+    public class Order : ICloneable, IEquatable<Order>
     {
         private readonly int _id;
         private readonly DateTime _createdAt;
@@ -116,8 +116,38 @@ namespace ObjectOrientedPractics.Model.Orders
             _id = id;
             _createdAt = createdAt;
             _orderStatus = status;
-            _deliveryAddress = deliveryAddress ?? new Address();
+            _deliveryAddress = (Address)deliveryAddress?.Clone() ?? new Address();
             _items = items ?? new List<Item>();
+        }
+
+        public object Clone()
+        {
+            return new Order(
+                Id,
+                CreatedAt,
+                OrderStatus,
+                DeliveryAddress,
+                Items.Select(i => (Item)i.Clone()).ToList()
+            )
+            {
+                DiscountAmount = DiscountAmount
+            };
+        }
+
+        public bool Equals(Order other)
+        {
+            if (other == null) return false;
+
+            return Id == other.Id
+                && CreatedAt == other.CreatedAt
+                && OrderStatus == other.OrderStatus
+                && DeliveryAddress.Equals(other.DeliveryAddress)
+                && Items.SequenceEqual(other.Items);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Order);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Discounts
 {
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         private int _percent = 1;
         private double _totalSpent = 0;
@@ -64,6 +64,13 @@ namespace ObjectOrientedPractics.Model.Discounts
         public override string ToString()
         {
             return Info;
+        }
+
+        public int CompareTo(PercentDiscount other)
+        {
+            if (other == null) return 1;
+
+            return Percent.CompareTo(other.Percent);
         }
     }
 }

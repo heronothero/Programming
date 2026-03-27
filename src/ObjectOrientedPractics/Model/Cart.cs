@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс корзины
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         /// <summary>
         /// Список товаров
@@ -32,8 +32,6 @@ namespace ObjectOrientedPractics.Model
         {
             get
             {
-                if (_items.Count == 0 || _items == null)
-                    return 0;
                 decimal sum = 0;
 
                 foreach (var item in _items)
@@ -43,6 +41,17 @@ namespace ObjectOrientedPractics.Model
 
                 return sum;
             }
+        }
+
+        public object Clone()
+        {
+            var newCart = new Cart();
+
+            newCart.Items = _items
+                .Select(item => (Item)item.Clone())
+                .ToList();
+
+            return newCart;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс товара
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Статичные поля
@@ -93,6 +93,33 @@ namespace ObjectOrientedPractics.Model
             Info = info;
             Cost = cost;
             Category = category;
+        }
+
+        public object Clone()
+        {
+            return new Item(Name, Info, Cost, Category);
+        }
+
+        public bool Equals(Item other)
+        {
+            if (other == null) return false;
+
+            return Name == other.Name
+                && Info == other.Info
+                && Cost == other.Cost
+                && Category == other.Category;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Item);
+        }
+
+        public int CompareTo(Item other)
+        {
+            if (other == null) return 1;
+
+            return Cost.CompareTo(other.Cost);
         }
     }
 }
