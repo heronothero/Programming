@@ -79,6 +79,13 @@ namespace ObjectOrientedPractics.Model.Orders
             }
         }
 
+        public decimal DiscountAmount { get; set; }
+
+        public decimal Total
+        {
+            get => Amount - DiscountAmount;
+        }
+
         /// <summary>
         /// Создает новый заказ с указанными товарами и адресом доставки
         /// При создании устанавливается уникальный идентификатор и текущая дата/время
