@@ -1,4 +1,6 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +10,18 @@ using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
-    internal class Customer
+    /// <summary>
+    /// Класс покупателя
+    /// </summary>
+    public class Customer
     {
-        /// <summary>
-        /// Статические поля
-        /// </summary>
         private readonly int _id;
         private string _fullName;
-        private string _address;
+        private Address _address = new Address();
+        private Cart _cart;
+        private List<Order> _orders;
+
+        public bool IsPriority { get; set; } = false;
 
         /// <summary>
         /// Свойство идентификатора
@@ -36,18 +42,38 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Свойство адреса, при котором оно не может быть пустым и превышать 500 символов
+        /// Свойство адреса
         /// </summary>
-        public string Address
+        public Address Address
         {
             get => _address;
-            set
-            {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
-                _address = value;
-            }
+            set => _address = value;
         }
 
+        /// <summary>
+        /// Свойство корзины
+        /// </summary>
+        public Cart Cart
+        {
+            get => _cart;
+            set => _cart = value ?? new Cart();
+        }
+
+        /// <summary>
+        /// Свойство заказов
+        /// </summary>
+        public List<Order> Orders
+        {
+            get => _orders;
+            set => _orders = value ?? new List<Order>();
+        }
+
+        public List<IDiscount> Discounts { get; set; }
+
+        /// <summary>
+        /// Переписывает в строчные данные
+        /// </summary>
+        /// <returns>Возвращает результат данных в строковом типе</returns>
         public override string ToString()
         {
             return FullName;
@@ -59,11 +85,17 @@ namespace ObjectOrientedPractics.Model
         /// <param name="id">Уникальный идентификатор клиента</param>
         /// <param name="fullName">ФИО клиента</param>
         /// <param name="address">Адрес клиента</param>
+        /// <param name="cart">Корзина клиента</param>
+        /// <param name="orders">Заказы клиента</param>
         public Customer()
         {
             _id = IdGenerator.GetNextIdCustomer();
             _fullName = "Andrew Stone";
-            _address = "St Pt";
+            _address = new Address();
+            _cart = new Cart();
+            _orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
     }
 }
