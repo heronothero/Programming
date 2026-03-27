@@ -147,6 +147,12 @@
     <Compile Include="View\Tabs\PriorityOrdersTab.Designer.cs">
       <DependentUpon>PriorityOrdersTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Tabs\TestTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\TestTab.Designer.cs">
+      <DependentUpon>TestTab.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\Controls\AddressControl.resx">
       <DependentUpon>AddressControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Tabs\PriorityOrdersTab.resx">
       <DependentUpon>PriorityOrdersTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Tabs\TestTab.resx">
+      <DependentUpon>TestTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
