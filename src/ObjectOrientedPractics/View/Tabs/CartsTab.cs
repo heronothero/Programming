@@ -22,6 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
         private OrdersTab _ordersTab;
+        private decimal _discountAmount = 0;
 
         /// <summary>
         /// Инициализация компонентов вкладки CartsTab
@@ -124,7 +125,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 CartListBox.Items.Add(item);
             }
 
-            SumLabel.Text = $"{_currentCustomer.Cart.Amount} ₽";
+            decimal amount = _currentCustomer.Cart.Items.Sum(x => x.Cost);
+            SumLabel.Text = $"{amount} ₽";
+            UpdateTotals();
         }
 
         /// <summary>
@@ -143,6 +146,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _currentCustomer = _customers[index];
             UpdateCart();
+            UpdateDiscounts();
         }
 
         /// <summary>
@@ -172,6 +176,22 @@ namespace ObjectOrientedPractics.View.Tabs
             List<Item> items = new List<Item>(_currentCustomer.Cart.Items);
             Address deliveryAddress = _currentCustomer.Address;
 
+            decimal discountAmount = 0;
+
+            for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+            {
+                if (DiscountsCheckedListBox.GetItemChecked(i))
+                {
+                    var discount = (IDiscount)DiscountsCheckedListBox.Items[i];
+                    discountAmount += (decimal)discount.Apply(items);
+                }
+            }
+
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                discount.Update(items);
+            }
+
             Order newOrder;
 
             if (_currentCustomer.IsPriority)
@@ -189,10 +209,13 @@ namespace ObjectOrientedPractics.View.Tabs
                 newOrder = new Order(items, deliveryAddress);
             }
 
+            newOrder.DiscountAmount = discountAmount;
+
             _currentCustomer.Orders.Add(newOrder);
 
             _currentCustomer.Cart.Items.Clear();
             UpdateCart();
+            UpdateDiscounts();
 
             _ordersTab?.RefreshData();
         }
@@ -226,6 +249,44 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateCart();
         }
 
+        private void UpdateDiscounts()
+        {
+            DiscountsCheckedListBox.Items.Clear();
+
+            if (_currentCustomer == null) return;
+
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                DiscountsCheckedListBox.Items.Add(discount, true);
+            }
+
+            UpdateTotals();
+        }
+
+        private void UpdateTotals()
+        {
+            if (_currentCustomer == null) return;
+
+            decimal totalDiscount = 0;
+            var items = _currentCustomer.Cart.Items;
+
+            for (int i = 0; i < DiscountsCheckedListBox.Items.Count; i++)
+            {
+                if (DiscountsCheckedListBox.GetItemChecked(i))
+                {
+                    var discount = (IDiscount)DiscountsCheckedListBox.Items[i];
+                    totalDiscount += (decimal)discount.Calculate(items);
+                }
+            }
+
+            _discountAmount = totalDiscount;
+
+            decimal amount = _currentCustomer.Cart.Items.Sum(x => x.Cost);
+
+            DiscountSumLabel.Text = $"{_discountAmount} ₽";
+            TotalSumLabel.Text = $"{amount - _discountAmount} ₽";
+        }
+
         private void SumLabel_Click(object sender, EventArgs e)
         {
 
@@ -239,6 +300,15 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AllItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void DiscountsCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void DiscountsCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            BeginInvoke(new Action(UpdateTotals));
         }
     }
 }
