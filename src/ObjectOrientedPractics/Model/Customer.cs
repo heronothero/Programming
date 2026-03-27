@@ -1,11 +1,12 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -67,6 +68,8 @@ namespace ObjectOrientedPractics.Model
             set => _orders = value ?? new List<Order>();
         }
 
+        public List<IDiscount> Discounts { get; set; }
+
         /// <summary>
         /// Переписывает в строчные данные
         /// </summary>
@@ -91,6 +94,8 @@ namespace ObjectOrientedPractics.Model
             _address = new Address();
             _cart = new Cart();
             _orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
     }
 }
