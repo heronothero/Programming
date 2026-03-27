@@ -93,6 +93,7 @@
     <Compile Include="Model\Orders\PriorityOrder.cs" />
     <Compile Include="Model\Store.cs" />
     <Compile Include="Services\CustomerFactory.cs" />
+    <Compile Include="Services\DataTools.cs" />
     <Compile Include="Services\IdGenerator.cs" />
     <Compile Include="Services\ItemFactory.cs" />
     <Compile Include="Services\ProjectSerializer.cs" />
