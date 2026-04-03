@@ -26,6 +26,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
+        /// <summary>
+        /// Выбранный покупатель
+        /// </summary>
         private Customer selectedCustomer;
 
         /// <summary>
@@ -189,6 +192,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Добавляет новую процентную скидку выбранному покупателю
+        /// </summary>
         private void AddDiscountButton_Click(object sender, EventArgs e)
         {
             if (selectedCustomer == null) return;
@@ -205,6 +211,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Убирает процентную скидку выбранному покупателю
+        /// </summary>
         private void RemoveDiscountButton_Click(object sender, EventArgs e)
         {
             if (selectedCustomer == null) return;

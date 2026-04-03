@@ -212,6 +212,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обрабатывает изменение выбранного диапазона времени доставки только для приоритетного заказа
+        /// </summary>
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_selectedPriorityOrder != null && DeliveryTimeComboBox.SelectedItem is DeliveryTimeRange time)

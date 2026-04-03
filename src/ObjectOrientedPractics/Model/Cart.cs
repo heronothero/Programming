@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
-    /// Класс корзины
+    /// Класс корзины, позволяет вычислить стоимость товаров в ней
     /// </summary>
     public class Cart : ICloneable
     {
@@ -43,6 +43,10 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт глубокую копию корзины вместе с товарами
+        /// </summary>
+        /// <returns>Копия объекта корзины</returns>
         public object Clone()
         {
             var newCart = new Cart();

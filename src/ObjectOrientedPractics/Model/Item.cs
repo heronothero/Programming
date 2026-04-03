@@ -14,15 +14,38 @@ namespace ObjectOrientedPractics.Model
     public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
-        /// Статичные поля
+        /// Уникальный идентификатор товара
         /// </summary>
         private readonly int _id;
+
+        /// <summary>
+        /// Название товара
+        /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Описание товара
+        /// </summary>
         private string _info;
+
+        /// <summary>
+        /// Цена товара
+        /// </summary>
         private decimal _cost;
 
+        /// <summary>
+        /// Событие изменения названия товара
+        /// </summary>
         public event EventHandler NameChanged;
+
+        /// <summary>
+        /// Событие изменения цены товара
+        /// </summary>
         public event EventHandler CostChanged;
+
+        /// <summary>
+        /// Событие изменения описания товара
+        /// </summary>
         public event EventHandler InfoChanged;
 
         /// <summary>
@@ -105,11 +128,17 @@ namespace ObjectOrientedPractics.Model
             Category = category;
         }
 
+        /// <summary>
+        /// Создает копию товара
+        /// </summary>
         public object Clone()
         {
             return new Item(Name, Info, Cost, Category);
         }
 
+        /// <summary>
+        /// Определяет равенство товаров по основным полям
+        /// </summary>
         public bool Equals(Item other)
         {
             if (other == null) return false;
@@ -120,11 +149,19 @@ namespace ObjectOrientedPractics.Model
                 && Category == other.Category;
         }
 
+        /// <summary>
+        /// Определяет равенсто объектов
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             return Equals(obj as Item);
         }
 
+        /// <summary>
+        /// Сравнивает товары по стоимости
+        /// </summary>
         public int CompareTo(Item other)
         {
             if (other == null) return 1;

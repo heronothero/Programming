@@ -249,6 +249,9 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateCart();
         }
 
+        /// <summary>
+        /// Обновляет список доступных скидок для текущего покупателя
+        /// </summary>
         private void UpdateDiscounts()
         {
             DiscountsCheckedListBox.Items.Clear();
@@ -263,6 +266,9 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateTotals();
         }
 
+        /// <summary>
+        /// Обновляет итоговую сумму с учетом скидок
+        /// </summary>
         private void UpdateTotals()
         {
             if (_currentCustomer == null) return;

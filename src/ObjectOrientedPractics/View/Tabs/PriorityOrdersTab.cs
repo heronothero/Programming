@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Вкладка для работы с приоритетными заказами
+    /// </summary>
     public partial class PriorityOrdersTab : UserControl
     {
+        /// <summary>
+        /// Инициализация компонентов в PriotityOrdersTab
+        /// </summary>
         public PriorityOrdersTab()
         {
             InitializeComponent();

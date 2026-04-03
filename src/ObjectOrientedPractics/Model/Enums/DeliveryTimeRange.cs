@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model.Enums
 {
+    /// <summary>
+    /// Перечисление времени доставки
+    /// </summary>
     public enum DeliveryTimeRange
     {
         NineToEleven,   // 9:00 – 11:00

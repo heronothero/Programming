@@ -18,9 +18,6 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
-        /// <summary>
-        /// Список всех товаров
-        /// </summary>
         private List<Item> _items = new List<Item>();
         private List<Item> _displayedItems = new List<Item>();
         private Func<List<Item>, List<Item>> _currentSorter = DataTools.SortByName;
@@ -83,6 +80,9 @@ namespace ObjectOrientedPractics.View.Tabs
             CategoryComboBox.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Вызывает событие изменения списка товаров
+        /// </summary>
         private void OnItemsChanged()
         {
             ItemsChanged?.Invoke(this, EventArgs.Empty);
@@ -258,11 +258,17 @@ namespace ObjectOrientedPractics.View.Tabs
             OnItemsChanged();
         }
 
+        /// <summary>
+        /// Обработчик изменения текста для поиска товаров
+        /// </summary>
         private void FindTextBox_TextChanged(object sender, EventArgs e)
         {
             UpdateDisplayedItems();
         }
 
+        /// <summary>
+        /// Обновляет элементы списка товаров в ListBox
+        /// </summary>
         private void UpdateItemsListBox()
         {
             ItemsListBox.Items.Clear();
@@ -273,6 +279,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет отображаемый список товаров с учетом фильтрации и сортировки
+        /// </summary>
         private void UpdateDisplayedItems()
         {
             Item selectedItem = null;
@@ -302,6 +311,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обновляет отображаемый список товаров с учетом сортировки (по названию и цене)
+        /// </summary>
         private void OrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (OrderByComboBox.SelectedIndex)

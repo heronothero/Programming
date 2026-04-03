@@ -11,10 +11,19 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Forms
 {
+    /// <summary>
+    /// Форма для выбора категории скидки
+    /// </summary>
     public partial class AddDiscountForm : Form
     {
+        /// <summary>
+        /// Выбранная пользователем категория
+        /// </summary>
         public Category SelectedCategory { get; private set; }
 
+        /// <summary>
+        /// Инициализирует форму и заполняет список категорий
+        /// </summary>
         public AddDiscountForm()
         {
             InitializeComponent();
@@ -30,6 +39,9 @@ namespace ObjectOrientedPractics.View.Forms
 
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки OK (сохраняет выбранную категорию и закрывает форму с результатом ОК)
+        /// </summary>
         private void OkButton_Click(object sender, EventArgs e)
         {
             SelectedCategory = (Category)CategoryComboBox.SelectedItem;
@@ -37,6 +49,9 @@ namespace ObjectOrientedPractics.View.Forms
             Close();
         }
 
+        /// <summary>
+        /// Обрабатывает нажатие кнопки Cancel (закрывает форму без сохранения изменений)
+        /// </summary>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

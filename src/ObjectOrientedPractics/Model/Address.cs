@@ -7,16 +7,39 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Model
 {
+    /// <summary>
+    /// Представляет адрес доставки (почтовый индекс, страна, город и детали адреса)
+    /// </summary>
     public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
-        /// Статические поля
+        /// Почтовый индекс
         /// </summary>
         private int _index;
+
+        /// <summary>
+        /// Страна
+        /// </summary>
         private string _country;
+
+        /// <summary>
+        /// Город
+        /// </summary>
         private string _city;
+
+        /// <summary>
+        /// Улица
+        /// </summary>
         private string _street;
+
+        /// <summary>
+        /// Здание
+        /// </summary>
         private string _building;
+
+        /// <summary>
+        /// Квартира
+        /// </summary>
         private string _apartment;
 
         /// <summary>
@@ -139,11 +162,17 @@ namespace ObjectOrientedPractics.Model
             return $"{Index}, {Country}, {City}, {Street}, {Building}, {Apartment}";
         }
 
+        /// <summary>
+        /// Создает копию адреса
+        /// </summary>
         public object Clone()
         {
             return new Address(Index, Country, City, Street, Building, Apartment);
         }
 
+        /// <summary>
+        /// Определяет равенство адресов по всем полям
+        /// </summary>
         public bool Equals(Address other)
         {
             if (other == null) return false;
@@ -156,6 +185,9 @@ namespace ObjectOrientedPractics.Model
                 && Apartment == other.Apartment;
         }
 
+        /// <summary>
+        /// Определяет равенство объектов
+        /// </summary>
         public override bool Equals(object obj)
         {
             return Equals(obj as Address);

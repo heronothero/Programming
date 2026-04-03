@@ -79,8 +79,14 @@ namespace ObjectOrientedPractics.Model.Orders
             }
         }
 
+        /// <summary>
+        /// Сумма применённой скидки
+        /// </summary>
         public decimal DiscountAmount { get; set; }
 
+        /// <summary>
+        /// Итоговая сумма заказа с учётом скидки
+        /// </summary>
         public decimal Total
         {
             get => Amount - DiscountAmount;
@@ -102,6 +108,9 @@ namespace ObjectOrientedPractics.Model.Orders
             _items = items ?? new List<Item>();
         }
 
+        /// <summary>
+        /// Создаёт новый пустой заказ со статусом New
+        /// </summary>
         public Order()
         {
             _id = IdGenerator.GetNextIdOrder();
@@ -111,6 +120,9 @@ namespace ObjectOrientedPractics.Model.Orders
             _items = new List<Item>();
         }
 
+        /// <summary>
+        /// Защищённый конструктор для клонирования
+        /// </summary>
         protected Order(int id, DateTime createdAt, OrderStatus status, Address deliveryAddress, List<Item> items)
         {
             _id = id;
@@ -120,6 +132,10 @@ namespace ObjectOrientedPractics.Model.Orders
             _items = items ?? new List<Item>();
         }
 
+        /// <summary>
+        /// Создаёт глубокую копию заказа
+        /// </summary>
+        /// <returns>Копия объекта заказа</returns>
         public object Clone()
         {
             return new Order(
@@ -134,6 +150,9 @@ namespace ObjectOrientedPractics.Model.Orders
             };
         }
 
+        /// <summary>
+        /// Определяет равенство заказов по всем значимым полям
+        /// </summary>
         public bool Equals(Order other)
         {
             if (other == null) return false;
@@ -145,6 +164,9 @@ namespace ObjectOrientedPractics.Model.Orders
                 && Items.SequenceEqual(other.Items);
         }
 
+        /// <summary>
+        /// Определяет равенство объектов
+        /// </summary>
         public override bool Equals(object obj)
         {
             return Equals(obj as Order);

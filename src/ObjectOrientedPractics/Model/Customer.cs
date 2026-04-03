@@ -15,12 +15,34 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Customer
     {
+        /// <summary>
+        /// уникальный идентификатор пользователя
+        /// </summary>
         private readonly int _id;
+
+        /// <summary>
+        /// ФИО покупателя
+        /// </summary>
         private string _fullName;
+
+        /// <summary>
+        /// Адрес покупателя
+        /// </summary>
         private Address _address = new Address();
+
+        /// <summary>
+        /// Корзина покупатеоя
+        /// </summary>
         private Cart _cart;
+
+        /// <summary>
+        /// Список заказов покупателя
+        /// </summary>
         private List<Order> _orders;
 
+        /// <summary>
+        /// Является ли покупатель прриоритетным
+        /// </summary>
         public bool IsPriority { get; set; } = false;
 
         /// <summary>

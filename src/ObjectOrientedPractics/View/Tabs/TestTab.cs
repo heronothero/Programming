@@ -8,24 +8,39 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Вкладка для тестирования функциональности моделей
+    /// </summary>
     public partial class TestTab : UserControl
     {
+        /// <summary>
+        /// Инициализация компонентов вкладки TestTab
+        /// </summary>
         public TestTab()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Добавляет строку в лог вывода
+        /// </summary>
         private void Log(string text)
         {
             TestOutputListBox.Items.Add(text);
         }
 
+        /// <summary>
+        /// Добавляет заголовок нового теста в лог
+        /// </summary>
         private void ClearLog(string title)
         {
             TestOutputListBox.Items.Add("");
             TestOutputListBox.Items.Add($"=== {title} ===");
         }
 
+        /// <summary>
+        /// Тестирует корректность реализации метода клонирования
+        /// </summary>
         private void CloneTestButton_Click(object sender, EventArgs e)
         {
             TestOutputListBox.Items.Clear();
@@ -64,6 +79,9 @@ namespace ObjectOrientedPractics.View.Tabs
             Log($"Amount: {cart.Amount} / {cartClone.Amount}");
         }
 
+        /// <summary>
+        /// Тестирует корректность реализации метода Equals
+        /// </summary>
         private void EqualsTestButton_Click(object sender, EventArgs e)
         {
             TestOutputListBox.Items.Clear();
@@ -104,6 +122,9 @@ namespace ObjectOrientedPractics.View.Tabs
             Log($"order1.Equals(order3): {order1.Equals(order3)}");
         }
 
+        /// <summary>
+        /// Тестирует корректность реализации метода Compare
+        /// </summary>
         private void CompareTestButton_Click(object sender, EventArgs e)
         {
             TestOutputListBox.Items.Clear();
@@ -153,6 +174,9 @@ namespace ObjectOrientedPractics.View.Tabs
             Log($"percent2.CompareTo(percent1): {percent2.CompareTo(percent1)}");
         }
 
+        /// <summary>
+        /// Тестирует работу различных типов скидок
+        /// </summary>
         private void DiscountTestButton_Click(object sender, EventArgs e)
         {
             TestOutputListBox.Items.Clear();
@@ -201,6 +225,9 @@ namespace ObjectOrientedPractics.View.Tabs
             Log($"Percent Calculate: {percent.Calculate(items)}");
         }
 
+        /// <summary>
+        /// Тестирует клонирование и расчёт значений заказа
+        /// </summary>
         private void OrderTestButton_Click(object sender, EventArgs e)
         {
             TestOutputListBox.Items.Clear();

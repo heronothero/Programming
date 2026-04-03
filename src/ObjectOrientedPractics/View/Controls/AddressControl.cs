@@ -16,7 +16,14 @@ namespace ObjectOrientedPractics.View.Controls
     /// </summary>
     public partial class AddressControl : UserControl
     {
+        /// <summary>
+        /// Текущий адрес
+        /// </summary>
         private Address _address = new Address();
+
+        /// <summary>
+        /// Подсказки для отображения ошибок ввода
+        /// </summary>
         private ToolTip _toolTip = new ToolTip();
 
         /// <summary>
@@ -68,6 +75,9 @@ namespace ObjectOrientedPractics.View.Controls
             ApartmentTextBox.Text = _address.Apartment;
         }
 
+        /// <summary>
+        /// Вызывает событие изменения адреса
+        /// </summary>
         private void OnAddressChanged()
         {
             AddressChanged?.Invoke(this, EventArgs.Empty);

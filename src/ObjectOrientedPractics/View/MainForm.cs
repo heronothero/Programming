@@ -62,6 +62,9 @@ namespace ObjectOrientedPractics
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения списка товаров — обновляет связанные вкладки
+        /// </summary>
         private void ItemsTab_ItemsChanged(object sender, EventArgs e)
         {
             cartsTab.RefreshData();
