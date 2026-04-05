@@ -23,7 +23,7 @@ namespace View.ViewModel
 
         public void Execute(object parameter)
         {
-            _serializer.Save(_vm.Contact);
+            _serializer.Save(_vm.Contacts.ToList());
         }
 
         public event EventHandler CanExecuteChanged;

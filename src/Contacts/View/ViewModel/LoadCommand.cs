@@ -23,11 +23,15 @@ namespace View.ViewModel
 
         public void Execute(object parameter)
         {
-            var contact = _serializer.Load();
+            var list = _serializer.Load();
 
-            _vm.Name = contact.Name;
-            _vm.PhoneNumber = contact.Phone;
-            _vm.Email = contact.Email;
+            _vm.Contacts.Clear();
+
+            if (list != null)
+            {
+                foreach (var c in list)
+                    _vm.Contacts.Add(c);
+            }
         }
 
         public event EventHandler CanExecuteChanged;
