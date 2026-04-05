@@ -28,26 +28,26 @@ namespace View.Model.Services
         /// <summary>
         /// Сохранение данных контакта
         /// </summary>
-        public void Save(Contact contact)
+        public void Save(List<Contact> contacts)
         {
             var dir = Path.GetDirectoryName(FilePath);
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            var json = JsonConvert.SerializeObject(contact, Newtonsoft.Json.Formatting.Indented);
+            var json = JsonConvert.SerializeObject(contacts, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(FilePath, json);
         }
 
         /// <summary>
-        /// Возвращает предыдущий сохраненный контакт (после предыдущего запуска)
+        /// Возвращает список контактов
         /// </summary>
-        public Contact Load()
+        public List<Contact> Load()
         {
             if (!File.Exists(FilePath))
-                return new Contact();
+                return new List<Contact>();
 
             var json = File.ReadAllText(FilePath);
-            return JsonConvert.DeserializeObject<Contact>(json);
+            return JsonConvert.DeserializeObject<List<Contact>>(json);
         }
     }
 }
