@@ -34,6 +34,7 @@ namespace View.ViewModel
 
                 ((RelayCommand)EditCommand)?.RaiseCanExecuteChanged();
                 ((RelayCommand)RemoveCommand)?.RaiseCanExecuteChanged();
+                ((RelayCommand)ApplyCommand)?.RaiseCanExecuteChanged();
             }
         }
 
@@ -87,6 +88,7 @@ namespace View.ViewModel
             AddCommand = new RelayCommand(Add);
             EditCommand = new RelayCommand(Edit, CanEdit);
             RemoveCommand = new RelayCommand(Remove, CanRemove);
+            ApplyCommand = new RelayCommand(Apply, CanApply);
         }
 
         private void Add(object obj)
@@ -170,6 +172,15 @@ namespace View.ViewModel
         protected void OnPropertyChanged([CallerMemberName] string prop = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private bool CanApply(object obj)
+        {
+            if (SelectedContact == null) return false;
+
+            return string.IsNullOrEmpty(((IDataErrorInfo)SelectedContact)["Name"])
+                && string.IsNullOrEmpty(((IDataErrorInfo)SelectedContact)["Phone"])
+                && string.IsNullOrEmpty(((IDataErrorInfo)SelectedContact)["Email"]);
         }
 
         private void FilterContacts()
