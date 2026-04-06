@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace View.Model
+namespace Contacts.Model
 {
     public class Contact : IDataErrorInfo
     {

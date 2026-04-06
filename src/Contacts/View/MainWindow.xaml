@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:View"
         xmlns:Controls="clr-namespace:View.Controls" x:Class="View.MainWindow"
         mc:Ignorable="d"
-        xmlns:model="clr-namespace:View.Model"
+        xmlns:model="clr-namespace:Contacts.Model;assembly=Contacts.Model"
         Title="MainWindow" Height="460" Width="624">
     <Window.Resources>
         <DataTemplate DataType="{x:Type model:Contact}">
