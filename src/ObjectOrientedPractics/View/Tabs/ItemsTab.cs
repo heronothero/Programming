@@ -9,18 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Вкладка управления товарами
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
-        /// <summary>
-        /// Создание списка
-        /// </summary>
         private List<Item> _items = new List<Item>();
+        private List<Item> _displayedItems = new List<Item>();
+        private Func<List<Item>, List<Item>> _currentSorter = DataTools.SortByName;
+
+        public event EventHandler ItemsChanged;
 
         /// <summary>
-        /// Инициализация компонентов внутри класса ItemsTab
+        /// Инициализация компонентов и событий вкладки ItemsTab
         /// </summary>
         public ItemsTab()
         {
@@ -32,65 +37,39 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.TextChanged += NameTextBox_TextChanged;
             CostTextBox.TextChanged += CostTextBox_TextChanged;
             InfoTextBox.TextChanged += InfoTextBox_TextChanged;
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+
+            OrderByComboBox.Items.Add("По имени");
+            OrderByComboBox.Items.Add("Цена ↑");
+            OrderByComboBox.Items.Add("Цена ↓");
+
+            OrderByComboBox.SelectedIndex = 0;
+
+            UpdateDisplayedItems();
+        }
+
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
-        /// Обрабатывает загрузку элементов
+        /// Коллекция всех товаров для UI
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void ItemsTab_Load(object sender, EventArgs e)
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Item> Items
         {
-            _items = ProjectSerializer.Load("items.json");
-
-            ItemsListBox.Items.Clear();
-
-            foreach (var item in _items)
+            get => _items;
+            set
             {
-                ItemsListBox.Items.Add(item);
+                _items = value ?? new List<Item>();
+                UpdateDisplayedItems();
             }
         }
 
         /// <summary>
-        /// Обрабатывает добавление товара
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            Item item = new Item();
-            item.Name = "New Item";
-            item.Cost = 0;
-            item.Info = "";
-
-            _items.Add(item);
-            ItemsListBox.Items.Add(item);
-
-            ItemsListBox.SelectedIndex = _items.Count - 1;
-
-            ProjectSerializer.Save("items.json", _items);
-        }
-
-        /// <summary>
-        /// Обрабатывает удаление товара
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void RemoveButton_Click(object sender, EventArgs e)
-        {
-            int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
-
-            _items.RemoveAt(index);
-            ItemsListBox.Items.RemoveAt(index);
-
-            ProjectSerializer.Save("items.json", _items);
-
-            ClearFields();
-        }
-
-        /// <summary>
-        /// Очищение полей для метода удаления товара
+        /// Очистка полей ввода
         /// </summary>
         private void ClearFields()
         {
@@ -98,95 +77,134 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.Text = "";
             CostTextBox.Text = "";
             InfoTextBox.Text = "";
+            CategoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
-        /// Обрабатывает изменения выбранного товара и отображает данные в текстовых полях
+        /// Вызывает событие изменения списка товаров
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
+        private void OnItemsChanged()
+        {
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Обработка добавления нового товара
+        /// </summary>
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            Category category = Category.Аксессуары;
+
+            if (CategoryComboBox.SelectedItem != null)
+            {
+                category = (Category)CategoryComboBox.SelectedItem;
+            }
+
+            Item item = new Item("New Item", "", 1, category);
+
+            _items.Add(item);
+            UpdateDisplayedItems();
+
+            ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+            OnItemsChanged();
+        }
+
+        /// <summary>
+        /// Удаление выбранного товара
+        /// </summary>
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0) return;
+
+            var item = _displayedItems[index];
+
+            _items.Remove(item);
+            UpdateDisplayedItems();
+            ClearFields();
+
+            OnItemsChanged();
+        }
+
+        /// <summary>
+        /// Генерация случайного товара через ItemFactory
+        /// </summary>
+        private void GenerateButton_Click(object sender, EventArgs e)
+        {
+            Item item = ItemFactory.CreateRandom();
+
+            _items.Add(item);
+            UpdateDisplayedItems();
+
+            ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+            OnItemsChanged();
+        }
+
+        /// <summary>
+        /// Обработка изменения выбора товара в списке
+        /// </summary>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
-            if (index < 0) return;
-
-            Item item = _items[index];
+            Item item = _displayedItems[index];
 
             IdTextBox.Text = item.Id.ToString();
             NameTextBox.Text = item.Name;
             CostTextBox.Text = item.Cost.ToString();
             InfoTextBox.Text = item.Info;
+            CategoryComboBox.SelectedItem = item.Category;
         }
 
-        /// <summary>
-        /// Обрабатывает изменеие поля идентификатора товара
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void IdTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Обрабатывает изменения поля цены с условием
+        /// Обновление имени выбранного товара
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CostTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
-
-            try
-            {
-                decimal cost = decimal.Parse(CostTextBox.Text);
-                _items[index].Cost = cost;
-                CostTextBox.BackColor = System.Drawing.Color.White;
-            }
-            catch
-            {
-                CostTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        /// <summary>
-        /// Обрабатывает изменение поля имени с условием
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
             try
             {
-                _items[index].Name = NameTextBox.Text;
-                ItemsListBox.Items[index] = _items[index];
-                NameTextBox.BackColor = System.Drawing.Color.White;
+                var item = _displayedItems[index];
+                item.Name = NameTextBox.Text;
+
+                UpdateDisplayedItems();
+                ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+
+                NameTextBox.BackColor = Color.White;
+                OnItemsChanged();
             }
             catch
             {
-                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                NameTextBox.BackColor = Color.LightPink;
             }
         }
 
         /// <summary>
-        /// Обрабатывает измененеи поля описания с условием
+        /// Обновление описания выбранного товара
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
-            if (index < 0) return;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
             try
             {
-                _items[index].Info = InfoTextBox.Text;
+                var item = _displayedItems[index];
+                item.Info = InfoTextBox.Text;
+
+                UpdateDisplayedItems();
+                ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+
                 InfoTextBox.BackColor = Color.White;
+                OnItemsChanged();
             }
             catch
             {
@@ -195,18 +213,125 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обрабатывет генерацию случайного товара и отображения в списке через сервисный класс товаров
+        /// Обновление цены выбранного товара
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void GenerateButton_Click(object sender, EventArgs e)
+        private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            Item item = ItemFactory.CreateRandom();
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0 || index >= _displayedItems.Count) return;
 
-            _items.Add(item);
-            ItemsListBox.Items.Add(item);
+            try
+            {
+                decimal cost = decimal.Parse(CostTextBox.Text);
 
-            ItemsListBox.SelectedIndex = _items.Count - 1;
+                var item = _displayedItems[index];
+                item.Cost = cost;
+
+                UpdateDisplayedItems();
+                ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+
+                CostTextBox.BackColor = Color.White;
+                OnItemsChanged();
+            }
+            catch
+            {
+                CostTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// Изменение категории выбранного товара
+        /// </summary>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+            if (index < 0 || index >= _displayedItems.Count) return;
+
+            if (CategoryComboBox.SelectedItem == null) return;
+
+            var item = _displayedItems[index];
+            item.Category = (Category)CategoryComboBox.SelectedItem;
+
+            UpdateDisplayedItems();
+            ItemsListBox.SelectedIndex = _displayedItems.IndexOf(item);
+
+            OnItemsChanged();
+        }
+
+        /// <summary>
+        /// Обработчик изменения текста для поиска товаров
+        /// </summary>
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateDisplayedItems();
+        }
+
+        /// <summary>
+        /// Обновляет элементы списка товаров в ListBox
+        /// </summary>
+        private void UpdateItemsListBox()
+        {
+            ItemsListBox.Items.Clear();
+
+            foreach (var item in _displayedItems)
+            {
+                ItemsListBox.Items.Add(item);
+            }
+        }
+
+        /// <summary>
+        /// Обновляет отображаемый список товаров с учетом фильтрации и сортировки
+        /// </summary>
+        private void UpdateDisplayedItems()
+        {
+            Item selectedItem = null;
+
+            if (ItemsListBox.SelectedIndex >= 0 && ItemsListBox.SelectedIndex < _displayedItems.Count)
+            {
+                selectedItem = _displayedItems[ItemsListBox.SelectedIndex];
+            }
+
+            IEnumerable<Item> result = _items;
+
+            string text = FindTextBox.Text?.ToLower() ?? "";
+
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                result = DataTools.Filter(_items,
+                    item => item.Name.ToLower().Contains(text));
+            }
+
+            _displayedItems = DataTools.Sort(result.ToList(), _currentSorter);
+
+            UpdateItemsListBox();
+
+            if (selectedItem != null && _displayedItems.Contains(selectedItem))
+            {
+                ItemsListBox.SelectedIndex = _displayedItems.IndexOf(selectedItem);
+            }
+        }
+
+        /// <summary>
+        /// Обновляет отображаемый список товаров с учетом сортировки (по названию и цене)
+        /// </summary>
+        private void OrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (OrderByComboBox.SelectedIndex)
+            {
+                case 0:
+                    _currentSorter = DataTools.SortByName;
+                    break;
+
+                case 1:
+                    _currentSorter = DataTools.SortByCostAsc;
+                    break;
+
+                case 2:
+                    _currentSorter = DataTools.SortByCostDesc;
+                    break;
+            }
+
+            UpdateDisplayedItems();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -49,17 +50,32 @@ namespace ObjectOrientedPractics.Services
         };
 
         /// <summary>
+        /// Массив категорий
+        /// </summary>
+        private static Category[] _categories =
+        {
+            Category.Наушники,
+            Category.Смартфоны,
+            Category.Планшеты,
+            Category.Часы,
+            Category.Ноутбуки,
+            Category.Роутеры,
+            Category.Ремешки,
+            Category.Аксессуары
+        };
+
+        /// <summary>
         /// Генерация случайных товаров с ценой
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Возвращает сгенерированный элемент</returns>
         public static Item CreateRandom()
         {
-            return new Item
-            {
-                Name = _names[_random.Next(_names.Length)],
-                Info = _descriptions[_random.Next(_descriptions.Length)],
-                Cost = _random.Next(1, 100000)
-            };
+            return new Item(
+                _names[_random.Next(_names.Length)],
+                _descriptions[_random.Next(_descriptions.Length)],
+                (decimal)_random.Next(1, 100000),
+                _categories[_random.Next(_categories.Length)]
+            );
         }
     }
 }

@@ -1,5 +1,9 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Enums;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.View.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,16 +13,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Вкладка управления покупателями
+    /// </summary>
     public partial class CustomersTab : UserControl
     {
         /// <summary>
-        /// Создание списка покупателей
+        /// Список всех покупателей
         /// </summary>
         private List<Customer> _customers = new List<Customer>();
+
+        /// <summary>
+        /// Выбранный покупатель
+        /// </summary>
+        private Customer selectedCustomer;
 
         /// <summary>
         /// Инициализация компонентов и событий в CustomersTab
@@ -31,24 +42,53 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
 
             FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
-            AddressTextBox.TextChanged += AddressTextBox_TextChanged;
+            AddressControl.AddressChanged += AddressControl_AddressChanged;
         }
 
         /// <summary>
-        /// Обрабатывает изменения идентификатора покупателя
+        /// Коллекция покупателей для работы с UI и внешних компонентов
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Customer> Customers
+        {
+            get => _customers;
+            set
+            {
+                _customers = value ?? new List<Customer>();
+
+                CustomersListBox.Items.Clear();
+
+                foreach (var customer in _customers)
+                {
+                    CustomersListBox.Items.Add(customer);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Очистка всех полей ввода
+        /// </summary>
+        private void ClearFields()
+        {
+            IdCustomerTextBox.Text = "";
+            FullNameTextBox.Text = "";
+            AddressControl.Address = new Address();
+        }
+
         private void IdCustomerTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void IdCustomerLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
-        /// Обрабатывает изменения ФИО покупателя
+        /// Обработка изменения ФИО текущего покупателя
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             int index = CustomersListBox.SelectedIndex;
@@ -67,54 +107,30 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обрабатывает изменения адреса покупателя
+        /// Обработка выбора покупателя из списка
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int index = CustomersListBox.SelectedIndex;
-            if (index < 0) return;
-
-            try
-            {
-                _customers[index].Address = AddressTextBox.Text;
-                AddressTextBox.BackColor = Color.White;
-            }
-            catch
-            {
-                AddressTextBox.BackColor = Color.LightPink;
-            }
-        }
-
-        /// <summary>
-        /// Обрабатывает изменения выбранного покупателя и отображает данные в текстовых полях
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = CustomersListBox.SelectedIndex;
-
             if (index < 0) return;
 
-            Customer customer = _customers[index];
+            selectedCustomer = _customers[index];
 
-            IdCustomerTextBox.Text = customer.Id.ToString();
-            FullNameTextBox.Text = customer.FullName;
-            AddressTextBox.Text = customer.Address;
+            IdCustomerTextBox.Text = selectedCustomer.Id.ToString();
+            FullNameTextBox.Text = selectedCustomer.FullName;
+            AddressControl.Address = selectedCustomer.Address;
+            IsPriorityCheckBox.Checked = selectedCustomer.IsPriority;
+            UpdateDiscountsListBox();
         }
 
         /// <summary>
-        /// Обрабатывает кнопку создания нового покупателя
+        /// Создание нового покупателя
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer();
             customer.FullName = "Andrew Stone";
-            customer.Address = "St Pt";
+            customer.Address = new Address();
 
             _customers.Add(customer);
             CustomersListBox.Items.Add(customer);
@@ -123,10 +139,8 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обрабатывает кнопку удаления покупателя
+        /// Удаление выбранного покупателя
         /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int index = CustomersListBox.SelectedIndex;
@@ -139,30 +153,8 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Очищение полей
+        /// Генерация случайного покупателя и добавление в список
         /// </summary>
-        private void ClearFields()
-        {
-            IdCustomerTextBox.Text = "";
-            FullNameTextBox.Text = "";
-            AddressTextBox.Text = "";
-        }
-
-        /// <summary>
-        /// Обрабатывает изменения идентификатора лейбла
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void IdCustomerLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Обрабатывает генерацию случайного покупателя из сервисного класса и отображает в списке
-        /// </summary>
-        /// <param name="sender">Источник события</param>
-        /// <param name="e">Данные события</param>
         private void GenerateButton_Click(object sender, EventArgs e)
         {
             Customer customer = CustomerFactory.CreateRandom();
@@ -171,6 +163,83 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.Items.Add(customer);
 
             CustomersListBox.SelectedIndex = _customers.Count - 1;
+        }
+
+        /// <summary>
+        /// Обновление адреса текущего покупателя при изменениях в AddressControl
+        /// </summary>
+        private void AddressControl_AddressChanged(object sender, EventArgs e)
+        {
+            int index = CustomersListBox.SelectedIndex;
+            if (index < 0) return;
+
+            _customers[index].Address = AddressControl.Address;
+        }
+
+        private void AddressControl_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectedCustomer != null)
+                selectedCustomer.IsPriority = IsPriorityCheckBox.Checked;
+        }
+
+        private void DiscountsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Добавляет новую процентную скидку выбранному покупателю
+        /// </summary>
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (selectedCustomer == null) return;
+
+            using (var form = new AddDiscountForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var discount = new PercentDiscount(form.SelectedCategory);
+                    selectedCustomer.Discounts.Add(discount);
+
+                    UpdateDiscountsListBox();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Убирает процентную скидку выбранному покупателю
+        /// </summary>
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            if (selectedCustomer == null) return;
+
+            int index = DiscountsListBox.SelectedIndex;
+            if (index <= 0) return;
+            if (index >= selectedCustomer.Discounts.Count) return;
+
+            selectedCustomer.Discounts.RemoveAt(index);
+
+            UpdateDiscountsListBox();
+        }
+
+        /// <summary>
+        /// Обновляет список скидок для выбранного покупателя
+        /// </summary>
+        private void UpdateDiscountsListBox()
+        {
+            if (selectedCustomer == null) return;
+
+            DiscountsListBox.Items.Clear();
+
+            foreach (var discount in selectedCustomer.Discounts)
+            {
+                DiscountsListBox.Items.Add(discount.Info);
+            }
         }
     }
 }
